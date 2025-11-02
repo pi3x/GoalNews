@@ -1,248 +1,299 @@
-/* === GOALNEWSDE 2025 - Responsive Redesign === */
-:root {
-    --accent: #1db954;
-    --accent-hover: #18a749;
-    --bg-dark: #0b0b0b;
-    --bg-light: #161616;
-    --text: #f9f9f9;
-    --muted: #a9a9a9;
-    --radius: 16px;
-    --transition: 0.3s ease;
-    --max-width: 1100px;
+/* ===== Allgemein ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    margin: 0;
-    font-family: 'Inter', 'Poppins', sans-serif;
-    background: var(--bg-dark);
-    color: var(--text);
+    background-color: #0f0f0f;
+    color: #eee;
     overflow-x: hidden;
+    text-align: center;
     line-height: 1.6;
 }
 
-/* BREAKING NEWS */
-#breakingNews {
-    background: var(--accent);
-    overflow: hidden;
-    white-space: nowrap;
-    font-weight: 600;
-    padding: 10px 0;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-.news-wrapper {
-    display: inline-block;
-    animation: scroll 40s linear infinite;
-}
-.news-item {
-    margin-right: 80px;
-}
-@keyframes scroll {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+/* Links */
+a {
+    color: #1db954;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-/* HEADER */
+a:hover {
+    color: #14a34a;
+}
+
+/* ===== Header ===== */
 header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 25px;
-    background: var(--bg-light);
-    position: sticky;
-    top: 0;
-    z-index: 50;
+    padding: 20px 0;
+    background: linear-gradient(90deg, #1db954, #14a34a);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
-.logo {
+
+header .logo {
     font-size: 2rem;
     font-weight: 800;
-    color: var(--accent);
-    letter-spacing: 1px;
-}
-
-/* HERO SECTION */
-.hero-container {
-    padding: 60px 20px;
-    background: linear-gradient(160deg, rgba(29,185,84,0.12), rgba(0,0,0,0.4));
-    text-align: center;
-}
-.hero-text {
-    font-size: 1.5rem;
-    max-width: 700px;
-    margin: 0 auto 30px;
-    color: #e9e9e9;
-}
-
-/* GRID MENU (statt Buttons) */
-.hero-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-    width: 90%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-}
-.hero-button {
-    background: var(--bg-light);
-    color: var(--text);
-    padding: 25px 15px;
-    border-radius: var(--radius);
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-}
-.hero-button:hover {
-    background: var(--accent);
     color: #fff;
-    transform: translateY(-3px);
 }
 
-/* Add little emojis/icons to look like app shortcuts */
-.hero-button:nth-child(1)::before { content: "🏆"; font-size: 1.4rem; margin-bottom: 5px; }
-.hero-button:nth-child(2)::before { content: "⚔️"; font-size: 1.4rem; margin-bottom: 5px; }
-.hero-button:nth-child(3)::before { content: "📅"; font-size: 1.4rem; margin-bottom: 5px; }
-.hero-button:nth-child(4)::before { content: "📊"; font-size: 1.4rem; margin-bottom: 5px; }
-.hero-button:nth-child(5)::before { content: "📰"; font-size: 1.4rem; margin-bottom: 5px; }
-.hero-button:nth-child(6)::before { content: "🔒"; font-size: 1.4rem; margin-bottom: 5px; }
-.hero-button:nth-child(7)::before { content: "💬"; font-size: 1.4rem; margin-bottom: 5px; }
-.hero-button:nth-child(8)::before { content: "🗳️"; font-size: 1.4rem; margin-bottom: 5px; }
-.hero-button:nth-child(9)::before { content: "🏈"; font-size: 1.4rem; margin-bottom: 5px; }
+/* ===== Breaking News ===== */
+#breakingNews {
+    background: #111;
+    overflow: hidden;
+    border-left: 4px solid #1db954;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
 
-/* SOCIALS */
+.news-wrapper {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: scrollNews 25s linear infinite;
+}
+
+.news-item {
+    padding: 0 50px;
+    font-weight: 600;
+    color: #1db954;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+@keyframes scrollNews {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+#breakingNews:hover .news-wrapper {
+    animation-play-state: paused;
+}
+
+/* ===== Live-Ticker ===== */
+.ticker-wrapper {
+    background: #1a1a1a;
+    overflow: hidden;
+    padding: 10px 0;
+    border-left: 4px solid #1db954;
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.ticker {
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: 500;
+    color: #1db954;
+    font-size: 1rem;
+    position: absolute;
+    left: 100%;
+}
+
+@keyframes scrollTicker {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.ticker-wrapper:hover .ticker {
+    animation-play-state: paused;
+}
+
+/* ===== Countdown ===== */
+.countdown-section {
+    text-align: center;
+    margin: 50px 0;
+    color: #1db954;
+}
+
+.countdown-section h2 {
+    font-size: 3.0rem;
+}
+
+/* ===== Hero ===== */
+.hero-container {
+    text-align: center;
+    padding: 80px 20px;
+    position: relative;
+}
+
+.hero-text {
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-button {
+    background: linear-gradient(145deg, #1db954, #14a34a);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hero-button:hover {
+    transform: scale(1.1);
+    background: #14a34a;
+}
+
+/* ===== Socials ===== */
 .socials {
-    margin: 30px auto;
     display: flex;
     justify-content: center;
     gap: 25px;
+    padding: 25px 0;
 }
+
 .socials a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: #1db954;
+    color: #fff;
+    transition: all 0.3s;
 }
+
 .socials a:hover {
-    color: var(--accent-hover);
+    transform: scale(1.1);
+    background: #14a34a;
 }
 
-/* COUNTDOWN */
-.countdown-section {
-    text-align: center;
-    margin: 40px auto;
-    background: var(--bg-light);
-    border-radius: var(--radius);
-    padding: 20px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-#countdown {
-    color: var(--accent);
-    font-weight: 700;
-    font-size: 1.4rem;
-}
-
-/* MATCHES */
-.matches {
-    width: 90%;
-    max-width: var(--max-width);
-    margin: 50px auto;
-    background: var(--bg-light);
-    border-radius: var(--radius);
-    padding: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-.matches h2 {
-    color: var(--accent);
-    text-align: center;
-}
-.matches h4 {
-    color: var(--muted);
-    margin-top: 15px;
-}
-.matches h3 {
-    line-height: 1.8;
-}
-.matches strong {
-    color: gold;
-}
-
-/* TICKER */
-.ticker-wrapper {
-    background: var(--bg-light);
-    overflow: hidden;
-    padding: 12px;
-    margin: 40px 0;
-}
-.ticker {
-    white-space: nowrap;
-    font-weight: 600;
-    animation: tickerScroll 40s linear infinite;
-}
-@keyframes tickerScroll {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
-
-/* FOOTER */
-footer {
-    background: #0a0a0a;
-    text-align: center;
-    padding: 25px 10px;
-    font-size: 0.9rem;
-    color: var(--muted);
-    border-top: 1px solid #222;
-}
-footer a {
-    color: var(--accent);
-    text-decoration: none;
-    margin: 0 5px;
-}
-footer a:hover {
-    color: var(--accent-hover);
-}
-
-/* REPORT SECTION */
+/* ===== Problem melden ===== */
 #reportButton {
-    background: var(--accent);
+    background: linear-gradient(145deg, #1db954, #14a34a);
     color: #fff;
     border: none;
-    padding: 14px 25px;
-    border-radius: var(--radius);
+    padding: 14px 26px;
+    border-radius: 30px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: var(--transition);
-}
-#reportButton:hover {
-    background: var(--accent-hover);
-    transform: scale(1.05);
+    transition: all 0.4s ease;
 }
 
-/* MOBILE OPTIMIZATION */
+#reportButton:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+#reportForm {
+    display: none;
+    margin-top: 20px;
+}
+
+#errorDescription,
+#errorType {
+    width: 80%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+/* ===== Matches ===== */
+.matches {
+    padding: 30px 20px;
+    max-width: 950px;
+    margin: auto;
+    background: #111;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.matches h2,
+.matches h3,
+.matches h4 {
+    margin-bottom: 12px;
+}
+
+.matches h2 {
+    color: #1db954;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #111;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
+
+
     .hero-text {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
-    .hero-buttons {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .matches {
-        padding: 15px;
+
+    .hero-button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
     }
 }
+
 @media (max-width: 480px) {
+
+    .hero-text {
+        font-size: 1.1rem;
+    }
+
     .hero-buttons {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
     }
+
     .hero-button {
-        padding: 18px;
+        display: block;
+        width: 90%;
+        max-width: 300px;
+        padding: 12px 0;
+        text-align: center;
     }
-    .logo {
-        font-size: 1.6rem;
+
+    .hero-button:hover {
+        transform: scale(1.1);
+        background: #14a34a;
+    }
+
+    .socials {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .news-item {
+        padding: 0 20px;
     }
 }
