@@ -6,51 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalNewsDE - Fußball-News & Tabellen</title>
 
-    <!-- Favicon -->
     <link rel="icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" type="image/jpeg">
-
     <link rel="stylesheet" href="style.css">
 
-    <!-- PWA / App -->
     <meta name="theme-color" content="#1db954">
     <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg">
     <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
+    <!-- 🔥 Breaking News -->
     <div id="breakingNews">
-        <div class="news-wrapper">
+        <div class="news-wrapper" id="newsWrapper">
             <span class="news-item">Am. Football: Am 9.11.2025: Berlin-Game Indianapolis Colts - Atlanta Falcons</span>
             <span class="news-item">Comeback von Alphonso Davies: "Er ist schon wieder mit Ball beim Training"!</span>
-            <span class="news-item">Der Spielplan des Borussia Dortmund im November ist vollgepackt – gleich sechs
-                Pflichtspiele in Bundesliga und Champions League stehen an.</span>
-            <span class="news-item">Borussia Dortmund besiegt FC Augsburg 1:0 dank Treffer von Serhou Guirassy – ein
-                Statement vorm Kracher gegen Man City.</span>
-            <span class="news-item">Erstes Gegentor nach 25 Sekunden: Union-Frauen kassieren gegen Bremen vierte
-                Saisonniederlage!</span>
-            <span class="news-item">Sky-Experte Didi Hamann über Wagner: "Jetzt auf ihn loszugehen, halte ich nicht für
-                richtig"</span>
-            <span class="news-item">Am. Football: Am 9.11.2025: Berlin-Game Indianapolis Colts - Atlanta Falcons</span>
-            <span class="news-item">Comeback von Alphonso Davies: "Er ist schon wieder mit Ball beim Training"!</span>
-            <span class="news-item">Der Spielplan des Borussia Dortmund im November ist vollgepackt – gleich sechs
-                Pflichtspiele in Bundesliga und Champions League stehen an.</span>
-            <span class="news-item">Borussia Dortmund besiegt FC Augsburg 1:0 dank Treffer von Serhou Guirassy – ein
-                Statement vorm Kracher gegen Man City.</span>
-            <span class="news-item">Erstes Gegentor nach 25 Sekunden: Union-Frauen kassieren gegen Bremen vierte
-                Saisonniederlage!</span>
-            <span class="news-item">Sky-Experte Didi Hamann über Wagner: "Jetzt auf ihn loszugehen, halte ich nicht für
-                richtig"</span>
+            <span class="news-item">Der Spielplan des Borussia Dortmund im November ist vollgepackt – gleich sechs Pflichtspiele in Bundesliga und Champions League stehen an.</span>
+            <span class="news-item">Borussia Dortmund besiegt FC Augsburg 1:0 dank Treffer von Serhou Guirassy – ein Statement vorm Kracher gegen Man City.</span>
+            <span class="news-item">Erstes Gegentor nach 25 Sekunden: Union-Frauen kassieren gegen Bremen vierte Saisonniederlage!</span>
+            <span class="news-item">Sky-Experte Didi Hamann über Wagner: "Jetzt auf ihn loszugehen, halte ich nicht für richtig"</span>
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- 🔝 Header -->
     <header>
         <div class="logo">GoalNewsDE</div>
+
+        <!-- 🔍 Suchfeld -->
+        <div class="search-container">
+            <input type="text" id="siteSearch" placeholder="🔍 Suche nach News, Spielen, Live-Ticker..." />
+            <div id="searchResults"></div>
+        </div>
     </header>
 
-    <!-- Hero & Matches -->
-    <div class="hero-container"></div>
-    <!-- Hero -->
+    <!-- 💥 Hero -->
     <div class="hero-container">
         <div class="hero-text">Offizielle Website von GoalNewsDE – Alle Fußball-News auf einen Blick!</div>
         <div class="hero-buttons">
@@ -60,11 +48,12 @@
             <a href="statistics.html" class="hero-button">Statistiken</a>
             <a href="news.html" class="hero-button">News</a>
             <a href="login.html" class="hero-button">Secret</a>
-            <a href="comments.html" class="hero-button"> Kommentar Forum</a>
+            <a href="comments.html" class="hero-button">Kommentar Forum</a>
             <a href="votings.html" class="hero-button">Abstimmungen</a>
             <a href="football.html" class="hero-button">Am. Football</a>
         </div>
     </div>
+
     <div class="socials">
         <a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y" target="_blank">WhatsApp</a>
         <a href="https://youtube.com/" target="_blank">YouTube</a>
@@ -75,7 +64,8 @@
         <div id="countdown">lade...</div>
     </div>
 
-    <div class="matches">
+    <!-- ⚽ Spieltag -->
+    <div class="matches" id="matchesSection">
         <h2>⚽ Bundesliga - Spieltag 9 (31. Oktober - 2. November)</h2>
         <h4>Freitag:</h4>
         <h3>FC Augsburg - Borussia Dortmund</h3>
@@ -95,63 +85,34 @@
         </h3>
     </div>
 
-    <!-- Live-Ticker -->
+    <!-- 🟢 Live-Ticker -->
     <div class="ticker-wrapper">
         <div class="ticker" id="ticker"></div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        GoalNewsDE © 2025 – Don’t steal our stuff.
-        <a href="mailto:info@goalnewsde.de">Email</a> | <a href="agb.html">Datenschutz</a> | <a
-            href="security.html">Sicherheit</a>
-    </footer>
-
-    <!-- Problem melden -->
+    <!-- ⚠️ Problem melden -->
     <div id="reportSection" style="text-align:center; margin:50px 0;">
-        <button id="reportButton" style="
-            background:#1db954;
-            color:white;
-            border:none;
-            padding:12px 20px;
-            border-radius:10px;
-            cursor:pointer;
-            font-size:16px;
-            box-shadow:0 0 10px rgba(0,0,0,0.3);
-        ">⚠️ Problem melden</button>
-
+        <button id="reportButton">⚠️ Problem melden</button>
         <div id="reportForm" style="display:none; margin-top:20px;">
             <h3>🛠️ Fehler melden</h3>
-            <label for="errorType">Art des Fehlers:</label><br>
-            <select id="errorType" style="padding:8px; margin:8px; border-radius:6px;">
+            <select id="errorType">
                 <option value="Sicherheitsfehler">Sicherheitsfehler</option>
                 <option value="Anzeigeproblem">Anzeigeproblem</option>
                 <option value="Falsche Information">Falsche Information</option>
                 <option value="Kommentarproblem">Kommentarproblem</option>
                 <option value="Anderes">Anderes</option>
             </select><br>
-
-            <textarea id="errorDescription" rows="4" placeholder="Beschreibe den Fehler..." style="
-                width:80%;
-                padding:10px;
-                border-radius:8px;
-                border:1px solid #ccc;
-                resize:none;
-            "></textarea><br>
-
-            <button id="sendReport" type="button" style="
-                background:#1db954;
-                color:white;
-                border:none;
-                padding:10px 20px;
-                border-radius:8px;
-                cursor:pointer;
-                margin-top:10px;
-            ">📨 Absenden</button>
+            <textarea id="errorDescription" rows="4" placeholder="Beschreibe den Fehler..."></textarea><br>
+            <button id="sendReport" type="button">📨 Absenden</button>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <footer>
+        GoalNewsDE © 2025 – Don’t steal our stuff.
+        <a href="mailto:info@goalnewsde.de">Email</a> | <a href="agb.html">Datenschutz</a> | <a href="security.html">Sicherheit</a>
+    </footer>
+
+    <!-- 🔧 Scripts -->
     <script src="js/config.js"></script>
     <script src="js/google-sheets-client.js"></script>
     <script src="js/table-renderer.js"></script>
@@ -159,22 +120,12 @@
     <script src="js/auto-refresh.js"></script>
 
     <script>
-        // Dark Mode
-        document.body.classList.add('dark');
-
-        // Countdown
+        // === Countdown ===
         const matchDate = new Date("November 2, 2025 15:30:00").getTime();
         const countdownEl = document.getElementById("countdown");
-
         setInterval(() => {
-            const now = new Date().getTime();
-            const diff = matchDate - now;
-
-            if (diff < 0) {
-                countdownEl.textContent = "Anpfiff!";
-                return;
-            }
-
+            const diff = matchDate - new Date().getTime();
+            if (diff < 0) return countdownEl.textContent = "Anpfiff!";
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -182,31 +133,78 @@
             countdownEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
         }, 1000);
 
-        // Live-Ticker
-        document.addEventListener("DOMContentLoaded", async () => {
-            const ticker = document.getElementById("ticker");
-            const api = SheetsAPI.getInstance();
-            const autoRefresh = AutoRefresh.getInstance();
+        // === Erweiterte Suchfunktion (scrapt Unterseiten) ===
+        const pagesToSearch = [
+            "news.html",
+            "bundesliga.html",
+            "2liga.html",
+            "lastgameday.html",
+            "statistics.html",
+            "votings.html",
+            "comments.html",
+            "football.html",
+            "login.html",
 
-            async function updateTicker() {
-                try {
-                    const data = await api.fetchTicker();
-                    const flatData = data.flat();
-                    ticker.textContent = flatData.join(' • ');
+        ];
 
-                    const textWidth = ticker.offsetWidth;
-                    const wrapperWidth = ticker.parentElement.offsetWidth;
-                    const duration = (textWidth + wrapperWidth) * 9;
-                    ticker.style.animation = `scrollTicker ${duration}ms linear infinite`;
-                } catch (e) {
-                    console.error("Ticker Fehler:", e);
+        const siteSearch = document.getElementById("siteSearch");
+        const searchResults = document.getElementById("searchResults");
+
+        let siteCache = {};
+
+        async function fetchPageContent(url) {
+            if (siteCache[url]) return siteCache[url];
+            try {
+                const res = await fetch(url);
+                const text = await res.text();
+                siteCache[url] = text.replace(/<[^>]*>/g, " "); // HTML Tags entfernen
+                return siteCache[url];
+            } catch {
+                return "";
+            }
+        }
+
+        siteSearch.addEventListener("input", async () => {
+            const q = siteSearch.value.trim().toLowerCase();
+            searchResults.innerHTML = "";
+            if (!q) {
+                searchResults.style.display = "none";
+                return;
+            }
+
+            let results = [];
+
+            // Hauptseite durchsuchen
+            document.querySelectorAll("h2, h3, h4, p, .news-item").forEach(el => {
+                if (el.textContent.toLowerCase().includes(q)) {
+                    results.push({ title: el.textContent.trim().slice(0, 80), link: "#" });
+                }
+            });
+
+            // Unterseiten durchsuchen
+            for (const page of pagesToSearch) {
+                const content = await fetchPageContent(page);
+                if (content.toLowerCase().includes(q)) {
+                    results.push({ title: `Treffer auf ${page}`, link: page });
                 }
             }
-            autoRefresh.start(updateTicker, 5000, "Ticker");
+
+            if (results.length === 0) {
+                searchResults.innerHTML = "<div class='result-item'>❌ Keine Treffer gefunden</div>";
+            } else {
+                results.slice(0, 8).forEach(r => {
+                    const div = document.createElement("div");
+                    div.className = "result-item";
+                    div.innerHTML = `📍 <a href="${r.link}" target="_blank">${r.title}</a>`;
+                    searchResults.appendChild(div);
+                });
+            }
+
+            searchResults.style.display = "block";
         });
     </script>
 
-    <!-- Firebase Problem melden -->
+    <!-- 🔥 Firebase Problem melden -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
@@ -224,33 +222,30 @@
         const db = getFirestore(app);
 
         document.addEventListener("DOMContentLoaded", () => {
-            const reportButton = document.getElementById("reportButton");
-            const reportForm = document.getElementById("reportForm");
-            const sendReport = document.getElementById("sendReport");
-            const errorType = document.getElementById("errorType");
-            const errorDescription = document.getElementById("errorDescription");
+            const btn = document.getElementById("reportButton");
+            const form = document.getElementById("reportForm");
+            const send = document.getElementById("sendReport");
+            const type = document.getElementById("errorType");
+            const desc = document.getElementById("errorDescription");
 
-            reportButton.addEventListener("click", () => {
-                reportForm.style.display = reportForm.style.display === "none" ? "block" : "none";
+            btn.addEventListener("click", () => {
+                form.style.display = form.style.display === "none" ? "block" : "none";
             });
 
-            sendReport.addEventListener("click", async () => {
-                const type = errorType.value;
-                const description = errorDescription.value.trim();
-                if (!description) return alert("Bitte eine Beschreibung eingeben!");
-
+            send.addEventListener("click", async () => {
+                if (!desc.value.trim()) return alert("Bitte eine Beschreibung eingeben!");
                 try {
                     await addDoc(collection(db, "reports"), {
-                        type,
-                        description,
+                        type: type.value,
+                        description: desc.value.trim(),
                         created: serverTimestamp()
                     });
                     alert("✅ Vielen Dank! Dein Bericht wurde anonym gesendet.");
-                    errorDescription.value = "";
-                    reportForm.style.display = "none";
+                    desc.value = "";
+                    form.style.display = "none";
                 } catch (e) {
-                    console.error("Fehler beim Senden:", e);
-                    alert("❌ Fehler beim Senden. Bitte später erneut versuchen.");
+                    alert("❌ Fehler beim Senden.");
+                    console.error(e);
                 }
             });
         });
@@ -258,5 +253,4 @@
 
     <script async defer src="https://apis.google.com/js/api.js"></script>
 </body>
-
 </html>
