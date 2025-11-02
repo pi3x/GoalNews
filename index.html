@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalNewsDE - Fußball-News & Tabellen</title>
+
     <link rel="icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" type="image/jpeg">
     <link rel="stylesheet" href="style.css">
+
+    <meta name="theme-color" content="#1db954">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg">
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -115,7 +120,7 @@
     <script src="js/auto-refresh.js"></script>
 
     <script>
-        // Countdown
+        // === Countdown ===
         const matchDate = new Date("November 2, 2025 15:30:00").getTime();
         const countdownEl = document.getElementById("countdown");
         setInterval(() => {
@@ -128,7 +133,7 @@
             countdownEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
         }, 1000);
 
-        // Suchfunktion
+        // === Erweiterte Suchfunktion ===
         const pagesToSearch = [
             "news.html",
             "bundesliga.html",
@@ -143,6 +148,7 @@
 
         const siteSearch = document.getElementById("siteSearch");
         const searchResults = document.getElementById("searchResults");
+
         let siteCache = {};
 
         async function fetchPageContent(url) {
@@ -166,12 +172,15 @@
             }
 
             let results = [];
+
+            // Hauptseite durchsuchen
             document.querySelectorAll("h2, h3, h4, p, .news-item").forEach(el => {
                 if (el.textContent.toLowerCase().includes(q)) {
                     results.push({ title: el.textContent.trim().slice(0, 80), link: "#" });
                 }
             });
 
+            // Unterseiten durchsuchen
             for (const page of pagesToSearch) {
                 const content = await fetchPageContent(page);
                 if (content.toLowerCase().includes(q)) {
@@ -192,28 +201,6 @@
 
             searchResults.style.display = "block";
         });
-
-        // Google Sheets Tabelle + Live-Ticker laden
-        async function init() {
-            const api = SheetsAPI.getInstance();
-            const tickerData = await api.fetchTicker();
-            const renderer = TableRenderer.getInstance();
-
-            // Live-Ticker rendern
-            renderer.renderTicker(tickerData, "ticker");
-
-            // Bundesliga Tabelle rendern
-            const table1Data = await api.fetchBundesliga1Table();
-            renderer.render(table1Data, "matchesSection"); // oder eigenes div
-        }
-
-        // Startet die Google Sheets API, sobald gapi geladen ist
-        const gapiScript = document.createElement("script");
-        gapiScript.src = "https://apis.google.com/js/api.js";
-        gapiScript.async = true;
-        gapiScript.defer = true;
-        gapiScript.onload = init;
-        document.body.appendChild(gapiScript);
     </script>
 
     <!-- 🔥 Firebase Problem melden -->
@@ -261,6 +248,26 @@
                 }
             });
         });
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"></script>
+
+    <!-- ✅ Ticker und Tabellen initialisieren -->
+    <script type="text/javascript">
+        async function init() {
+            const api = SheetsAPI.getInstance();
+            const autoRefresh = AutoRefresh.getInstance();
+            const renderer = TableRenderer.getInstance();
+
+            // Bundesliga Tabelle rendern
+            const table1BundesligaData = await api.fetchBundesliga1Table();
+            renderer.render(table1BundesligaData, "table1Bundesliga");
+
+            // Ticker rendern
+            const tickerData = await api.fetchTicker();
+            renderer.render(tickerData, "ticker");
+        }
+        window.addEventListener("load", init);
     </script>
 </body>
 </html>
