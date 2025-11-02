@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elfmeter Skill & Kraft - Schwer</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0c10;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 { color: #66fcf1; text-shadow: 0 0 10px #45a29e; margin-bottom: 20px; }
+
+#gameArea {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    background: linear-gradient(to top, #1c3d1c 0%, #0b0c10 80%);
+    border: 3px solid #45a29e;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    cursor: crosshair;
+}
+
+#goal {
+    position: absolute;
+    width: 200px;
+    height: 80px;
+    top: 10px;
+    left: 100px;
+    border: 3px solid #fff;
+    border-bottom: none;
+    border-radius: 0 0 20px 20px;
+    background: #0b0c10;
+}
+
+#goal::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(0deg, transparent 48%, rgba(255,255,255,0.2) 48%, rgba(255,255,255,0.2) 52%, transparent 52%),
+                      linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.2) 48%, rgba(255,255,255,0.2) 52%, transparent 52%);
+    background-size: 25px 25px;
+    pointer-events: none;
+}
+
+#goalkeeper {
+    position: absolute;
+    width: 50px;
+    height: 70px;
+    top: 10px;
+    left: 175px;
+    background: radial-gradient(circle at 50% 50%, #f22121 40%, #900 100%);
+    border-radius: 25px;
+    transform-origin: bottom center;
+    transition: transform 0.2s ease, left 0.2s ease;
+}
+
+#ball {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    bottom: 10px;
+    left: 185px;
+    background: radial-gradient(circle at 30% 30%, #fff 40%, #ccc 70%, #999 100%);
+    border-radius: 50%;
+    border: 2px solid #333;
+    transition: left 0.6s, bottom 0.6s;
+}
+
+#score, #shots { font-size: 20px; color: #66fcf1; margin-top: 5px; }
+#message { font-size: 18px; min-height: 24px; margin-top: 10px; text-align: center; }
+
+#powerBarContainer {
+    width: 400px;
+    height: 20px;
+    background: #333;
+    border: 2px solid #66fcf1;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+#powerBar {
+    height: 100%;
+    width: 0%;
+    background: #66fcf1;
+    border-radius: 5px;
+}
+
+.torjubel { animation: flash 0.3s ease 3; }
+@keyframes flash { 0%,100% { background-color: #1c3d1c; } 50% { background-color: #21f21f; } }
+</style>
+</head>
+<body>
+
+<h1>GoalNewsDE - Elfmeter Schießen </h1>
+<div id="gameArea">
+    <div id="goal"></div>
+    <div id="goalkeeper"></div>
+    <div id="ball"></div>
+</div>
+
+<div id="powerBarContainer"><div id="powerBar"></div></div>
+<div id="score">Punkte: 0</div>
+<div id="shots">Schüsse: 0 / 10</div>
+<div id="message"></div>
+
+<script>
+const gameArea = document.getElementById('gameArea');
+const goalkeeper = document.getElementById('goalkeeper');
+const ball = document.getElementById('ball');
+const scoreEl = document.getElementById('score');
+const shotsEl = document.getElementById('shots');
+const message = document.getElementById('message');
+const powerBar = document.getElementById('powerBar');
+
+let score = 0, shots = 0, maxShots = 10, isShooting = false, power = 0, charging = false;
+let baseReaction = 400; // Torwart reagiert schneller
+let level = 1; // Schwierigkeit steigt pro Treffer
+
+gameArea.addEventListener('mousedown', ()=>{
+    if(isShooting || shots>=maxShots) return;
+    charging = true;
+    power = 0;
+    powerBar.style.width = '0%';
+    const interval = setInterval(()=>{
+        if(!charging) { clearInterval(interval); return; }
+        power += 1;
+        powerBar.style.width = power + '%';
+        if(power>=120){
+            charging = false;
+            clearInterval(interval);
+            powerBar.style.width = '100%';
+            message.textContent = "Zu stark! Ball fliegt übers Tor!";
+            shoot(power, true);
+        }
+    },10);
+});
+
+gameArea.addEventListener('mouseup', (e)=>{
+    if(!charging || isShooting) return;
+    charging = false;
+    shoot(power, false, e);
+});
+
+function shoot(power, overpower=false, e=null){
+    isShooting = true;
+    shots++;
+    shotsEl.textContent = `Schüsse: ${shots} / ${maxShots}`;
+
+    let targetX, targetY;
+    if(overpower){
+        targetX = 200 + Math.random()*50 - 25;
+        targetY = -50;
+    } else {
+        const rect = gameArea.getBoundingClientRect();
+        targetX = e.clientX - rect.left + (Math.random()*10-5); // leichte Zufallsabweichung
+        targetY = e.clientY - rect.top + (Math.random()*5-2);
+    }
+
+    const flightDuration = 1000 - Math.min(power*5, 800);
+    ball.style.transition = `left ${flightDuration/1000}s linear, bottom ${flightDuration/1000}s linear`;
+    ball.style.left = targetX-15 + 'px';
+    ball.style.bottom = (gameArea.clientHeight - targetY - 15) + 'px';
+
+    // Torwart KI: nur im Torbereich reagieren
+    const goalLeft = 100;
+    const goalRight = 300;
+    if(targetX >= goalLeft && targetX <= goalRight){
+        let keeperTargetX = targetX - 25;
+        keeperTargetX = Math.min(Math.max(keeperTargetX, goalLeft), goalRight - 50);
+        const tilt = (keeperTargetX < 175)? -45 : (keeperTargetX > 175)? 45 : 0;
+        const reactionDelay = baseReaction - level*20 + (Math.random()*150 - 75); // schneller bei höheren Level
+
+        setTimeout(()=>{
+            goalkeeper.style.left = keeperTargetX + 'px';
+            goalkeeper.style.transform = `rotate(${tilt}deg)`;
+        }, Math.max(50, reactionDelay));
+    }
+
+    setTimeout(()=>{
+        const keeperRect = goalkeeper.getBoundingClientRect();
+        const ballRect = ball.getBoundingClientRect();
+        let held = false;
+
+        if(!overpower && targetX >= goalLeft && targetX <= goalRight){
+            const holdChance = Math.min(95, Math.max(20, 70 - power*0.5 - level*2)); // Torwart schwieriger
+            held = Math.random()*100 < holdChance && ballRect.right > keeperRect.left && ballRect.left < keeperRect.right && ballRect.top < keeperRect.bottom;
+        }
+
+        if(overpower){
+            message.textContent += " Ball ist übers Tor!";
+        } else if(!held && (targetX < goalLeft || targetX > goalRight)){
+            message.textContent = "Daneben! Ball geht am Tor vorbei!";
+        } else if(held){
+            message.textContent = "Gehalten! Torwart reagiert!";
+        } else {
+            message.textContent = "Tor! Gut geschossen!";
+            score++;
+            scoreEl.textContent = "Punkte: "+score;
+            level++; // Schwierigkeit steigt
+            gameArea.classList.add('torjubel');
+            setTimeout(()=>gameArea.classList.remove('torjubel'),900);
+        }
+
+        // Reset
+        ball.style.left = '185px';
+        ball.style.bottom = '10px';
+        ball.style.transition = '';
+        goalkeeper.style.left = '175px';
+        goalkeeper.style.transform = 'rotate(0deg)';
+        powerBar.style.width = '0%';
+        isShooting = false;
+
+        if(shots===maxShots){
+            message.textContent += " Spiel beendet!";
+        }
+    }, flightDuration);
+}
+</script>
+
+</body>
+</html>
