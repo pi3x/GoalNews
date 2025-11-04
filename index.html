@@ -15,31 +15,6 @@
     <meta name="theme-color" content="#1db954">
     <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg">
     <link rel="manifest" href="manifest.json">
-
-    <style>
-        /* Sticky Navbar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            background: #121212;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-
-        #toggleTheme {
-            margin-left: 20px;
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            background: #1db954;
-            color: white;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
@@ -57,7 +32,6 @@
     <!-- Header + Hamburger -->
     <header class="navbar">
         <div class="logo">GoalNewsDE</div>
-        <button id="toggleTheme">🌙 / ☀️</button>
 
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <label for="menu-toggle" class="hamburger-icon">
@@ -170,6 +144,9 @@
     <script src="js/auto-refresh.js"></script>
 
     <script>
+        // Dark Mode
+        document.body.classList.add('dark');
+
         // Countdown
         const matchDate = new Date("November 7, 2025 20:30:00").getTime();
         const countdownEl = document.getElementById("countdown");
@@ -214,10 +191,10 @@
         });
     </script>
 
-    <!-- Firebase + Dark/Light Mode + Report -->
+    <!-- Firebase Problem melden -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
@@ -231,31 +208,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Dark/Light Mode Firebase
-        const toggle = document.getElementById('toggleTheme');
-        const userId = "guest"; // oder UID wenn Auth vorhanden
-
-        async function loadThemeFromFirebase() {
-            const docRef = doc(db, "users", userId);
-            const docSnap = await getDoc(docRef);
-
-            if(docSnap.exists()) {
-                const theme = docSnap.data().theme;
-                document.body.classList.toggle('dark', theme === "dark");
-            } else {
-                document.body.classList.remove('dark'); // default light
-            }
-        }
-
-        toggle.addEventListener('click', async () => {
-            const isDark = document.body.classList.toggle('dark');
-            const theme = isDark ? "dark" : "light";
-            await setDoc(doc(db, "users", userId), { theme }, { merge: true });
-        });
-
-        loadThemeFromFirebase();
-
-        // Problem melden
         document.addEventListener("DOMContentLoaded", () => {
             const reportButton = document.getElementById("reportButton");
             const reportForm = document.getElementById("reportForm");
