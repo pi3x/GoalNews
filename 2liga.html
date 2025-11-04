@@ -7,213 +7,219 @@
     <title>GoalNewsDE – 2. Bundesliga Tabelle</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background: #fff;
-            color: #111;
-            text-align: center;
-        }
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: #121212; /* dunkler Hintergrund */
+    color: #e0e0e0; /* heller Text */
+    text-align: center;
+}
 
-        a {
-            text-decoration: none;
-            color: #111;
-        }
+a {
+    text-decoration: none;
+    color: #1db954;
+}
 
-        a:hover {
-            color: #4CAF50;
-        }
+a:hover {
+    color: #00d4ff;
+}
 
-        header {
-            padding: 20px;
-            background: #f8f8f8;
-            position: relative;
-        }
+header {
+    padding: 20px;
+    background: #1e1e1e;
+    position: relative;
+}
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #1db954;
-        }
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1db954;
+}
 
-        .hero-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto;
-            max-width: 900px;
-            position: relative;
-            flex-wrap: wrap;
-        }
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 900px;
+    position: relative;
+    flex-wrap: wrap;
+}
 
-        .hero-links-left,
-        .hero-links-right {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+.hero-links-left,
+.hero-links-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
-        .hero-links-left {
-            left: -130px;
-        }
+.hero-links-left {
+    left: -130px;
+}
 
-        .hero-links-right {
-            right: -130px;
-        }
+.hero-links-right {
+    right: -130px;
+}
 
-        .hero-links-left a,
-        .hero-links-right a {
-            padding: 12px 25px;
-            background: #1db954;
-            color: white;
-            border-radius: 20px;
-            font-weight: bold;
-            transition: 0.3s;
-            display: inline-block;
-            white-space: nowrap;
-        }
+.hero-links-left a,
+.hero-links-right a {
+    padding: 12px 25px;
+    background: #1db954;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+    white-space: nowrap;
+}
 
-        .hero-links-left a:hover,
-        .hero-links-right a:hover {
-            background: #00d4ff;
-            transform: scale(1.05);
-        }
+.hero-links-left a:hover,
+.hero-links-right a:hover {
+    background: #00d4ff;
+    transform: scale(1.05);
+}
 
-        .hero {
-            font-size: 1.6rem;
-            font-weight: bold;
-            padding: 20px 15px;
-            border-radius: 10px;
-            background: #e8f5e9;
-            max-width: 600px;
-            margin: 10px auto;
-        }
+.hero {
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 20px 15px;
+    border-radius: 10px;
+    background: #1e1e1e;
+    max-width: 600px;
+    margin: 10px auto;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
 
-        .socials {
-            margin: 20px 0;
-        }
+.socials {
+    margin: 20px 0;
+}
 
-        .socials a {
-            display: inline-block;
-            margin: 5px 10px;
-            padding: 12px 20px;
-            background: #1db954;
-            color: #fff;
-            border-radius: 20px;
-            font-weight: bold;
-            transition: 0.3s;
-            white-space: nowrap;
-        }
+.socials a {
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 12px 20px;
+    background: #1db954;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+    white-space: nowrap;
+}
 
-        .socials a:hover {
-            background: #00d4ff;
-            transform: scale(1.05);
-        }
+.socials a:hover {
+    background: #00d4ff;
+    transform: scale(1.05);
+}
 
-        table {
-            border-collapse: collapse;
-            margin: 20px auto 40px auto;
-            width: 95%;
-            max-width: 1200px;
-            background: rgba(29, 185, 84, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            display: block;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+table {
+    border-collapse: collapse;
+    margin: 20px auto 40px auto;
+    width: 95%;
+    max-width: 1200px;
+    background: #1e1e1e; /* dunkler Table Hintergrund */
+    border-radius: 10px;
+    overflow: hidden;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
 
-        th,
-        td {
-            padding: 12px;
-            text-align: center;
-            min-width: 50px;
-        }
+th,
+td {
+    padding: 12px;
+    text-align: center;
+    min-width: 50px;
+    border-bottom: 1px solid #333;
+}
 
-        th {
-            background: linear-gradient(90deg, #1db954, #00d4ff);
-            color: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
+th {
+    background: #1db954; /* grün Header */
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    font-weight: bold;
+}
 
-        tbody tr:nth-child(even) {
-            background: rgba(29, 185, 84, 0.05);
-        }
+tbody tr:nth-child(even) {
+    background: #2a2a2a;
+}
 
-        tbody tr:hover {
-            background: rgba(29, 185, 84, 0.2);
-            transform: scale(1.02);
-            transition: all 0.2s ease;
-        }
+tbody tr:hover {
+    background: #333;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
 
-        .back-btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: #1db954;
-            color: #fff;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-bottom: 40px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.back-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #1db954;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .back-btn:hover {
-            background: #00d4ff;
-            transform: scale(1.05);
-        }
+.back-btn:hover {
+    background: #00d4ff;
+    transform: scale(1.05);
+}
 
-        @media(max-width:768px) {
-            .hero {
-                font-size: 1.4rem;
-                padding: 18px 15px;
-            }
+@media(max-width:768px) {
+    .hero {
+        font-size: 1.4rem;
+        padding: 18px 15px;
+    }
 
-            .hero-links-left {
-                left: -80px;
-            }
+    .hero-links-left {
+        left: -80px;
+    }
 
-            .hero-links-right {
-                right: -80px;
-            }
+    .hero-links-right {
+        right: -80px;
+    }
 
-            .hero-links-left a,
-            .hero-links-right a {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
+    .hero-links-left a,
+    .hero-links-right a {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
 
-            th,
-            td {
-                font-size: 0.75rem;
-                padding: 8px 6px;
-            }
-        }
+    th,
+    td {
+        font-size: 0.75rem;
+        padding: 8px 6px;
+    }
+}
 
-        @media(max-width:480px) {
-            .hero {
-                font-size: 1.2rem;
-                padding: 15px 10px;
-            }
+@media(max-width:480px) {
+    .hero {
+        font-size: 1.2rem;
+        padding: 15px 10px;
+    }
 
-            .hero-links-left,
-            .hero-links-right {
-                position: static;
-                transform: none;
-                margin: 5px;
-            }
+    .hero-links-left,
+    .hero-links-right {
+        position: static;
+        transform: none;
+        margin: 5px;
+    }
 
-            .hero-container {
-                flex-direction: column;
-            }
+    .hero-container {
+        flex-direction: column;
+    }
 
-            th,
-            td {
-                font-size: 0.7rem;
-                padding: 6px 4px;
-            }
-        }
+    th,
+    td {
+        font-size: 0.7rem;
+        padding: 6px 4px;
+    }
+}
+
     </style>
 </head>
 
