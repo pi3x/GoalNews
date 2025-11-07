@@ -74,7 +74,7 @@
         .comment small {
             color: gray;
             display: block;
-            margin-top: 5px;
+            margin-top: 4px;
         }
 
         .delete-btn {
@@ -89,36 +89,37 @@
             font-size: 16px;
         }
 
-        .emoji-container {
+        .reaction-popup {
+            position: absolute;
             display: flex;
-            margin-top: 5px;
-            gap: 5px;
-            flex-wrap: wrap;
+            gap: 8px;
+            background: white;
+            padding: 6px 10px;
+            border-radius: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            user-select: none;
         }
 
-        .emoji-btn {
+        .reaction-popup div {
             cursor: pointer;
-            font-size: 18px;
-            padding: 2px 6px;
-            border-radius: 6px;
-            background: rgba(0, 0, 0, 0.05);
-            transition: 0.2s;
-        }
-
-        .emoji-btn:hover {
-            background: rgba(0, 0, 0, 0.2);
+            font-size: 20px;
         }
 
         .reaction-bar {
-            position: absolute;
             display: flex;
-            gap: 5px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 5px;
-            z-index: 1000;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .reaction-bar span {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         @media (max-width: 600px) {
@@ -155,8 +156,8 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
         import {
-            getFirestore, collection, addDoc, getDocs, deleteDoc, doc,
-            serverTimestamp, query, orderBy, getDoc
+            getFirestore, collection, addDoc, deleteDoc, doc,
+            serverTimestamp, query, orderBy, getDoc, updateDoc, onSnapshot
         } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -176,7 +177,7 @@
         const sendComment = document.getElementById("sendComment");
         const commentsContainer = document.getElementById("commentsContainer");
 
-        const EMOJIS = ["👍", "❤️", "😂", "😮", "😢", "😡"];
+        const emojis = ["❤️", "😂", "😮", "🔥", "👍"];
 
         sendComment.onclick = async () => {
             const user = auth.currentUser;
@@ -190,31 +191,33 @@
             await addDoc(collection(db, "comments"), {
                 userId: user.uid,
                 text,
-                reactions: {},
-                created: serverTimestamp()
+                created: serverTimestamp(),
+                reactions: {}
             });
 
             commentInput.value = "";
-            loadComments();
         };
 
-        async function loadComments() {
+        let lastTapTime = 0;
+
+        async function renderComments(snapshot) {
             commentsContainer.innerHTML = "";
-            const q = query(collection(db, "comments"), orderBy("created", "desc"));
-            const snapshot = await getDocs(q);
             const user = auth.currentUser;
 
             for (const docSnap of snapshot.docs) {
                 const data = docSnap.data();
-                const userDoc = await getDoc(doc(db, "users", data.userId));
-                const username = userDoc.exists() ? userDoc.data().username : "Unbekannt";
+                const commentDiv = document.createElement("div");
+                commentDiv.className = "comment";
 
-                const div = document.createElement("div");
-                div.className = "comment";
-                div.dataset.id = docSnap.id;
-                div.innerHTML = `
+                // Username holen
+                let username = "Unbekannt";
+                try {
+                    const userDoc = await getDoc(doc(db, "users", data.userId));
+                    if (userDoc.exists()) username = userDoc.data().username;
+                } catch (e) { console.log(e); }
+
+                commentDiv.innerHTML = `
                     <p>${data.text}</p>
-                    <div class="emoji-container"></div>
                     <small>${username}</small>
                 `;
 
@@ -225,79 +228,82 @@
                     del.onclick = async () => {
                         if (confirm("Kommentar wirklich löschen?")) {
                             await deleteDoc(doc(db, "comments", docSnap.id));
-                            loadComments();
                         }
                     };
-                    div.appendChild(del);
+                    commentDiv.appendChild(del);
                 }
 
-                const emojiContainer = div.querySelector(".emoji-container");
+                // Reactions Bar
+                const reactionBar = document.createElement("div");
+                reactionBar.className = "reaction-bar";
+                let totalCount = 0;
+                if (data.reactions) {
+                    for (const [emoji, count] of Object.entries(data.reactions)) {
+                        totalCount += count;
+                        const span = document.createElement("span");
+                        span.textContent = emoji + " " + count;
+                        reactionBar.appendChild(span);
+                    }
+                }
+                if (totalCount > 0) {
+                    const totalSpan = document.createElement("span");
+                    totalSpan.textContent = `Gesamt: ${totalCount}`;
+                    reactionBar.appendChild(totalSpan);
+                }
+                commentDiv.appendChild(reactionBar);
 
-                // Emoji-Leiste öffnen
-                const openReactionBar = async () => {
-                    if (div.querySelector(".reaction-bar")) return; // schon offen
-                    const bar = document.createElement("div");
-                    bar.className = "reaction-bar";
-                    EMOJIS.forEach(async emoji => {
-                        const btn = document.createElement("div");
-                        btn.className = "emoji-btn";
-                        btn.textContent = emoji;
-                        btn.onclick = async (e) => {
-                            e.stopPropagation();
-                            const docRef = doc(db, "comments", docSnap.id);
-                            const reactions = data.reactions || {};
-                            reactions[emoji] = reactions[emoji] || [];
-                            const uid = user.uid;
-                            if (reactions[emoji].includes(uid)) {
-                                reactions[emoji] = reactions[emoji].filter(u => u !== uid);
-                            } else {
-                                reactions[emoji].push(uid);
-                            }
-                            await addDoc(collection(db, "comments"), {
-                                ...data,
-                                reactions
-                            });
-                            await loadComments();
+                // Rechtsklick / Doppel-Tap Funktion
+                const showReactions = (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll(".reaction-popup").forEach(el => el.remove());
+
+                    const popup = document.createElement("div");
+                    popup.className = "reaction-popup";
+                    popup.style.top = `${e.clientY - 50}px`;
+                    popup.style.left = `${e.clientX - 50}px`;
+
+                    emojis.forEach(emoji => {
+                        const count = data.reactions && data.reactions[emoji] ? data.reactions[emoji] : 0;
+                        const span = document.createElement("div");
+                        span.textContent = emoji + (count ? ` ${count}` : "");
+                        span.onclick = async () => {
+                            const newReactions = { ...(data.reactions || {}) };
+                            newReactions[emoji] = (newReactions[emoji] || 0) + 1;
+                            await updateDoc(doc(db, "comments", docSnap.id), { reactions: newReactions });
+                            popup.remove();
                         };
-                        bar.appendChild(btn);
+                        popup.addEventListener("click", e => e.stopPropagation());
+                        popup.appendChild(span);
                     });
-                    div.appendChild(bar);
+
+                    document.body.appendChild(popup);
                 };
 
-                // Desktop Rechtsklick
-                div.addEventListener("contextmenu", (e) => {
-                    e.preventDefault();
-                    openReactionBar();
-                });
+                commentDiv.addEventListener("contextmenu", showReactions);
 
-                // Mobile: Doppeltippen
-                let lastTap = 0;
-                div.addEventListener("touchend", (e) => {
+                // Doppel-Tap für Handy
+                commentDiv.addEventListener("touchend", (e) => {
                     const currentTime = new Date().getTime();
-                    const tapLength = currentTime - lastTap;
+                    const tapLength = currentTime - lastTapTime;
                     if (tapLength < 400 && tapLength > 0) {
-                        e.preventDefault();
-                        openReactionBar();
+                        showReactions(e.changedTouches[0]);
                     }
-                    lastTap = currentTime;
+                    lastTapTime = currentTime;
                 });
 
-                // bestehende Reaktionen anzeigen
-                const reactions = data.reactions || {};
-                for (const [emoji, uids] of Object.entries(reactions)) {
-                    const span = document.createElement("span");
-                    span.textContent = `${emoji} ${uids.length}`;
-                    emojiContainer.appendChild(span);
-                }
-
-                commentsContainer.appendChild(div);
+                commentsContainer.appendChild(commentDiv);
             }
         }
 
         onAuthStateChanged(auth, (user) => {
             commentInput.disabled = !user;
             sendComment.disabled = !user;
-            loadComments();
+
+            const q = query(collection(db, "comments"), orderBy("created", "desc"));
+
+            onSnapshot(q, (snapshot) => {
+                renderComments(snapshot);
+            });
         });
     </script>
 </body>
