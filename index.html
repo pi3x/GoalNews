@@ -1,59 +1,9 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<style>
-  /* Wartungs-Banner Styles */
-.maintenance-banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(90deg, #fff34e, #ff0909);
-    color: white;
-    text-align: center;
-    padding: 12px 20px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    z-index: 9999;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    animation: slideDown 0.5s ease-out;
-}
-
-.banner-content {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.icon {
-    display: inline-block;
-    animation: rotate 2s linear infinite;
-}
-
-/* Animationen */
-@keyframes slideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Mobil optimiert */
-@media (max-width: 600px) {
-    .maintenance-banner {
-        font-size: 14px;
-        padding: 10px 15px;
-    }
-}
-</style>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoalNewsDE - Fußball-News & Tabellen</title>
+    <title>GoalNews - Fußball-News & Tabellen</title>
 
     <!-- Favicon -->
     <link rel="icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" type="image/jpeg">
@@ -80,7 +30,7 @@
 
     <!-- Header + Hamburger -->
     <header class="navbar">
-        <div class="logo">GoalNewsDE</div>
+        <div class="logo">GoalNews</div>
 
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <label for="menu-toggle" class="hamburger-icon">
@@ -96,7 +46,6 @@
             <li><a href="bundesliga.html">Bundesliga</a></li>
             <li><a href="2liga.html">2. Bundesliaga</a></li>
             <li><a href="comments.html">Kommentar Forum</a></li>
-            <li><a href="news.html">News</a></li>
             <li><a href="lastgameday.html">Letzter Spieltag</a></li>
             <li><a href="best player of the day.html">Spieler der Woche Abstimmung</a>
             <li><a href="feedback.html">Helfen Sie Uns!</a></li>
@@ -107,7 +56,7 @@
     </header>
     <!-- Countdown -->
     <div class="countdown-section">
-        <h2>⏱️ 10. Spieltag startet in:</h2>
+        <h2>⏱️ BL-Konferenz startet in:</h2>
         <div id="countdown">lade...</div>
     </div>
 
@@ -115,7 +64,7 @@
     <div class="matches">
         <h2>⚽ Bundesliga - Spieltag 10 (7. - 9. November)</h2>
         <h4>Freitag:</h4>
-        <h3>Werder Bremen 20:30 VfL Wolfsburg</h3>
+        <h3>Werder Bremen 2:1 VfL Wolfsburg</h3>
         <h4>Samstag:</h4>
         <h3>
             Bayer Leverkusen 15:30 FC Heidenheim<br>
@@ -139,7 +88,7 @@
 
     <!-- Footer -->
     <footer>
-        GoalNewsDE © 2025 – Don’t steal our stuff.
+        GoalNews © 2025 – Don’t steal our stuff.
         <a href="mailto:info@goalnewsde.de">Email</a> | <a href="agb.html">Datenschutz</a> | <a href="security.html">Sicherheit</a>
     </footer>
 
@@ -199,7 +148,7 @@
         document.body.classList.add('dark');
 
         // Countdown
-        const matchDate = new Date("November 7, 2025 20:30:00").getTime();
+        const matchDate = new Date("November 8, 2025 15:30:00").getTime();
         const countdownEl = document.getElementById("countdown");
 
         setInterval(() => {
