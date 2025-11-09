@@ -90,7 +90,6 @@ footer { margin-top:30px; padding:15px; background:#111; color:#eee; }
     <div class="bar"></div><div class="bar"></div><div class="bar"></div>
   </label>
   <ul class="nav-menu">
-    <li><a href="#">Live Spiele</a></li>
     <li><a href="football.html">Am. Football</a></li>
     <li><a href="votings.html">Abstimmungen</a></li>
     <li><a href="login.html">Login/Registrieren</a></li>
@@ -107,9 +106,36 @@ footer { margin-top:30px; padding:15px; background:#111; color:#eee; }
 
 <!-- Countdown -->
 <div class="countdown-section">
-  <h2>⏱️ 1. Sonntagsspiel startet in:</h2>
+  <h2>⏱️ 11. Spieltag startet in:</h2>
   <div id="countdown">lade...</div>
 </div>
+<!-- 🏆 Aktueller Bundesliga-Spieltag -->
+<div class="matches" style="text-align:center; margin-top:40px;">
+  <h2 style="color:#1db954;">🏆 Bundesliga-Spieltag 11</h2>
+  <h3 style="color:#fff; margin-bottom:20px;">11. Spieltag (21. - 23. November)</h3>
+
+  <div style="color:#eee;">
+    <h4 style="color:#1db954;">Freitag:</h4>
+    <p>Mainz 05 20:30 TSG Hoffenheim</p>
+
+    <h4 style="color:#1db954;">Samstag:</h4>
+    <p>
+      Bayern München 15:30 SC Freiburg<br>
+      Union Berlin 15:30 Bayern München<br>
+      TSG Hoffenheim 15:30 RB Leipzig<br>
+      Hamburger SV 15:30 Bor. Dortmund<br>
+      <strong style="color: gold;">Topspiel: Bor. Mönchengladbach 18:30 1. FC Köln</strong>
+    </p>
+
+    <h4 style="color:#1db954;">Sonntag:</h4>
+    <p>
+      SC Freiburg 15:30 St. Pauli<br>
+      VfB Stuttgart 17:30 FC Augsburg<br>
+      Eintracht Frankfurt 19:30 Mainz 05
+    </p>
+  </div>
+</div>
+
 
 <!-- 🔥 LIVE SPIELE -->
 <section id="liveGamesSection">
@@ -230,7 +256,7 @@ initLiveGames();
 
 <!-- Countdown -->
 <script>
-const matchDate = new Date("November 9, 2025 15:30:00").getTime();
+const matchDate = new Date("November 21, 2025 20:30:00").getTime();
 const countdownEl = document.getElementById("countdown");
 setInterval(() => {
   const now = new Date().getTime();

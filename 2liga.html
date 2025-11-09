@@ -1,39 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoalNewsDE – 2. Bundesliga Tabelle</title>
-    <style>
-        body {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoalNewsDE – 2. Bundesliga Tabelle</title>
+<style>
+body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background: #121212; /* dunkler Hintergrund */
-    color: #e0e0e0; /* heller Text */
+    background: #121212;
+    color: #e0e0e0;
     text-align: center;
 }
+a { text-decoration: none; color: #1db954; }
+a:hover { color: #00d4ff; }
 
-a {
-    text-decoration: none;
-    color: #1db954;
-}
-
-a:hover {
-    color: #00d4ff;
-}
-
-header {
-    padding: 20px;
-    background: #1e1e1e;
-    position: relative;
-}
-
-.logo {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #1db954;
-}
+header { padding: 20px; background: #1e1e1e; }
+.logo { font-size: 2rem; font-weight: bold; color: #1db954; }
 
 .hero-container {
     display: flex;
@@ -44,24 +27,14 @@ header {
     position: relative;
     flex-wrap: wrap;
 }
-
-.hero-links-left,
-.hero-links-right {
+.hero-links-left, .hero-links-right {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
-
-.hero-links-left {
-    left: -130px;
-}
-
-.hero-links-right {
-    right: -130px;
-}
-
-.hero-links-left a,
-.hero-links-right a {
+.hero-links-left { left: -130px; }
+.hero-links-right { right: -130px; }
+.hero-links-left a, .hero-links-right a {
     padding: 12px 25px;
     background: #1db954;
     color: white;
@@ -71,12 +44,7 @@ header {
     display: inline-block;
     white-space: nowrap;
 }
-
-.hero-links-left a:hover,
-.hero-links-right a:hover {
-    background: #00d4ff;
-    transform: scale(1.05);
-}
+.hero-links-left a:hover, .hero-links-right a:hover { background: #00d4ff; transform: scale(1.05); }
 
 .hero {
     font-size: 1.6rem;
@@ -90,10 +58,7 @@ header {
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.socials {
-    margin: 20px 0;
-}
-
+.socials { margin: 20px 0; }
 .socials a {
     display: inline-block;
     margin: 5px 10px;
@@ -105,52 +70,39 @@ header {
     transition: 0.3s;
     white-space: nowrap;
 }
+.socials a:hover { background: #00d4ff; transform: scale(1.05); }
 
-.socials a:hover {
-    background: #00d4ff;
-    transform: scale(1.05);
-}
-
-table {
-    border-collapse: collapse;
-    margin: 20px auto 40px auto;
-    width: 95%;
+.bundesliga-table {
+    width: 100%;
     max-width: 1200px;
-    background: #1e1e1e; /* dunkler Table Hintergrund */
+    margin: 20px auto 40px auto;
+    border-collapse: collapse;
+    background: #1e1e1e;
     border-radius: 10px;
     overflow: hidden;
     display: block;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
-
-th,
-td {
+.bundesliga-table th, .bundesliga-table td {
     padding: 12px;
     text-align: center;
     min-width: 50px;
     border-bottom: 1px solid #333;
+    transition: background 0.4s ease, transform 0.3s ease;
 }
-
-th {
-    background: #1db954; /* grün Header */
+.bundesliga-table th {
+    background: #1db954;
     color: #fff;
     position: sticky;
     top: 0;
     z-index: 1;
     font-weight: bold;
 }
-
-tbody tr:nth-child(even) {
-    background: #2a2a2a;
-}
-
-tbody tr:hover {
-    background: #333;
-    transform: scale(1.02);
-    transition: all 0.2s ease;
-}
+.bundesliga-table tbody tr { background: #2a2a2a; }
+.bundesliga-table tbody tr:hover { background: #3a3a3a; transform: scale(1.02); }
+.bundesliga-table tbody tr.top { border-left: 4px solid gold; }
+.bundesliga-table tbody tr.relegation { border-left: 4px solid #ff4d4d; }
 
 .back-btn {
     display: inline-block;
@@ -163,114 +115,76 @@ tbody tr:hover {
     cursor: pointer;
     transition: 0.3s;
 }
-
-.back-btn:hover {
-    background: #00d4ff;
-    transform: scale(1.05);
-}
+.back-btn:hover { background: #00d4ff; transform: scale(1.05); }
 
 @media(max-width:768px) {
-    .hero {
-        font-size: 1.4rem;
-        padding: 18px 15px;
-    }
-
-    .hero-links-left {
-        left: -80px;
-    }
-
-    .hero-links-right {
-        right: -80px;
-    }
-
-    .hero-links-left a,
-    .hero-links-right a {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-    }
-
-    th,
-    td {
-        font-size: 0.75rem;
-        padding: 8px 6px;
-    }
+    .hero { font-size: 1.4rem; padding: 18px 15px; }
+    .hero-links-left { left: -80px; }
+    .hero-links-right { right: -80px; }
+    .hero-links-left a, .hero-links-right a { padding: 8px 15px; font-size: 0.9rem; }
+    th, td { font-size: 0.75rem; padding: 8px 6px; }
 }
-
 @media(max-width:480px) {
-    .hero {
-        font-size: 1.2rem;
-        padding: 15px 10px;
-    }
-
-    .hero-links-left,
-    .hero-links-right {
-        position: static;
-        transform: none;
-        margin: 5px;
-    }
-
-    .hero-container {
-        flex-direction: column;
-    }
-
-    th,
-    td {
-        font-size: 0.7rem;
-        padding: 6px 4px;
-    }
+    .hero { font-size: 1.2rem; padding: 15px 10px; }
+    .hero-links-left, .hero-links-right { position: static; transform: none; margin: 5px; }
+    .hero-container { flex-direction: column; }
+    th, td { font-size: 0.7rem; padding: 6px 4px; }
 }
-
-    </style>
+</style>
 </head>
-
 <body>
 
-    <header>
-        <div class="logo">GoalNews</div>
-    </header>
+<header>
+    <div class="logo">GoalNewsDE</div>
+</header>
 
-    <div class="hero-container">
-        <div class="hero-links-left">
-            <a href="bundesliga.html">Zurück</a>
-        </div>
+<div class="hero-container">
+    <div class="hero-links-left"><a href="bundesliga.html">1. Bundesliga</a></div>
+    <div class="hero">2. Bundesliga Tabelle</div>
+    <div class="hero-links-right"><a href="statistics.html">Statistiken</a></div>
+</div>
 
-        <div class="hero">
-            2. Bundesliga Tabelle
-        </div>
+<div class="socials">
+    <a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y" target="_blank">WhatsApp</a>
+    <a href="https://youtube.com/" target="_blank">YouTube</a>
+</div>
 
-        <div class="hero-links-right">
-            <a href="statistics.html">Statistiken</a>
-        </div>
-    </div>
+<!-- Tabelle -->
+<table class="bundesliga-table">
+    <thead>
+        <tr>
+            <th>Platz</th>
+            <th>Mannschaft</th>
+            <th>Spiele</th>
+            <th>S</th>
+            <th>U</th>
+            <th>N</th>
+            <th>Punkte</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="top"><td>1</td><td>SC Paderborn 07</td><td>12</td><td>9</td><td>2</td><td>1</td><td>29</td></tr>
+        <tr class="top"><td>2</td><td>FC Schalke 04</td><td>12</td><td>9</td><td>0</td><td>3</td><td>27</td></tr>
+        <tr><td>3</td><td>SV Elversberg</td><td>12</td><td>7</td><td>2</td><td>3</td><td>23</td></tr>
+        <tr><td>4</td><td>SV Darmstadt 98</td><td>12</td><td>6</td><td>4</td><td>2</td><td>22</td></tr>
+        <tr><td>5</td><td>Hannover 96</td><td>12</td><td>6</td><td>3</td><td>3</td><td>21</td></tr>
+        <tr><td>6</td><td>Karlsruher SC</td><td>12</td><td>6</td><td>3</td><td>3</td><td>21</td></tr>
+        <tr><td>7</td><td>1. FC Kaiserslautern</td><td>12</td><td>6</td><td>2</td><td>4</td><td>20</td></tr>
+        <tr><td>8</td><td>Hertha BSC</td><td>12</td><td>6</td><td>2</td><td>4</td><td>20</td></tr>
+        <tr><td>9</td><td>Arminia Bielefeld</td><td>12</td><td>5</td><td>2</td><td>5</td><td>17</td></tr>
+        <tr><td>10</td><td>Holstein Kiel</td><td>12</td><td>4</td><td>3</td><td>5</td><td>15</td></tr>
+        <tr><td>11</td><td>1. FC Nürnberg</td><td>12</td><td>4</td><td>3</td><td>5</td><td>15</td></tr>
+        <tr><td>12</td><td>Preußen Münster</td><td>12</td><td>4</td><td>2</td><td>6</td><td>14</td></tr>
+        <tr><td>13</td><td>VfL Bochum</td><td>12</td><td>4</td><td>1</td><td>7</td><td>13</td></tr>
+        <tr><td>14</td><td>SpVgg Greuther Fürth</td><td>12</td><td>4</td><td>1</td><td>7</td><td>13</td></tr>
+        <tr><td>15</td><td>Fortuna Düsseldorf</td><td>12</td><td>3</td><td>2</td><td>7</td><td>11</td></tr>
+        <tr class="relegation"><td>16</td><td>Eintracht Braunschweig</td><td>12</td><td>3</td><td>1</td><td>8</td><td>10</td></tr>
+        <tr class="relegation"><td>17</td><td>Dynamo Dresden</td><td>12</td><td>1</td><td>4</td><td>7</td><td>7</td></tr>
+        <tr class="relegation"><td>18</td><td>1. FC Magdeburg</td><td>12</td><td>2</td><td>1</td><td>9</td><td>7</td></tr>
+    </tbody>
+</table>
 
-    <div class="socials">
-        <a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y" target="_blank">WhatsApp</a>
-        <a href="https://youtube.com/" target="_blank">YouTube</a>
-    </div>
-
-    <div id="table2Bundesliga"></div>
-
-    <button class="back-btn" onclick="window.location.href='index.html'">Zur Hauptseite</button>
-
-    <script src="js/config.js"></script>
-    <script src="js/google-sheets-client.js"></script>
-    <script src="js/table-renderer.js"></script>
-    <script src="js/sheets-api.js"></script>
-    <script src="js/auto-refresh.js"></script>
-
-    <script type="text/javascript">
-        async function init() {
-            const api = SheetsAPI.getInstance();
-            const autoRefresh = AutoRefresh.getInstance();
-            const renderer = TableRenderer.getInstance();
-
-            const table2BundesligaData = await api.fetchBundesliga2Table();
-            renderer.render(table2BundesligaData, "table2Bundesliga");
-        }
-    </script>
-
-    <script async defer src="https://apis.google.com/js/api.js" onload="init()"></script>
+<button class="back-btn" onclick="window.location.href='index.html'">Zur Hauptseite</button>
 
 </body>
-
 </html>
