@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalNews - Fußball & American Football News</title>
     <meta name="description" content="GoalNews – Die aktuellsten Fußball- und American Football-News aus Deutschland und der Welt.">
-    
+
     <!-- Favicon -->
     <link rel="icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" type="image/jpeg">
     <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg">
@@ -91,7 +91,7 @@
         </article>
     </section>
 
-    <!-- Live-Ticker -->
+    <!-- Live-Ticker bleibt unverändert -->
     <section class="ticker-wrapper">
         <div class="ticker" id="ticker"></div>
     </section>
@@ -123,10 +123,14 @@
         <a href="Impressum.html">Impressum</a>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/bundle.js" defer></script>
+    <!-- JS-Dateien einzeln, Live-Ticker unverändert -->
+    <script src="js/config.js" defer></script>
+    <script src="js/google-sheets-client.js" defer></script>
+    <script src="js/table-renderer.js" defer></script>
+    <script src="js/sheets-api.js" defer></script>
+    <script src="js/auto-refresh.js" defer></script>
 
-    <!-- Konfetti für Follower -->
+    <!-- Follower-Konfetti -->
     <div id="follower-text">36 Follower! Danke euch!</div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script defer>
@@ -155,6 +159,7 @@
         shootConfetti();
     </script>
 
+    <!-- Styles für wichtige Elemente -->
     <style>
         @keyframes popIn {
             0% { transform: translate(-50%, -60%) scale(0.8); opacity: 0; }
