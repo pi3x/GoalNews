@@ -12,7 +12,6 @@ body {
   overflow-x: hidden;
   text-align: center;
   line-height: 1.6;
-  /* padding-top entfernt, wird jetzt auf .content gesetzt */
 }
 
 /* Links */
@@ -26,23 +25,69 @@ a:hover {
   color: #14a34a;
 }
 
-/* ===== Header ===== */
+/* ===== Breaking News ===== */
+#breakingNews {
+  background: #111;
+  overflow: hidden;
+  border-left: 4px solid #1db954;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000; /* über Navbar */
+}
+
+.news-wrapper {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: scrollNews 25s linear infinite;
+}
+
+.news-item {
+  padding: 0 50px;
+  font-weight: 600;
+  color: #1db954;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+@keyframes scrollNews {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+#breakingNews:hover .news-wrapper {
+  animation-play-state: paused;
+}
+
+/* ===== Header / Navbar ===== */
 header,
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 15px 30px;
   background: linear-gradient(90deg, #1db954, #14a34a);
   color: white;
-  position: relative;
+  position: fixed;
+  top: 40px; /* direkt unter Newsticker */
+  left: 0;
+  width: 100%;
   z-index: 9999;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 header .logo,
 .navbar .logo {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
   color: white;
 }
@@ -56,10 +101,10 @@ header .logo,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 25px;
-  height: 18px;
+  width: 30px;
+  height: 20px;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 10001;
   position: relative;
 }
 
@@ -71,7 +116,7 @@ header .logo,
   transition: all 0.3s ease-in-out;
 }
 
-/* ===== Menü ===== */
+/* ===== Nav Menu ===== */
 .nav-menu {
   list-style: none;
   display: flex;
@@ -115,7 +160,7 @@ header .logo,
 
 #menu-toggle:checked ~ .navbar {
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 0;
   width: 100%;
   z-index: 9999;
@@ -136,7 +181,7 @@ header .logo,
   animation: fadeInMenu 0.4s forwards;
 }
 
-/* ===== Desktop ===== */
+/* ===== Desktop Layout Navbar ===== */
 @media screen and (min-width: 768px) {
   .hamburger-icon {
     display: none;
@@ -148,62 +193,30 @@ header .logo,
     width: auto;
     background: transparent;
     padding: 0;
-    gap: 15px;
+    gap: 25px;
     opacity: 1;
     animation: none;
-    right: 0;
   }
   .nav-menu a {
     color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.3s;
+  }
+  .nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .navbar {
+    justify-content: space-between;
+    padding: 20px 60px;
   }
 }
 
-/* ===== Breaking News ===== */
-#breakingNews {
-  background: #111;
-  overflow: hidden;
-  border-left: 4px solid #1db954;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  position: fixed; /* FIXED am oberen Rand */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9997; /* unter Navbar */
-}
-
-.news-wrapper {
-  display: inline-flex;
-  white-space: nowrap;
-  animation: scrollNews 25s linear infinite;
-}
-
-.news-item {
-  padding: 0 50px;
-  font-weight: 600;
-  color: #1db954;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-
-@keyframes scrollNews {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-#breakingNews:hover .news-wrapper {
-  animation-play-state: paused;
-}
-
-/* ===== Content unter Navbar und Ticker ===== */
+/* ===== Content unter Navbar & Ticker ===== */
 .content {
-  padding-top: 110px; /* Höhe Navbar + Newsticker */
+  padding-top: 100px; /* 40px Newsticker + 60px Navbar */
 }
 
 /* ===== Countdown ===== */
