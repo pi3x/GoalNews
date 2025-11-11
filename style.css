@@ -12,7 +12,7 @@ body {
   overflow-x: hidden;
   text-align: center;
   line-height: 1.6;
-  padding-top: 70px; /* Platz für Navbar, wenn normal */
+  /* padding-top entfernt, wird jetzt auf .content gesetzt */
 }
 
 /* Links */
@@ -35,7 +35,7 @@ header,
   padding: 15px 20px;
   background: linear-gradient(90deg, #1db954, #14a34a);
   color: white;
-  position: relative; /* normal scrollbar */
+  position: relative;
   z-index: 9999;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
@@ -76,7 +76,7 @@ header .logo,
   list-style: none;
   display: flex;
   flex-direction: column;
-  position: fixed; /* start hidden offscreen */
+  position: fixed;
   top: 0;
   right: -100%;
   width: 70%;
@@ -89,7 +89,6 @@ header .logo,
   opacity: 0;
 }
 
-/* Menü sichtbar + fixed wenn Burger aktiv */
 #menu-toggle:checked ~ .nav-menu {
   right: 0;
   opacity: 1;
@@ -104,7 +103,6 @@ header .logo,
   font-size: 1.1rem;
 }
 
-/* Hamburger Animation */
 #menu-toggle:checked ~ .hamburger-icon .bar:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -115,7 +113,6 @@ header .logo,
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ===== Navbar fixiert beim geöffneten Burger ===== */
 #menu-toggle:checked ~ .navbar {
   position: fixed;
   top: 0;
@@ -124,7 +121,6 @@ header .logo,
   z-index: 9999;
 }
 
-/* Fade+Slide Animation fürs Menü */
 @keyframes fadeInMenu {
   from {
     opacity: 0;
@@ -170,6 +166,11 @@ header .logo,
   height: 40px;
   display: flex;
   align-items: center;
+  position: fixed; /* FIXED am oberen Rand */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9997; /* unter Navbar */
 }
 
 .news-wrapper {
@@ -198,6 +199,11 @@ header .logo,
 
 #breakingNews:hover .news-wrapper {
   animation-play-state: paused;
+}
+
+/* ===== Content unter Navbar und Ticker ===== */
+.content {
+  padding-top: 110px; /* Höhe Navbar + Newsticker */
 }
 
 /* ===== Countdown ===== */
@@ -248,11 +254,6 @@ header .logo,
 
 #reportButton:hover {
   transform: translateY(-2px) scale(1.05);
-}
-
-#reportForm {
-  display: none;
-  margin-top: 20px;
 }
 
 #errorDescription,
