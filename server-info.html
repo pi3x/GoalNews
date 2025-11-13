@@ -1,180 +1,179 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Server Info</title>
     <style>
-        body {
-            margin: 0;
-            font-family: 'Courier New', monospace;
-            background: #0b0c10;
-            color: #c5c6c7;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
+      body {
+        margin: 0;
+        font-family: "Courier New", monospace;
+        background: #0b0c10;
+        color: #c5c6c7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      h1 {
+        color: #66fcf1;
+        text-shadow: 0 0 10px #45a29e;
+        margin-bottom: 40px;
+      }
+
+      .server-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 1000px;
+      }
+
+      .server-card {
+        background: #1f2833;
+        border: 2px solid #45a29e;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 15px #45a29e33;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .server-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px #66fcf1;
+      }
+
+      .led {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #45a29e;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        box-shadow: 0 0 5px #45a29e, 0 0 15px #45a29e66;
+        animation: blink 2s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        50%,
+        100% {
+          opacity: 1;
         }
 
-        h1 {
-            color: #66fcf1;
-            text-shadow: 0 0 10px #45a29e;
-            margin-bottom: 40px;
+        25%,
+        75% {
+          opacity: 0.2;
         }
+      }
 
-        .server-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1000px;
-        }
+      .server-info h2 {
+        color: #66fcf1;
+        margin-bottom: 10px;
+      }
 
-        .server-card {
-            background: #1f2833;
-            border: 2px solid #45a29e;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 15px #45a29e33;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+      .server-info p {
+        line-height: 1.5;
+      }
 
-        .server-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px #66fcf1;
-        }
+      .status-safe {
+        color: #21f21f;
+        font-weight: bold;
+      }
 
-        .led {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #45a29e;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            box-shadow: 0 0 5px #45a29e, 0 0 15px #45a29e66;
-            animation: blink 2s infinite;
-        }
+      .status-warning {
+        color: #f2d21f;
+        font-weight: bold;
+      }
 
-        @keyframes blink {
+      .status-danger {
+        color: #f22121;
+        font-weight: bold;
+      }
 
-            0%,
-            50%,
-            100% {
-                opacity: 1;
-            }
+      .info-box {
+        margin: 30px auto;
+        padding: 20px;
+        max-width: 600px;
+        text-align: center;
+        background: #111;
+        border: 2px solid #00d8ff;
+        border-radius: 8px;
+        box-shadow: 0 0 15px #00d8ff inset, 0 0 10px #00d8ff;
+        font-family: "Courier New", monospace;
+      }
 
-            25%,
-            75% {
-                opacity: 0.2;
-            }
-        }
+      .info-box p {
+        margin: 0 0 15px 0;
+        color: #00d8ff;
+        font-size: 1rem;
+      }
 
-        .server-info h2 {
-            color: #66fcf1;
-            margin-bottom: 10px;
-        }
+      .info-box button {
+        padding: 10px 20px;
+        background: #00d8ff;
+        color: #111;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
 
-        .server-info p {
-            line-height: 1.5;
-        }
-
-        .status-safe {
-            color: #21f21f;
-            font-weight: bold;
-        }
-
-        .status-warning {
-            color: #f2d21f;
-            font-weight: bold;
-        }
-
-        .status-danger {
-            color: #f22121;
-            font-weight: bold;
-        }
-
-        .info-box {
-            margin: 30px auto;
-            padding: 20px;
-            max-width: 600px;
-            text-align: center;
-            background: #111;
-            border: 2px solid #00d8ff;
-            border-radius: 8px;
-            box-shadow: 0 0 15px #00d8ff inset, 0 0 10px #00d8ff;
-            font-family: 'Courier New', monospace;
-        }
-
-        .info-box p {
-            margin: 0 0 15px 0;
-            color: #00d8ff;
-            font-size: 1rem;
-        }
-
-        .info-box button {
-            padding: 10px 20px;
-            background: #00d8ff;
-            color: #111;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .info-box button:hover {
-            background: #0099cc;
-            box-shadow: 0 0 10px #00d8ff;
-        }
+      .info-box button:hover {
+        background: #0099cc;
+        box-shadow: 0 0 10px #00d8ff;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <h1>Unsere Server</h1>
 
     <div class="server-grid">
-        <div class="server-card">
-            <div class="led"></div>
-            <div class="server-info">
-                <h2>Github Server </h2>
-                <p>Verwendung: Webhosting</p>
-                <p>Standort: Deutschland</p>
-                <p>Status: <span class="status-safe">Sicher</span></p>
-            </div>
+      <div class="server-card">
+        <div class="led"></div>
+        <div class="server-info">
+          <h2>Strato GmbH Server</h2>
+          <p>Verwendung: Webhosting</p>
+          <p>Standort: Deutschland</p>
+          <p>Status: <span class="status-safe">Sicher</span></p>
         </div>
+      </div>
 
-        <div class="server-card">
-            <div class="led"></div>
-            <div class="server-info">
-                <h2>Firebase Server</h2>
-                <p>Verwendung: Datenbänke und Accounts</p>
-                <p>Standort: Google Serverräume</p>
-                <p>Status: <span class="status-warning">Streng Überwacht</span></p>
-            </div>
+      <div class="server-card">
+        <div class="led"></div>
+        <div class="server-info">
+          <h2>Firebase Server</h2>
+          <p>Verwendung: Datenbänke und Accounts</p>
+          <p>Standort: Google Serverräume</p>
+          <p>Status: <span class="status-warning">Streng Überwacht</span></p>
         </div>
+      </div>
 
-        <div class="server-card">
-            <div class="led"></div>
-            <div class="server-info">
-                <h2>Entwicklungs Server</h2>
-                <p>Verwendung: Entwicklungsserver</p>
-                <p>Standort: Deutschland</p>
-                <p>Status: <span class="status-danger">Nicht öffentlich</span></p>
-            </div>
+      <div class="server-card">
+        <div class="led"></div>
+        <div class="server-info">
+          <h2>Entwicklungs Server</h2>
+          <p>Verwendung: Entwicklungsserver</p>
+          <p>Standort: Deutschland</p>
+          <p>Status: <span class="status-danger">Nicht öffentlich</span></p>
         </div>
+      </div>
     </div>
 
     <div class="info-box">
-        <p>Für weitere Fragen melden Sie sich bitte an, um Zugriff auf unsere Support-Informationen zu erhalten.</p>
-        <button onclick="window.location.href='Sicherheit infos.html'">Dashboard anzeigen</button>
+      <p>
+        Für weitere Fragen melden Sie sich bitte an, um Zugriff auf unsere
+        Support-Informationen zu erhalten.
+      </p>
+      <button onclick="window.location.href='Sicherheit infos.html'">
+        Dashboard anzeigen
+      </button>
     </div>
-
-
-</body>
-
+  </body>
 </html>
