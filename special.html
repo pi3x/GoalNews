@@ -29,6 +29,8 @@
     <h2>Willkommen im Dashboard</h2>
     <p><b id="username">User</b>, schön dass du da bist!</p>
 
+    <button id="logoutBtn" style="background:#f44336;">Logout</button>
+
     <label>Dein Lieblingsverein:</label>
     <input id="favTeamInput" placeholder="z. B. Bayern München">
     <button id="saveTeamBtn">Verein speichern</button>
@@ -36,6 +38,12 @@
 
     <label>Deine Coins:</label>
     <p id="userCoins">0</p>
+
+    <!-- 🔥 BREAKING NEWS NEUER BEREICH -->
+    <label>🔥 Breaking News Leiste kaufen (3000 Coins):</label>
+    <button id="buyBreakingBtn">Jetzt kaufen</button>
+    <div class="successMsg" id="buyBreakingMsg" style="display:none;">✔ Breaking News aktiviert!</div>
+    <!-- 🔥 ENDE -->
 
     <label>Deine Nachrichten:</label>
     <div id="personalMsg" style="padding:12px; background:#f0f0f0; border-radius:6px; margin-top:5px;">
@@ -75,7 +83,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
     import { getFirestore, collection, doc, getDocs, updateDoc, onSnapshot, arrayUnion, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -100,6 +108,9 @@
     const userCoinsElem = document.getElementById("userCoins");
     const usernameField = document.getElementById("username");
 
+    const buyBreakingBtn = document.getElementById("buyBreakingBtn");
+    const buyBreakingMsg = document.getElementById("buyBreakingMsg");
+
     const adminBox = document.getElementById("adminBox");
     const usersList = document.getElementById("usersList");
     const selectedUserNameElem = document.getElementById("selectedUserName");
@@ -113,7 +124,12 @@
     const startRewardBtn = document.getElementById("startRewardBtn");
     const actionMsg = document.getElementById("actionMsg");
 
+    const logoutBtn = document.getElementById("logoutBtn");
+
     let selectedUserId = null;
+
+    // Sicherstellen, dass Login persistiert wird
+    setPersistence(auth, browserLocalPersistence);
 
     // LOGIN + Admin Check
     onAuthStateChanged(auth, async (user) => {
@@ -129,7 +145,8 @@
         userCoinsElem.textContent = data.coins || 0;
         favTeamInput.value = data.favTeam || "";
 
-        // Nachrichten als Liste
+        if (data.breakingNews === true) buyBreakingBtn.style.display = "none";
+
         personalMsg.innerHTML = "";
         if(data.messages && data.messages.length > 0){
           data.messages.forEach(msg => {
@@ -144,7 +161,7 @@
 
       if(ADMIN_UIDS.includes(user.uid)) adminBox.style.display="block";
 
-      // Admin: Benutzer Übersicht mit Snapshot
+      // Admin: Benutzer Übersicht
       if(ADMIN_UIDS.includes(user.uid)){
         const usersCol = collection(db,"users");
         onSnapshot(usersCol, snapshot => {
@@ -172,6 +189,12 @@
       }
     });
 
+    // Logout
+    logoutBtn.onclick = async()=>{
+      await signOut(auth);
+      window.location.href="login.html";
+    };
+
     // Lieblingsverein speichern
     saveTeamBtn.onclick = async()=>{
       const user = auth.currentUser; if(!user) return;
@@ -179,11 +202,38 @@
       saveTeamMsg.style.display="block"; setTimeout(()=>saveTeamMsg.style.display="none",2000);
     };
 
+    // 🔥 BREAKING NEWS KAUF FUNKTION
+    buyBreakingBtn.onclick = async()=>{
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const userRef = doc(db,"users",user.uid);
+      const snap = await getDoc(userRef);
+      const data = snap.data();
+      const coins = data.coins || 0;
+
+      if (data.breakingNews === true){
+        alert("Du hast die Breaking News Leiste schon gekauft.");
+        return;
+      }
+
+      if (coins < 3000){
+        alert("Du brauchst 3000 Coins!");
+        return;
+      }
+
+      await updateDoc(userRef,{ coins: coins - 3000, breakingNews: true });
+
+      buyBreakingMsg.style.display="block";
+      setTimeout(()=>buyBreakingMsg.style.display="none",2000);
+      buyBreakingBtn.style.display="none";
+    };
+
     // Nachricht senden
     sendMsgBtn.onclick = async()=>{
       if(adminMsgInput.value==="") return;
       const msg = adminMsgInput.value;
-      if(selectedUserId===null){ // An alle
+      if(selectedUserId===null){
         const snapshot = await getDocs(collection(db,"users"));
         snapshot.docs.forEach(async docSnap=>{
           await updateDoc(doc(db,"users",docSnap.id), { messages: arrayUnion(msg) });
@@ -199,7 +249,7 @@
       const amount = parseInt(addCoinsInput.value);
       if(isNaN(amount)) return;
 
-      if(selectedUserId===null){ // An alle
+      if(selectedUserId===null){
         const snapshot = await getDocs(collection(db,"users"));
         snapshot.docs.forEach(async docSnap=>{
           const userRef = doc(db,"users",docSnap.id);
@@ -227,11 +277,9 @@
       const coins = userDoc.data().coins || 0;
       const currentUser = auth.currentUser;
 
-      if(ADMIN_UIDS.includes(currentUser.uid)){ 
-        // Admin kann immer ändern
+      if(ADMIN_UIDS.includes(currentUser.uid)){
         await updateDoc(userRef,{username:newName});
       } else {
-        // Normaler User braucht 400 Coins
         if(coins<400){ alert("Du brauchst 400 Coins zum Ändern des Usernames."); return; }
         await updateDoc(userRef,{username:newName, coins: coins - 400});
       }
