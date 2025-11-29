@@ -139,11 +139,12 @@
         const username = document.getElementById("username").value.trim();
 
         if (!email || !password || !username) {
-          alert("Bro, trag alles ein.");
+          alert("Bitte fülle alles aus!");
           return;
         }
 
         try {
+          // Nutzer erstellen
           const userCred = await createUserWithEmailAndPassword(
             auth,
             email,
@@ -151,20 +152,25 @@
           );
           const user = userCred.user;
 
+          // User-Daten speichern
           await setDoc(doc(db, "users", user.uid), {
             username: username,
             email: email,
             createdAt: new Date().toISOString(),
+            emailVerified: false
           });
 
+          // Verifizierungs-Mail senden
           await sendEmailVerification(user);
 
           alert(
-            "Check deine E-Mail (Auch den Spam) und bestätige deinen Account!"
+            "Wir haben dir eine Bestätigungs-E-Mail gesendet!\nBitte bestätige deine E-Mail, bevor du dich einloggst."
           );
+
           window.location.href = "login.html";
+
         } catch (err) {
-          alert(err.message);
+          alert("Fehler: " + err.message);
         }
       };
     </script>
