@@ -247,12 +247,59 @@ setInterval(updateCountdown, 1000);
 
       function formatTime(ms) {
         const totalSeconds = Math.floor(ms / 1000);
-        const minutes = Math.floor(totalSeconds / 60);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
-        return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+        const parts = [];
+        if (days > 0) parts.push(days + "d");
+        if (hours > 0) parts.push(hours + "h");
+        if (minutes > 0) parts.push(minutes + "m");
+        parts.push(seconds.toString().padStart(2, "0") + "s");
+
+        return parts.join(" ");
       }
 
       function startMatchTimer(id, td, startTime, halfTime) {
+  if (matchTimers.has(id)) clearInterval(matchTimers.get(id));
+  let paused = halfTime;
+
+  const timerEl = document.createElement("span");
+  timerEl.className = "match-timer";
+  td.appendChild(timerEl);
+
+  const interval = setInterval(() => {
+    const now = Date.now();
+
+    // COUNTDOWN VOR ANPFIFF
+    if (now < startTime) {
+      const diff = startTime - now;
+      const minutes = Math.floor(diff / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000)
+        .toString()
+        .padStart(2, "0");
+
+      timerEl.textContent = `⏳ Noch ${minutes}:${seconds} bis Anpfiff`;
+      return;
+    }
+
+    // STOPPUHR / SPIEL LÄUFT
+    if (!paused) {
+      const elapsed = now - startTime;
+      if (elapsed < 90 * 60 * 1000) {
+        timerEl.textContent = `⏱️ ${formatTime(elapsed)}`;
+      } else {
+        timerEl.textContent = "🕛 90:00";
+        clearInterval(interval);
+      }
+    } else {
+      timerEl.textContent = "⏸️ Halbzeit";
+    }
+  }, 1000);
+
+  matchTimers.set(id, interval);
+}
         if (matchTimers.has(id)) clearInterval(matchTimers.get(id));
         let paused = halfTime;
 
@@ -275,7 +322,7 @@ setInterval(updateCountdown, 1000);
         }, 1000);
 
         matchTimers.set(id, interval);
-      }
+      
 
       function showVARComment(td, comment) {
         let varDiv = td.querySelector(".var-comment");
