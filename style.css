@@ -189,8 +189,20 @@ header .logo,
   color: #1db954;
 }
 
+/* Überschrift kleiner */
 .countdown-section h2 {
-  font-size: 30px;
+  font-size: 1.8rem; /* kleiner */
+  margin-bottom: 15px;
+  color: #1db954;
+}
+
+/* Countdown-Zeit größer und gleichmäßig */
+#countdown {
+  font-size: 2.5rem; /* größer für die Zahlen */
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px; /* optional für gleichmäßiges Layout */
+  font-family: "Courier New", monospace; /* alle Zahlen gleich groß */
 }
 
 /* ===== Socials ===== */
@@ -282,7 +294,7 @@ footer {
     padding: 20px 15px;
   }
   .countdown-section h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 
