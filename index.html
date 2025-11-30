@@ -6,7 +6,11 @@
     <title>GoalNews - Foot- & Fußballnews</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" type="image/jpeg" />
+    <link
+      rel="icon"
+      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
+      type="image/jpeg"
+    />
     <link rel="stylesheet" href="style.css" />
 
     <!-- PWA -->
@@ -24,18 +28,28 @@
         color: white;
       }
 
-      header.navbar, footer {
-        background: linear-gradient(90deg, #8B0000, #006400);
+      header.navbar,
+      footer {
+        background: linear-gradient(90deg, #8b0000, #006400);
         position: relative;
         z-index: 10;
         box-shadow: 0 0 20px gold;
       }
 
-      .nav-menu li a:hover { color: gold !important; }
-      h2, h3, h4 { color: #FFD700 !important; }
+      .nav-menu li a:hover {
+        color: gold !important;
+      }
+      h2,
+      h3,
+      h4 {
+        color: #ffd700 !important;
+      }
 
       /* Schneeflocken, Geschenke, Glitter */
-      .snowflake, .gift, .glitter, .lights {
+      .snowflake,
+      .gift,
+      .glitter,
+      .lights {
         position: fixed;
         user-select: none;
         z-index: 9999;
@@ -74,15 +88,43 @@
       }
 
       @keyframes fall {
-        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
       }
 
-      @keyframes blink { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+      @keyframes blink {
+        0% {
+          opacity: 0.3;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
 
-      #adventCandles { display: flex; justify-content: center; margin: 10px 0; }
-      .candle { font-size: 1.5em; margin: 0 5px; animation: candleGlow 1.5s infinite alternate; }
-      @keyframes candleGlow { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+      #adventCandles {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+      }
+      .candle {
+        font-size: 1.5em;
+        margin: 0 5px;
+        animation: candleGlow 1.5s infinite alternate;
+      }
+      @keyframes candleGlow {
+        0% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
 
       /* Schnee Boden */
       #snowGround {
@@ -115,30 +157,82 @@
         animation: blinkLight 1.5s infinite alternate;
       }
 
-      .garland-light.red { background: red; }
-      .garland-light.yellow { background: yellow; }
-      .garland-light.green { background: green; }
-      .garland-light.blue { background: blue; }
+      .garland-light.red {
+        background: red;
+      }
+      .garland-light.yellow {
+        background: yellow;
+      }
+      .garland-light.green {
+        background: green;
+      }
+      .garland-light.blue {
+        background: blue;
+      }
 
       @keyframes blinkLight {
-        0% { opacity: 0.2; transform: scale(0.8); }
-        50% { opacity: 1; transform: scale(1.2); }
-        100% { opacity: 0.2; transform: scale(0.8); }
+        0% {
+          opacity: 0.2;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 0.2;
+          transform: scale(0.8);
+        }
       }
 
       /* Adventskalender */
-      .advent-calendar { display: flex; flex-wrap: wrap; justify-content: center; margin: 20px 0; max-width: 600px; }
-      .advent-day { width: 50px; height: 50px; margin: 5px; background: red; color: gold; display:flex; justify-content:center; align-items:center; font-weight:bold; border-radius:10px; cursor:pointer; box-shadow: 0 0 5px #fff; position: relative; }
-      .advent-day.opened { background: green; color: #fff; }
-      .advent-tooltip { position: absolute; top: -50px; background: #333; padding:5px 10px; border-radius:5px; font-size:0.8em; display:none; white-space: nowrap; }
-      .advent-day.opened .advent-tooltip { display:block; }
+      .advent-calendar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 20px 0;
+        max-width: 600px;
+      }
+      .advent-day {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        background: red;
+        color: gold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 0 5px #fff;
+        position: relative;
+      }
+      .advent-day.opened {
+        background: green;
+        color: #fff;
+      }
+      .advent-tooltip {
+        position: absolute;
+        top: -50px;
+        background: #333;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8em;
+        display: none;
+        white-space: nowrap;
+      }
+      .advent-day.opened .advent-tooltip {
+        display: block;
+      }
     </style>
   </head>
 
   <body>
     <!-- Weihnachtslichter -->
     <div class="lights">
-      <span>💡</span><span>🎄</span><span>💡</span><span>🎅</span><span>💡</span>
+      <span>💡</span><span>🎄</span><span>💡</span><span>🎅</span
+      ><span>💡</span>
     </div>
 
     <!-- Schneeflocken / Geschenke / Glitter Container -->
@@ -152,11 +246,22 @@
     <!-- Breaking News -->
     <div id="breakingNews" class="locked">
       <div class="news-wrapper">
-        <span class="news-item">🎅 FC Bayern München will nach CL-Pleite gegen St. Pauli wieder siegen</span>
-        <span class="news-item">RB Leipzig versucht, den Rückstand auf Bayern zu verkürzen ❄️</span>
-        <span class="news-item">Hertha BSC baut Siegesserie in der 2. Bundesliga aus 🎁</span>
-        <span class="news-item">Manchester City arbeitet an Reaktion nach CL-Frust</span>
-        <span class="news-item">FC Barcelona: Pedri kehrt vor Duell mit Alavés zurück</span>
+        <span class="news-item"
+          >🎅 FC Bayern München will nach CL-Pleite gegen St. Pauli wieder
+          siegen</span
+        >
+        <span class="news-item"
+          >RB Leipzig versucht, den Rückstand auf Bayern zu verkürzen ❄️</span
+        >
+        <span class="news-item"
+          >Hertha BSC baut Siegesserie in der 2. Bundesliga aus 🎁</span
+        >
+        <span class="news-item"
+          >Manchester City arbeitet an Reaktion nach CL-Frust</span
+        >
+        <span class="news-item"
+          >FC Barcelona: Pedri kehrt vor Duell mit Alavés zurück</span
+        >
       </div>
     </div>
 
@@ -179,7 +284,11 @@
         <li><a href="feedback.html">Helfen Sie uns!</a></li>
         <li><a href="coins.html">Was sind COINS</a></li>
         <li><a href="download.html">📥 Download Bereich</a></li>
-        <li><a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y">WhatsApp</a></li>
+        <li>
+          <a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y"
+            >WhatsApp</a
+          >
+        </li>
         <li><a href="https://www.youtube.com/@Goalnewsde">YouTube</a></li>
       </ul>
     </header>
@@ -229,13 +338,12 @@
           </tr>
         </thead>
         <tbody id="tableBody">
-          <tr><td colspan="3">Lade Spiele...</td></tr>
+          <tr>
+            <td colspan="3">Lade Spiele...</td>
+          </tr>
         </tbody>
       </table>
     </section>
-
-    <!-- Schnee Boden -->
-    <div id="snowGround"></div>
 
     <!-- Footer -->
     <footer>
@@ -254,55 +362,88 @@
       function updateCountdown() {
         const now = new Date();
         let diff = targetDate - now;
-        if (diff <= 0) { countdownEl.textContent = "läuft!"; return; }
-        const days = Math.floor(diff / (1000*60*60*24));
-        diff %= 1000*60*60*24;
-        const hours = Math.floor(diff / (1000*60*60));
-        diff %= 1000*60*60;
-        const minutes = Math.floor(diff / (1000*60));
-        diff %= 1000*60;
+        if (diff <= 0) {
+          countdownEl.textContent = "läuft!";
+          return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff %= 1000 * 60 * 60 * 24;
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff %= 1000 * 60 * 60;
+        const minutes = Math.floor(diff / (1000 * 60));
+        diff %= 1000 * 60;
         const seconds = Math.floor(diff / 1000);
-        const parts=[]; if(days>0) parts.push(`${days}d`);
-        if(hours>0) parts.push(`${hours}h`);
-        if(minutes>0) parts.push(`${minutes}m`);
+        const parts = [];
+        if (days > 0) parts.push(`${days}d`);
+        if (hours > 0) parts.push(`${hours}h`);
+        if (minutes > 0) parts.push(`${minutes}m`);
         parts.push(`${seconds}s`);
-        countdownEl.textContent=parts.join(" ");
+        countdownEl.textContent = parts.join(" ");
       }
-      updateCountdown(); setInterval(updateCountdown, 1000);
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
 
       // Schnee / Geschenke / Glitter
-      const snowContainer=document.getElementById("snowflakes");
-      const giftContainer=document.getElementById("gifts");
-      const glitterContainer=document.getElementById("glitters");
+      const snowContainer = document.getElementById("snowflakes");
+      const giftContainer = document.getElementById("gifts");
+      const glitterContainer = document.getElementById("glitters");
 
-      function createSnowflake(){const f=document.createElement("div");f.className="snowflake";f.textContent="❄";f.style.left=Math.random()*window.innerWidth+"px";f.style.fontSize=(12+Math.random()*24)+"px";f.style.animationDuration=(5+Math.random()*10)+"s";f.style.opacity=Math.random();snowContainer.appendChild(f);setTimeout(()=>f.remove(),15000);}
-      function createGift(){const g=document.createElement("div");g.className="gift";g.textContent="🎁";g.style.left=Math.random()*window.innerWidth+"px";g.style.animationDuration=(6+Math.random()*8)+"s";giftContainer.appendChild(g);setTimeout(()=>g.remove(),20000);}
-      function createGlitter(){const g=document.createElement("div");g.className="glitter";g.style.left=Math.random()*window.innerWidth+"px";g.style.top=Math.random()*window.innerHeight+"px";glitterContainer.appendChild(g);setTimeout(()=>g.remove(),4000);}
-      setInterval(createSnowflake,200);
-      setInterval(createGift,1000);
-      setInterval(createGlitter,300);
+      function createSnowflake() {
+        const f = document.createElement("div");
+        f.className = "snowflake";
+        f.textContent = "❄";
+        f.style.left = Math.random() * window.innerWidth + "px";
+        f.style.fontSize = 12 + Math.random() * 24 + "px";
+        f.style.animationDuration = 5 + Math.random() * 10 + "s";
+        f.style.opacity = Math.random();
+        snowContainer.appendChild(f);
+        setTimeout(() => f.remove(), 15000);
+      }
+      function createGift() {
+        const g = document.createElement("div");
+        g.className = "gift";
+        g.textContent = "🎁";
+        g.style.left = Math.random() * window.innerWidth + "px";
+        g.style.animationDuration = 6 + Math.random() * 8 + "s";
+        giftContainer.appendChild(g);
+        setTimeout(() => g.remove(), 20000);
+      }
+      function createGlitter() {
+        const g = document.createElement("div");
+        g.className = "glitter";
+        g.style.left = Math.random() * window.innerWidth + "px";
+        g.style.top = Math.random() * window.innerHeight + "px";
+        glitterContainer.appendChild(g);
+        setTimeout(() => g.remove(), 4000);
+      }
+      setInterval(createSnowflake, 200);
+      setInterval(createGift, 1000);
+      setInterval(createGlitter, 300);
 
       // Geschwungene Lichterkette
-      const canvas=document.getElementById('lightGarland');
-      const ctx=canvas.getContext('2d');
-      canvas.width=window.innerWidth; canvas.height=100;
-      const lights=[];
-      for(let i=0;i<20;i++){
+      const canvas = document.getElementById("lightGarland");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = 100;
+      const lights = [];
+      for (let i = 0; i < 20; i++) {
         lights.push({
-          x:i*(canvas.width/20),
-          y:50+20*Math.sin(i/2),
-          color:['red','yellow','green','blue'][i%4],
-          phase:Math.random()*Math.PI*2
+          x: i * (canvas.width / 20),
+          y: 50 + 20 * Math.sin(i / 2),
+          color: ["red", "yellow", "green", "blue"][i % 4],
+          phase: Math.random() * Math.PI * 2,
         });
       }
-      function drawLights(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
+      function drawLights() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
-        for(let i=0;i<lights.length;i++){
-          const l=lights[i];
-          l.y=50+20*Math.sin(i/2+Date.now()/1000+l.phase);
-          ctx.fillStyle=l.color; ctx.beginPath();
-          ctx.arc(l.x,l.y,8,0,Math.PI*2); ctx.fill();
+        for (let i = 0; i < lights.length; i++) {
+          const l = lights[i];
+          l.y = 50 + 20 * Math.sin(i / 2 + Date.now() / 1000 + l.phase);
+          ctx.fillStyle = l.color;
+          ctx.beginPath();
+          ctx.arc(l.x, l.y, 8, 0, Math.PI * 2);
+          ctx.fill();
         }
         requestAnimationFrame(drawLights);
       }
@@ -312,31 +453,47 @@
     <!-- Firebase + Live Games Script -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-      import { getFirestore, collection, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-      import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        doc,
+        onSnapshot,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        setPersistence,
+        browserLocalPersistence,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
       const firebaseConfig = {
-        apiKey:"AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
-        authDomain:"goalnewsde-community.firebaseapp.com",
-        projectId:"goalnewsde-community",
-        storageBucket:"goalnewsde-community.firebasestorage.app",
-        messagingSenderId:"134523022055",
-        appId:"1:134523022055:web:4f35ed7812d06e4fb55042"
+        apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
+        authDomain: "goalnewsde-community.firebaseapp.com",
+        projectId: "goalnewsde-community",
+        storageBucket: "goalnewsde-community.firebasestorage.app",
+        messagingSenderId: "134523022055",
+        appId: "1:134523022055:web:4f35ed7812d06e4fb55042",
       };
 
-      const app=initializeApp(firebaseConfig);
-      const db=getFirestore(app);
-      const auth=getAuth(app);
-      setPersistence(auth,browserLocalPersistence);
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+      setPersistence(auth, browserLocalPersistence);
 
-      const breakingEl=document.getElementById("breakingNews");
-      onAuthStateChanged(auth,user=>{
-        if(!user){ breakingEl.classList.add("locked"); return; }
-        const userRef=doc(db,"users",user.uid);
-        onSnapshot(userRef,snap=>{
-          const data=snap.data();
-          if(data && data.breakingNews===true){ breakingEl.classList.remove("locked"); }
-          else { breakingEl.classList.add("locked"); }
+      const breakingEl = document.getElementById("breakingNews");
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          breakingEl.classList.add("locked");
+          return;
+        }
+        const userRef = doc(db, "users", user.uid);
+        onSnapshot(userRef, (snap) => {
+          const data = snap.data();
+          if (data && data.breakingNews === true) {
+            breakingEl.classList.remove("locked");
+          } else {
+            breakingEl.classList.add("locked");
+          }
         });
       });
 
@@ -365,58 +522,85 @@
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
         const parts = [];
-        if (days>0) parts.push(days+'d');
-        if (hours>0) parts.push(hours+'h');
-        if (minutes>0) parts.push(minutes+'m');
-        parts.push(seconds.toString().padStart(2,'0')+'s');
-        return parts.join(' ');
+        if (days > 0) parts.push(days + "d");
+        if (hours > 0) parts.push(hours + "h");
+        if (minutes > 0) parts.push(minutes + "m");
+        parts.push(seconds.toString().padStart(2, "0") + "s");
+        return parts.join(" ");
       }
 
       function startMatchTimer(id, td, startTime, halfTime) {
-        if(matchTimers.has(id)) clearInterval(matchTimers.get(id));
+        if (matchTimers.has(id)) clearInterval(matchTimers.get(id));
         let paused = halfTime;
         const timerEl = document.createElement("span");
         timerEl.className = "match-timer";
         td.appendChild(timerEl);
 
-        const interval=setInterval(()=>{
-          if(!paused){
-            const elapsed=Date.now()-startTime;
-            if(elapsed<90*60*1000){ timerEl.textContent=`⏱️ ${formatTime(elapsed)}`; }
-            else { timerEl.textContent="🕛 90:00"; clearInterval(interval); }
-          } else { timerEl.textContent="⏸️ Halbzeit"; }
-        },1000);
+        const interval = setInterval(() => {
+          if (!paused) {
+            const elapsed = Date.now() - startTime;
+            if (elapsed < 90 * 60 * 1000) {
+              timerEl.textContent = `⏱️ ${formatTime(elapsed)}`;
+            } else {
+              timerEl.textContent = "🕛 90:00";
+              clearInterval(interval);
+            }
+          } else {
+            timerEl.textContent = "⏸️ Halbzeit";
+          }
+        }, 1000);
 
-        matchTimers.set(id,interval);
+        matchTimers.set(id, interval);
       }
 
-      function showVARComment(td,comment){
-        let varDiv=td.querySelector(".var-comment");
-        if(!varDiv){ varDiv=document.createElement("span"); varDiv.className="var-comment"; td.appendChild(varDiv);}
-        varDiv.textContent=comment;
-        varDiv.style.opacity=1;
-        setTimeout(()=>varDiv.style.opacity=0,5000);
+      function showVARComment(td, comment) {
+        let varDiv = td.querySelector(".var-comment");
+        if (!varDiv) {
+          varDiv = document.createElement("span");
+          varDiv.className = "var-comment";
+          td.appendChild(varDiv);
+        }
+        varDiv.textContent = comment;
+        varDiv.style.opacity = 1;
+        setTimeout(() => (varDiv.style.opacity = 0), 5000);
       }
 
-      async function initLiveGames(){
-        const colRef=collection(db,"liveGames");
-        onSnapshot(colRef,(snapshot)=>{
-          tableBody.innerHTML="";
-          if(snapshot.empty){ tableBody.innerHTML="<tr><td colspan='3'>Keine aktuellen Spiele</td></tr>"; return; }
-          snapshot.forEach(docSnap=>{
-            const data=docSnap.data();
-            if(docSnap.id==="next_game") return;
-            const tr=document.createElement("tr");
-            tr.innerHTML=`
-              <td class="${data.over?"over-game":""}">${data.home||""}</td>
-              <td class="${data.over?"over-game":""}">${data.away||""}</td>
-              <td class="${data.goal?"goal-animation":""} ${data.over?"over-game":""}">${data.score||""}</td>
+      async function initLiveGames() {
+        const colRef = collection(db, "liveGames");
+        onSnapshot(colRef, (snapshot) => {
+          tableBody.innerHTML = "";
+          if (snapshot.empty) {
+            tableBody.innerHTML =
+              "<tr><td colspan='3'>Keine aktuellen Spiele</td></tr>";
+            return;
+          }
+          snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            if (docSnap.id === "next_game") return;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="${data.over ? "over-game" : ""}">${
+              data.home || ""
+            }</td>
+              <td class="${data.over ? "over-game" : ""}">${
+              data.away || ""
+            }</td>
+              <td class="${data.goal ? "goal-animation" : ""} ${
+              data.over ? "over-game" : ""
+            }">${data.score || ""}</td>
             `;
             tableBody.appendChild(tr);
-            const td=tr.querySelector("td:nth-child(3)");
-            if(data.halfTime) addHalfTimeAnimation(td); else removeHalfTimeAnimation(td);
-            if(data.startTime) startMatchTimer(docSnap.id,td,data.startTime.toDate().getTime(),data.halfTime);
-            if(data.varComment) showVARComment(td,data.varComment);
+            const td = tr.querySelector("td:nth-child(3)");
+            if (data.halfTime) addHalfTimeAnimation(td);
+            else removeHalfTimeAnimation(td);
+            if (data.startTime)
+              startMatchTimer(
+                docSnap.id,
+                td,
+                data.startTime.toDate().getTime(),
+                data.halfTime
+              );
+            if (data.varComment) showVARComment(td, data.varComment);
           });
         });
       }
