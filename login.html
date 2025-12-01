@@ -41,7 +41,7 @@
         width: 100%;
         padding: 12px;
         margin-top: 15px;
-        background: #4e73df;
+        background: #1db954;
         border: none;
         border-radius: 6px;
         color: white;
@@ -49,12 +49,12 @@
         cursor: pointer;
       }
       button:hover {
-        background: #3b5bbb;
+        background: #14a34a;
       }
       a {
         display: block;
         margin-top: 15px;
-        color: #4e73df;
+        color: #1db954;
         text-decoration: none;
       }
       .error {
@@ -77,13 +77,13 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
       import {
         getAuth,
-        signInWithEmailAndPassword
+        signInWithEmailAndPassword,
       } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
       import {
         getFirestore,
         doc,
         updateDoc,
-        serverTimestamp
+        serverTimestamp,
       } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
       const firebaseConfig = {
@@ -113,24 +113,27 @@
         }
 
         try {
-          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
           const user = userCredential.user;
 
           // ✅ Letzten Login speichern
           const userRef = doc(db, "users", user.uid);
           await updateDoc(userRef, {
-            last_login: serverTimestamp()
+            last_login: serverTimestamp(),
           });
 
           // ✅ Weiterleitung nach Login
           window.location.href = "special.html";
-
         } catch (err) {
           console.error(err);
-          errorMsg.textContent = "E-Mail oder Passwort falsch, Bro. Check deine Eingabe!";
+          errorMsg.textContent =
+            "E-Mail oder Passwort falsch, Bro. Check deine Eingabe!";
         }
       });
     </script>
   </body>
 </html>
-
