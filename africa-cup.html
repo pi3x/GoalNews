@@ -142,7 +142,6 @@
     </header>
 
     <div class="container">
-      <!-- LIVE -->
       <div class="game-card">
         <div>
           <div class="teams">Tunesien vs Uganda</div>
@@ -151,7 +150,6 @@
         <div class="score">3:1</div>
       </div>
 
-      <!-- BEENDET -->
       <div class="game-card">
         <div>
           <div class="teams">DR Kongo vs Benin</div>
@@ -192,7 +190,6 @@
         <div class="score">2:1</div>
       </div>
 
-      <!-- NEU HINZUGEFÜGT -->
       <div class="game-card">
         <div>
           <div class="teams">Mali vs Sambia</div>
@@ -210,8 +207,47 @@
       </div>
     </div>
 
-    <p>Zuletzt aktualisiert: 24.12.2025</p>
-    <p>Bei Fehler oder Falschen Angaben bitten wir sie diese uns unter: <a href="https://goalnews.website/feedback.html">Unserer Feedback seite uns zu Melden</a></p>
+    <div class="feedback-container">
+      <p class="feedback-text">
+        Hast du Fragen, Ideen oder willst einfach Feedback loswerden? Dann klick
+        hier:
+      </p>
+
+      <a href="feedback.html" class="feedback-button">Feedback geben</a>
+    </div>
+
+    <style>
+      .feedback-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .feedback-text {
+        font-family: Arial, sans-serif;
+        margin-bottom: 12px;
+        color: #333;
+        max-width: 400px;
+      }
+
+      .feedback-button {
+        display: inline-block;
+        padding: 12px 20px;
+        background-color: #1db954;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+      }
+
+      .feedback-button:hover {
+        background-color: rgba(29, 185, 84, 0.45);
+        transform: translateY(-2px);
+      }
+    </style>
 
     <footer>© 2025 GoalNews | Don’t Steal Our Stuff</footer>
   </body>
