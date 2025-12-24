@@ -18,210 +18,7 @@
     <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
     <link rel="manifest" href="manifest.json" />
 
-    <!-- Weihnachtsstyles -->
     <style>
-      body {
-        position: relative;
-        overflow-x: hidden;
-        background: linear-gradient(#001, #111);
-        font-family: Arial, sans-serif;
-        color: white;
-      }
-
-      header.navbar,
-      footer {
-        background: linear-gradient(90deg, #8b0000, #006400);
-        position: relative;
-        z-index: 10;
-        box-shadow: 0 0 20px gold;
-      }
-
-      .nav-menu li a:hover {
-        color: gold !important;
-      }
-      h2,
-      h3,
-      h4 {
-        color: #ffd700 !important;
-      }
-
-      /* Schneeflocken, Geschenke, Glitter */
-      .snowflake,
-      .gift,
-      .glitter,
-      .lights {
-        position: fixed;
-        user-select: none;
-        z-index: 9999;
-        pointer-events: none;
-      }
-
-      .snowflake {
-        top: -10px;
-        color: white;
-        font-size: 1em;
-        animation-name: fall;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-      }
-
-      .gift {
-        top: -10px;
-        font-size: 1.2em;
-        animation-name: fall;
-      }
-
-      .glitter {
-        width: 5px;
-        height: 5px;
-        background: gold;
-        border-radius: 50%;
-        top: 0;
-      }
-
-      .lights {
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        animation: blink 1s infinite alternate;
-      }
-
-      @keyframes fall {
-        0% {
-          transform: translateY(0) rotate(0deg);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(100vh) rotate(360deg);
-          opacity: 0;
-        }
-      }
-
-      @keyframes blink {
-        0% {
-          opacity: 0.3;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-
-      #adventCandles {
-        display: flex;
-        justify-content: center;
-        margin: 10px 0;
-      }
-
-      @keyframes candleGlow {
-        0% {
-          opacity: 0.5;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-
-      /* Schnee Boden */
-      #snowGround {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 60px;
-        background: #fff;
-        box-shadow: inset 0 0 20px #eee;
-        z-index: 1;
-      }
-
-      /* Geschwungene Lichterkette über dem Header */
-      #lightGarland {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        pointer-events: none;
-        z-index: 9998;
-      }
-
-      .garland-light {
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        box-shadow: 0 0 10px #fff;
-        animation: blinkLight 1.5s infinite alternate;
-      }
-
-      .garland-light.red {
-        background: red;
-      }
-      .garland-light.yellow {
-        background: yellow;
-      }
-      .garland-light.green {
-        background: green;
-      }
-      .garland-light.blue {
-        background: blue;
-      }
-
-      @keyframes blinkLight {
-        0% {
-          opacity: 0.2;
-          transform: scale(0.8);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1.2);
-        }
-        100% {
-          opacity: 0.2;
-          transform: scale(0.8);
-        }
-      }
-
-      /* Adventskalender */
-      .advent-calendar {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: 20px 0;
-        max-width: 600px;
-      }
-      .advent-day {
-        width: 50px;
-        height: 50px;
-        margin: 5px;
-        background: red;
-        color: gold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        border-radius: 10px;
-        cursor: pointer;
-        box-shadow: 0 0 5px #fff;
-        position: relative;
-      }
-      .advent-day.opened {
-        background: green;
-        color: #fff;
-      }
-      .advent-tooltip {
-        position: absolute;
-        top: -50px;
-        background: #333;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: 0.8em;
-        display: none;
-        white-space: nowrap;
-      }
-      .advent-day.opened .advent-tooltip {
-        display: block;
-      }
-
       .gn-button {
         display: inline-block;
         margin: 40px auto;
@@ -252,20 +49,6 @@
   </head>
 
   <body>
-    <!-- Weihnachtslichter -->
-    <div class="lights">
-      <span>💡</span><span>🎄</span><span>💡</span><span>🎅</span
-      ><span>💡</span>
-    </div>
-
-    <!-- Schneeflocken / Geschenke / Glitter Container -->
-    <div id="snowflakes"></div>
-    <div id="gifts"></div>
-    <div id="glitters"></div>
-
-    <!-- Geschwungene Lichterkette -->
-    <canvas id="lightGarland"></canvas>
-
     <!-- Breaking News -->
     <div id="breakingNews" class="locked">
       <div class="news-wrapper">
@@ -290,7 +73,7 @@
 
     <!-- Header -->
     <header class="navbar">
-      <div class="logo">🎄 GoalNews 🎄</div>
+      <div class="logo">GoalNews</div>
       <input type="checkbox" id="menu-toggle" class="menu-toggle" />
       <label for="menu-toggle" class="hamburger-icon">
         <div class="bar"></div>
@@ -307,7 +90,7 @@
         <li><a href="comments.html">Kommentar Forum</a></li>
         <li><a href="feedback.html">Helfen Sie uns!</a></li>
         <li><a href="coins.html">Was sind COINS</a></li>
-        <li><a href="download.html">📥 Download Bereich</a></li>
+        <li><a href="download.html">Downloads/PDFs</a></li>
         <li>
           <a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y"
             >WhatsApp</a
@@ -320,19 +103,9 @@
     <!-- Afrika-Cup Button -->
     <a href="africa-cup.html" class="gn-button"> Africa Cup ansehen </a>
 
-    <!-- Countdown & Adventskerzen -->
-    <h2>⏱️ 16. Spieltag startet in:</h2>
+    <!-- Countdown -->
+    <h2>⏱️ 2026 startet in:</h2>
     <div id="countdown">lade...</div>
-
-    <p style="text-align: center; margin-top: 10px">
-      🎄
-      <a
-        href="Adventskalender.html"
-        style="color: #049c20; text-decoration: none; font-weight: bold"
-        >Zum <strong>Adventskalender</strong></a
-      >
-      🎄
-    </p>
 
     <!-- 🏆 Bundesliga Spieltag -->
     <div class="matches" style="text-align: center; margin-top: 40px">
@@ -387,11 +160,8 @@
 
     <!-- Footer -->
     <footer>
-      © 2025 GoalNews | Don't Steal Our Stuff | Music by Pixabay | Merry
-      X-mas<br />
-      <span id="xmasCountdown" style="font-size: 0.9em; color: gold">
-        🎅 Lade Weihnachts-Countdown... </span
-      ><br />
+      © 2025 GoalNews | Don't Steal Our Stuff
+      <br />
       <a href="mailto:info@goalnewsde.de">Email</a> |
       <a href="agb.html">Datenschutz</a> |
       <a href="security.html">Sicherheit</a> |
@@ -402,7 +172,7 @@
     <script>
       // Countdown
       const countdownEl = document.getElementById("countdown");
-      const targetDate = new Date("2026-1-9 20:30:00");
+      const targetDate = new Date("2026-1-1 00:00:00");
       function updateCountdown() {
         const now = new Date();
         let diff = targetDate - now;
@@ -426,72 +196,6 @@
       }
       updateCountdown();
       setInterval(updateCountdown, 1000);
-
-      // Schnee / Geschenke / Glitter
-      const snowContainer = document.getElementById("snowflakes");
-      const giftContainer = document.getElementById("gifts");
-      const glitterContainer = document.getElementById("glitters");
-
-      function createSnowflake() {
-        const f = document.createElement("div");
-        f.className = "snowflake";
-        f.textContent = "❄";
-        f.style.left = Math.random() * window.innerWidth + "px";
-        f.style.fontSize = 12 + Math.random() * 24 + "px";
-        f.style.animationDuration = 5 + Math.random() * 10 + "s";
-        f.style.opacity = Math.random();
-        snowContainer.appendChild(f);
-        setTimeout(() => f.remove(), 15000);
-      }
-      function createGift() {
-        const g = document.createElement("div");
-        g.className = "gift";
-        g.textContent = "🎁";
-        g.style.left = Math.random() * window.innerWidth + "px";
-        g.style.animationDuration = 6 + Math.random() * 8 + "s";
-        giftContainer.appendChild(g);
-        setTimeout(() => g.remove(), 20000);
-      }
-      function createGlitter() {
-        const g = document.createElement("div");
-        g.className = "glitter";
-        g.style.left = Math.random() * window.innerWidth + "px";
-        g.style.top = Math.random() * window.innerHeight + "px";
-        glitterContainer.appendChild(g);
-        setTimeout(() => g.remove(), 4000);
-      }
-      setInterval(createSnowflake, 200);
-      setInterval(createGift, 1000);
-      setInterval(createGlitter, 300);
-
-      // Geschwungene Lichterkette
-      const canvas = document.getElementById("lightGarland");
-      const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = 100;
-      const lights = [];
-      for (let i = 0; i < 20; i++) {
-        lights.push({
-          x: i * (canvas.width / 20),
-          y: 50 + 20 * Math.sin(i / 2),
-          color: ["red", "yellow", "green", "blue"][i % 4],
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-      function drawLights() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.beginPath();
-        for (let i = 0; i < lights.length; i++) {
-          const l = lights[i];
-          l.y = 50 + 20 * Math.sin(i / 2 + Date.now() / 1000 + l.phase);
-          ctx.fillStyle = l.color;
-          ctx.beginPath();
-          ctx.arc(l.x, l.y, 8, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        requestAnimationFrame(drawLights);
-      }
-      drawLights();
     </script>
 
     <!-- Firebase + Live Games Script -->
@@ -662,65 +366,6 @@
         });
       }
       initLiveGames();
-    </script>
-    <audio id="bgMusic" loop>
-      <source src="jingle-bells-444574.mp3" type="audio/mpeg" />
-      Dein Browser unterstützt kein Audio.
-    </audio>
-    <script>
-      const music = document.getElementById("bgMusic");
-
-      // Autoplay nach User-Interaktion (Browser-Regel)
-      function startMusic() {
-        music.volume = 0.4; // Lautstärke (0.0 - 1.0)
-        music.play().catch(() => {
-          console.log("Autoplay blockiert – warte auf Interaktion");
-        });
-        document.removeEventListener("click", startMusic);
-      }
-
-      document.addEventListener("click", startMusic);
-
-      // Stoppen wenn Tab gewechselt oder minimiert
-      document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-          music.pause();
-        } else {
-          music.play().catch(() => {});
-        }
-      });
-
-      // Sicherheit: Stoppen beim Schließen
-      window.addEventListener("beforeunload", () => {
-        music.pause();
-      });
-    </script>
-
-    <script>
-      const xmasEl = document.getElementById("xmasCountdown");
-
-      function updateXmasCountdown() {
-        const now = new Date();
-        const year = now.getFullYear();
-        const xmas = new Date(year, 11, 24, 0, 0, 0); // 24.12.
-
-        if (now >= xmas) {
-          xmasEl.textContent = "🎄 Frohe Weihnachten!";
-          return;
-        }
-
-        let diff = xmas - now;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        diff %= 1000 * 60 * 60 * 24;
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        diff %= 1000 * 60 * 60;
-        const minutes = Math.floor(diff / (1000 * 60));
-
-        xmasEl.textContent = `🎁 Heiligabend in ${days} Tagen ${hours} Std ${minutes} Min`;
-      }
-
-      updateXmasCountdown();
-      setInterval(updateXmasCountdown, 60000);
     </script>
   </body>
 </html>
