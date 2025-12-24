@@ -147,41 +147,6 @@ header .logo,
   animation-play-state: paused;
 }
 
-/* ===== Live-Ticker ===== */
-.ticker-wrapper {
-  background: #1a1a1a;
-  overflow: hidden;
-  padding: 10px 0;
-  border-left: 4px solid #1db954;
-  position: relative;
-  height: 40px;
-  display: flex;
-  align-items: center;
-}
-
-.ticker {
-  display: inline-block;
-  white-space: nowrap;
-  font-weight: 500;
-  color: #1db954;
-  font-size: 1rem;
-  position: absolute;
-  left: 100%;
-}
-
-@keyframes scrollTicker {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.ticker-wrapper:hover .ticker {
-  animation-play-state: paused;
-}
-
 /* ===== Countdown ===== */
 .countdown-section {
   text-align: center;
@@ -191,7 +156,7 @@ header .logo,
 
 /* Überschrift kleiner */
 .countdown-section h2 {
-  font-size: 1.8rem; /* kleiner */
+  font-size: 1.8rem;
   margin-bottom: 15px;
   color: #1db954;
 }
@@ -203,60 +168,6 @@ header .logo,
   color: #fff;
   letter-spacing: 2px; /* optional für gleichmäßiges Layout */
   font-family: "Courier New", monospace; /* alle Zahlen gleich groß */
-}
-
-/* ===== Socials ===== */
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  padding: 25px 0;
-}
-
-.socials a {
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 25px;
-  background: #1db954;
-  color: #fff;
-  transition: all 0.3s;
-}
-
-.socials a:hover {
-  transform: scale(1.1);
-  background: #14a34a;
-}
-
-/* ===== Problem melden ===== */
-#reportButton {
-  background: linear-gradient(145deg, #1db954, #14a34a);
-  color: #fff;
-  border: none;
-  padding: 14px 26px;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-#reportButton:hover {
-  transform: translateY(-2px) scale(1.05);
-}
-
-#reportForm {
-  display: none;
-  margin-top: 20px;
-}
-
-#errorDescription,
-#errorType {
-  width: 80%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  resize: none;
 }
 
 /* ===== Matches ===== */
@@ -277,6 +188,10 @@ header .logo,
 .matches h3,
 .matches h4 {
   margin-bottom: 10px;
+}
+
+.topspiel {
+  color: #14a34a;
 }
 
 /* ===== Footer ===== */

@@ -18,8 +18,7 @@
     <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
     <link rel="manifest" href="manifest.json" />
 
-    
-
+    <style>
       .gn-button {
         display: inline-block;
         margin: 40px auto;
@@ -50,20 +49,6 @@
   </head>
 
   <body>
-    <!-- Weihnachtslichter -->
-    <div class="lights">
-      <span>💡</span><span>🎄</span><span>💡</span><span>🎅</span
-      ><span>💡</span>
-    </div>
-
-    <!-- Schneeflocken / Geschenke / Glitter Container -->
-    <div id="snowflakes"></div>
-    <div id="gifts"></div>
-    <div id="glitters"></div>
-
-    <!-- Geschwungene Lichterkette -->
-    <canvas id="lightGarland"></canvas>
-
     <!-- Breaking News -->
     <div id="breakingNews" class="locked">
       <div class="news-wrapper">
@@ -88,7 +73,7 @@
 
     <!-- Header -->
     <header class="navbar">
-      <div class="logo">🎄 GoalNews 🎄</div>
+      <div class="logo">GoalNews</div>
       <input type="checkbox" id="menu-toggle" class="menu-toggle" />
       <label for="menu-toggle" class="hamburger-icon">
         <div class="bar"></div>
@@ -105,7 +90,7 @@
         <li><a href="comments.html">Kommentar Forum</a></li>
         <li><a href="feedback.html">Helfen Sie uns!</a></li>
         <li><a href="coins.html">Was sind COINS</a></li>
-        <li><a href="download.html">📥 Download Bereich</a></li>
+        <li><a href="download.html">Downloads/PDFs</a></li>
         <li>
           <a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y"
             >WhatsApp</a
@@ -118,19 +103,9 @@
     <!-- Afrika-Cup Button -->
     <a href="africa-cup.html" class="gn-button"> Africa Cup ansehen </a>
 
-    <!-- Countdown & Adventskerzen -->
+    <!-- Countdown -->
     <h2>⏱️ 16. Spieltag startet in:</h2>
     <div id="countdown">lade...</div>
-
-    <p style="text-align: center; margin-top: 10px">
-      🎄
-      <a
-        href="Adventskalender.html"
-        style="color: #049c20; text-decoration: none; font-weight: bold"
-        >Zum <strong>Adventskalender</strong></a
-      >
-      🎄
-    </p>
 
     <!-- 🏆 Bundesliga Spieltag -->
     <div class="matches" style="text-align: center; margin-top: 40px">
@@ -185,11 +160,8 @@
 
     <!-- Footer -->
     <footer>
-      © 2025 GoalNews | Don't Steal Our Stuff | Music by Pixabay | Merry
-      X-mas<br />
-      <span id="xmasCountdown" style="font-size: 0.9em; color: gold">
-        🎅 Lade Weihnachts-Countdown... </span
-      ><br />
+      © 2025 GoalNews | Don't Steal Our Stuff
+      <br />
       <a href="mailto:info@goalnewsde.de">Email</a> |
       <a href="agb.html">Datenschutz</a> |
       <a href="security.html">Sicherheit</a> |
@@ -224,72 +196,6 @@
       }
       updateCountdown();
       setInterval(updateCountdown, 1000);
-
-      // Schnee / Geschenke / Glitter
-      const snowContainer = document.getElementById("snowflakes");
-      const giftContainer = document.getElementById("gifts");
-      const glitterContainer = document.getElementById("glitters");
-
-      function createSnowflake() {
-        const f = document.createElement("div");
-        f.className = "snowflake";
-        f.textContent = "❄";
-        f.style.left = Math.random() * window.innerWidth + "px";
-        f.style.fontSize = 12 + Math.random() * 24 + "px";
-        f.style.animationDuration = 5 + Math.random() * 10 + "s";
-        f.style.opacity = Math.random();
-        snowContainer.appendChild(f);
-        setTimeout(() => f.remove(), 15000);
-      }
-      function createGift() {
-        const g = document.createElement("div");
-        g.className = "gift";
-        g.textContent = "🎁";
-        g.style.left = Math.random() * window.innerWidth + "px";
-        g.style.animationDuration = 6 + Math.random() * 8 + "s";
-        giftContainer.appendChild(g);
-        setTimeout(() => g.remove(), 20000);
-      }
-      function createGlitter() {
-        const g = document.createElement("div");
-        g.className = "glitter";
-        g.style.left = Math.random() * window.innerWidth + "px";
-        g.style.top = Math.random() * window.innerHeight + "px";
-        glitterContainer.appendChild(g);
-        setTimeout(() => g.remove(), 4000);
-      }
-      setInterval(createSnowflake, 200);
-      setInterval(createGift, 1000);
-      setInterval(createGlitter, 300);
-
-      // Geschwungene Lichterkette
-      const canvas = document.getElementById("lightGarland");
-      const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = 100;
-      const lights = [];
-      for (let i = 0; i < 20; i++) {
-        lights.push({
-          x: i * (canvas.width / 20),
-          y: 50 + 20 * Math.sin(i / 2),
-          color: ["red", "yellow", "green", "blue"][i % 4],
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-      function drawLights() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.beginPath();
-        for (let i = 0; i < lights.length; i++) {
-          const l = lights[i];
-          l.y = 50 + 20 * Math.sin(i / 2 + Date.now() / 1000 + l.phase);
-          ctx.fillStyle = l.color;
-          ctx.beginPath();
-          ctx.arc(l.x, l.y, 8, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        requestAnimationFrame(drawLights);
-      }
-      drawLights();
     </script>
 
     <!-- Firebase + Live Games Script -->
@@ -460,65 +366,6 @@
         });
       }
       initLiveGames();
-    </script>
-    <audio id="bgMusic" loop>
-      <source src="jingle-bells-444574.mp3" type="audio/mpeg" />
-      Dein Browser unterstützt kein Audio.
-    </audio>
-    <script>
-      const music = document.getElementById("bgMusic");
-
-      // Autoplay nach User-Interaktion (Browser-Regel)
-      function startMusic() {
-        music.volume = 0.4; // Lautstärke (0.0 - 1.0)
-        music.play().catch(() => {
-          console.log("Autoplay blockiert – warte auf Interaktion");
-        });
-        document.removeEventListener("click", startMusic);
-      }
-
-      document.addEventListener("click", startMusic);
-
-      // Stoppen wenn Tab gewechselt oder minimiert
-      document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-          music.pause();
-        } else {
-          music.play().catch(() => {});
-        }
-      });
-
-      // Sicherheit: Stoppen beim Schließen
-      window.addEventListener("beforeunload", () => {
-        music.pause();
-      });
-    </script>
-
-    <script>
-      const xmasEl = document.getElementById("xmasCountdown");
-
-      function updateXmasCountdown() {
-        const now = new Date();
-        const year = now.getFullYear();
-        const xmas = new Date(year, 11, 24, 0, 0, 0); // 24.12.
-
-        if (now >= xmas) {
-          xmasEl.textContent = "🎄 Frohe Weihnachten!";
-          return;
-        }
-
-        let diff = xmas - now;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        diff %= 1000 * 60 * 60 * 24;
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        diff %= 1000 * 60 * 60;
-        const minutes = Math.floor(diff / (1000 * 60));
-
-        xmasEl.textContent = `🎁 Heiligabend in ${days} Tagen ${hours} Std ${minutes} Min`;
-      }
-
-      updateXmasCountdown();
-      setInterval(updateXmasCountdown, 60000);
     </script>
   </body>
 </html>
