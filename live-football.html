@@ -1,197 +1,214 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <title>GoalNews NFL Live</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>GoalNews NFL Live</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at top, #1a1a1a, #000);
-      color: #fff;
-    }
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: radial-gradient(circle at top, #1a1a1a, #000);
+        color: #fff;
+      }
 
-    header {
-      background: linear-gradient(90deg, #b11226, #002244);
-      padding: 18px;
-      text-align: center;
-      font-size: 1.6rem;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
+      header {
+        background: linear-gradient(90deg, #b11226, #002244);
+        padding: 18px;
+        text-align: center;
+        font-size: 1.6rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+      }
 
-    .sub {
-      text-align: center;
-      color: #ccc;
-      font-size: 0.9rem;
-      margin-top: 4px;
-    }
+      .sub {
+        text-align: center;
+        color: #ccc;
+        font-size: 0.9rem;
+        margin-top: 4px;
+      }
 
-    .games {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 18px;
-    }
+      .games {
+        max-width: 1100px;
+        margin: 30px auto;
+        padding: 0 16px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 18px;
+      }
 
-    .game {
-      background: linear-gradient(180deg, #111, #050505);
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      position: relative;
-    }
+      .game {
+        background: linear-gradient(180deg, #111, #050505);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        position: relative;
+      }
 
-    .game.over {
-      opacity: 0.45;
-      text-decoration: line-through;
-    }
+      .game.over {
+        opacity: 0.45;
+        text-decoration: line-through;
+      }
 
-    .status {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #444;
-    }
+      .status {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #444;
+      }
 
-    .live { background: #d40000; }
-    .half { background: #ff9800; }
-    .final { background: #555; }
+      .live {
+        background: #d40000;
+      }
+      .half {
+        background: #ff9800;
+      }
+      .final {
+        background: #555;
+      }
 
-    .flag {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: #ffd400;
-      color: #000;
-      font-size: 0.75rem;
-      font-weight: 900;
-      padding: 6px 10px;
-      border-radius: 6px;
-      box-shadow: 0 0 12px rgba(255,212,0,0.8);
-      text-transform: uppercase;
-    }
+      .flag {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: #ffd400;
+        color: #000;
+        font-size: 0.75rem;
+        font-weight: 900;
+        padding: 6px 10px;
+        border-radius: 6px;
+        box-shadow: 0 0 12px rgba(255, 212, 0, 0.8);
+        text-transform: uppercase;
+      }
 
-    .teams {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
+      .teams {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
 
-    .team {
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-align: center;
-    }
+      .team {
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-align: center;
+      }
 
-    .score {
-      font-size: 2.8rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
+      .score {
+        font-size: 2.8rem;
+        font-weight: 900;
+        letter-spacing: 2px;
+      }
 
-    .meta {
-      margin-top: 12px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
+      .meta {
+        margin-top: 12px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #ccc;
+      }
 
-    .td {
-      animation: flash 0.8s ease-in-out infinite alternate;
-      color: #00ff90;
-    }
+      .td {
+        animation: flash 0.8s ease-in-out infinite alternate;
+        color: #00ff90;
+      }
 
-    @keyframes flash {
-      from { text-shadow: 0 0 5px #00ff90; }
-      to { text-shadow: 0 0 20px #00ff90; }
-    }
+      @keyframes flash {
+        from {
+          text-shadow: 0 0 5px #00ff90;
+        }
+        to {
+          text-shadow: 0 0 20px #00ff90;
+        }
+      }
 
-    footer {
-      text-align: center;
-      color: #777;
-      padding: 30px 10px;
-      font-size: 0.8rem;
-    }
-  </style>
-</head>
+      footer {
+        text-align: center;
+        color: #777;
+        padding: 30px 10px;
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
 
-<body>
+  <body>
+    <header>🏈 NFL LIVE TICKER</header>
+    <div class="sub">Powered by GoalNews • NFL</div>
 
-<header>🏈 NFL LIVE TICKER</header>
-<div class="sub">Powered by GoalNews • NFL </div>
+    <section class="games" id="games">
+      <p>Lade Spiele…</p>
+    </section>
 
-<section class="games" id="games">
-  <p>Lade Spiele…</p>
-</section>
+    <footer>© 2026 GoalNews | Don't Steal Our Stuff</footer>
 
-<footer>
-  © 2026 GoalNews • Football Edition
-</footer>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        onSnapshot,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
+        authDomain: "goalnewsde-community.firebaseapp.com",
+        projectId: "goalnewsde-community",
+        storageBucket: "goalnewsde-community.firebasestorage.app",
+        messagingSenderId: "134523022055",
+        appId: "1:134523022055:web:4f35ed7812d06e4fb55042",
+      };
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
-    authDomain: "goalnewsde-community.firebaseapp.com",
-    projectId: "goalnewsde-community",
-    storageBucket: "goalnewsde-community.firebasestorage.app",
-    messagingSenderId: "134523022055",
-    appId: "1:134523022055:web:4f35ed7812d06e4fb55042"
-  };
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const gamesEl = document.getElementById("games");
-
-  // NEU
-  function ordinal(n) {
-    if (n === 1) return "1ST";
-    if (n === 2) return "2ND";
-    if (n === 3) return "3RD";
-    return n + "TH";
-  }
-
-  onSnapshot(collection(db, "FootballGames"), snapshot => {
-    gamesEl.innerHTML = "";
-
-    if (snapshot.empty) {
-      gamesEl.innerHTML = "<p>Keine Spiele live</p>";
-      return;
-    }
-
-    snapshot.forEach(docSnap => {
-      const g = docSnap.data();
-
-      // NEU – Status korrekt priorisiert
-      const statusClass =
-        g.flagText ? "live" :
-        g.over ? "final" :
-        g.halfTime ? "half" : "live";
+      const gamesEl = document.getElementById("games");
 
       // NEU
-      const statusText =
-        g.flagText ? "FLAG" :
-        g.over ? "FINAL" :
-        g.halfTime ? "HALBZEIT" : "LIVE";
+      function ordinal(n) {
+        if (n === 1) return "1ST";
+        if (n === 2) return "2ND";
+        if (n === 3) return "3RD";
+        return n + "TH";
+      }
 
-      const div = document.createElement("div");
-      div.className = "game" + (g.over ? " over" : "");
+      onSnapshot(collection(db, "FootballGames"), (snapshot) => {
+        gamesEl.innerHTML = "";
 
-      div.innerHTML = `
+        if (snapshot.empty) {
+          gamesEl.innerHTML = "<p>Keine Spiele live</p>";
+          return;
+        }
+
+        snapshot.forEach((docSnap) => {
+          const g = docSnap.data();
+
+          // NEU – Status korrekt priorisiert
+          const statusClass = g.flagText
+            ? "live"
+            : g.over
+            ? "final"
+            : g.halfTime
+            ? "half"
+            : "live";
+
+          // NEU
+          const statusText = g.flagText
+            ? "FLAG"
+            : g.over
+            ? "FINAL"
+            : g.halfTime
+            ? "HALBZEIT"
+            : "LIVE";
+
+          const div = document.createElement("div");
+          div.className = "game" + (g.over ? " over" : "");
+
+          div.innerHTML = `
         ${g.flagText ? `<div class="flag">FLAG • ${g.flagText}</div>` : ""}
 
         <div class="status ${statusClass}">${statusText}</div>
@@ -205,16 +222,19 @@
         </div>
 
         <div class="meta">
-          ${g.down && g.distance ? `Down: ${ordinal(g.down)} & ${g.distance}` : ""} <!-- NEU -->
+          ${
+            g.down && g.distance
+              ? `Down: ${ordinal(g.down)} & ${g.distance}`
+              : ""
+          } <!-- NEU -->
           ${g.quarter ? ` • Quarter: ${g.quarter}` : ""}
           ${g.time ? ` • ⏱ ${g.time}` : ""}
         </div>
       `;
 
-      gamesEl.appendChild(div);
-    });
-  });
-</script>
-
-</body>
+          gamesEl.appendChild(div);
+        });
+      });
+    </script>
+  </body>
 </html>
