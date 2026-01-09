@@ -57,7 +57,7 @@
           gegen Crystal Palace
         </span>
         <span class="news-item">
-          🏴󠁧󠁢󠁥󠁮󠁧󠁿 Man City verpflichtet Bournemouth-Stürmer Antoine Semenyo im
+          🏴 Man City verpflichtet Bournemouth-Stürmer Antoine Semenyo im
           Winter-Transferfenster
         </span>
         <span class="news-item">
@@ -84,8 +84,8 @@
         <div class="bar"></div>
       </label>
       <ul class="nav-menu">
+        <li><a href="über_uns.html">About Us</a></li>
         <li><a href="experten-tipp.html">Experten-Tipp</a></li>
-        <li><a href="live-football.html">Football Liveticker</a></li>
         <li><a href="votings.html">Abstimmungen</a></li>
         <li><a href="login.html">Login/Registrieren</a></li>
         <li><a href="bundesliga.html">Bundesliga</a></li>
@@ -107,7 +107,7 @@
     <a href="africa-cup.html" class="gn-button"> Africa Cup ansehen </a>
 
     <!-- Countdown -->
-    <h2>16. Spieltag startet in:</h2>
+    <h2>⏱️ 16. Spieltag startet in:</h2>
     <div id="countdown">lade...</div>
 
     <!-- 🏆 Bundesliga Spieltag -->
@@ -124,9 +124,9 @@
           Union Berlin 15:30 Mainz 05<br />
           FC St. Pauli 15:30 RB Leipzig<br />
           1. FC Heidenheim 15:30 1. FC Köln<br />
-          <strong class="topspiel"
-            >Topspiel: Bayer Leverkusen 18:30 VfB Stuttgart</strong
-          >
+          <strong class="topspiel">
+            Topspiel: Bayer Leverkusen 18:30 VfB Stuttgart
+          </strong>
         </p>
         <h4>Sonntag, 11.1.2026:</h4>
         <p>
@@ -168,7 +168,6 @@
       <a href="mailto:info@goalnewsde.de">Email</a> |
       <a href="agb.html">Datenschutz</a> |
       <a href="security.html">Sicherheit</a> |
-      <a href="last_security_updates.html">Sicherheits Updates</a> |
       <a href="Impressum.html">Impressum</a>
     </footer>
 
@@ -202,15 +201,14 @@
       setInterval(updateCountdown, 1000);
     </script>
 
-    <!-- Firebase + Live Games Script -->
     <script type="module">
+      // Firebase + Live Games
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
       import {
         getFirestore,
         collection,
         doc,
         onSnapshot,
-        getDoc,
       } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
       import {
         getAuth,
@@ -233,24 +231,18 @@
       const auth = getAuth(app);
       setPersistence(auth, browserLocalPersistence);
 
-      // --- Wartungsmodus prüfen live ---
       function watchMaintenance() {
         const docRef = doc(db, "settings", "main");
-
         onSnapshot(docRef, (snap) => {
           if (snap.exists()) {
             const data = snap.data();
-            if (data.maintenance === true) {
-              console.log("⚠️ Wartungsmodus aktiv, Weiterleitung...");
+            if (data.maintenance === true)
               window.location.href = "wartungsarbeiten.html";
-            }
           } else {
             console.error("❌ Einstellungen nicht gefunden");
           }
         });
       }
-
-      // Direkt starten
       watchMaintenance();
 
       const breakingEl = document.getElementById("breakingNews");
@@ -262,15 +254,13 @@
         const userRef = doc(db, "users", user.uid);
         onSnapshot(userRef, (snap) => {
           const data = snap.data();
-          if (data && data.breakingNews === true) {
+          if (data && data.breakingNews === true)
             breakingEl.classList.remove("locked");
-          } else {
-            breakingEl.classList.add("locked");
-          }
+          else breakingEl.classList.add("locked");
         });
       });
 
-      // --- Live Games ---
+      // Live Games
       const tableBody = document.getElementById("tableBody");
       const matchTimers = new Map();
 
@@ -294,6 +284,7 @@
         const seconds = totalSeconds % 60;
         return `${minutes}:${seconds.toString().padStart(2, "0")}`;
       }
+
       function startMatchTimer(id, td, startTime, halfTime) {
         if (matchTimers.has(id)) clearInterval(matchTimers.get(id));
         let paused = halfTime;
@@ -304,15 +295,13 @@
         const interval = setInterval(() => {
           if (!paused) {
             const elapsed = Date.now() - startTime;
-            if (elapsed < 90 * 60 * 1000) {
+            if (elapsed < 90 * 60 * 1000)
               timerEl.textContent = `⏱️ ${formatTime(elapsed)}`;
-            } else {
+            else {
               timerEl.textContent = "🕛 90:00";
               clearInterval(interval);
             }
-          } else {
-            timerEl.textContent = "⏸️ Halbzeit";
-          }
+          } else timerEl.textContent = "⏸️ Halbzeit";
         }, 1000);
 
         matchTimers.set(id, interval);
