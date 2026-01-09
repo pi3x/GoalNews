@@ -1,115 +1,125 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Über uns – GoalNews</title>
-<style>
-    body {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Über uns – GoalNews</title>
+    <style>
+      body {
         margin: 0;
         font-family: Arial, sans-serif;
         background-color: #111111;
         color: #ffffff;
-    }
-    header {
+        text-align: center; /* zentriert alles im Body */
+      }
+      header {
         background: #1db954;
         padding: 40px 20px;
-        text-align: center;
-    }
-    header h1 {
+      }
+      header h1 {
         font-size: 3em;
         color: #ffffff;
         margin: 0;
-    }
-    .content {
+      }
+      .content {
         max-width: 900px;
         margin: 40px auto;
         padding: 0 20px;
-    }
-    .content h2 {
+      }
+      .content h2 {
         color: #1db954;
         font-size: 2em;
         margin-bottom: 15px;
-    }
-    .content p {
+      }
+      .content p {
         color: #eeeeee;
         font-size: 1.1em;
         margin-bottom: 20px;
-    }
-    .team {
+      }
+      .team {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
         justify-content: center;
-    }
-    .member {
+        align-items: center;
+        text-align: center;
+      }
+      .member {
         background-color: #222222;
         border: 2px solid #1db954;
         border-radius: 12px;
         padding: 20px;
         width: 230px;
-        text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .member:hover {
+      }
+      .member:hover {
         transform: translateY(-8px);
         box-shadow: 0 0 15px #1db954;
-    }
-    .member img {
+      }
+      .member img {
         width: 100px;
         height: 100px;
         border-radius: 50%;
         margin-bottom: 10px;
-    }
-    .member h3 {
+      }
+      .member h3 {
         margin: 10px 0 5px;
         color: #00aaff;
-    }
-    .member p {
+      }
+      .member p {
         color: #cccccc;
         font-size: 0.95em;
-    }
-    footer {
+      }
+      footer {
         text-align: center;
         padding: 15px;
         margin-top: 40px;
         background-color: #000000;
         font-size: 0.9em;
         color: #888888;
-    }
-</style>
-</head>
-<body>
+      }
+      footer img {
+        width: 60px;
+        vertical-align: middle;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Über GoalNews</h1>
+    </header>
 
-<header>
-    <h1>Über GoalNews</h1>
-</header>
+    <div class="content">
+      <h2>Unsere Mission</h2>
+      <p>
+        GoalNews liefert dir täglich aktuelle Sportnachrichten, Analysen und
+        Highlights – direkt aus der Welt des Fußballs. Unser Fokus liegt darauf,
+        schnell live News zu präsentieren.
+      </p>
 
-<div class="content">
-    <h2>Unsere Mission</h2>
-    <p>GoalNews liefert dir täglich aktuelle Sportnachrichten, Analysen und Highlights – direkt aus der Welt des Fußballs. Unser Fokus liegt darauf, schnell live News zu präsentieren.</p>
-
-    <h2>Unser Team</h2>
-    <div class="team">
+      <h2>Unser Team</h2>
+      <div class="team">
         <div class="member">
-            <img src="static/avatars/piet.png" alt="Piet">
-            <h3>PieX</h3>
-            <p>Lead Developer & Data manager</p>
+          <img src="https://i.ibb.co/qLg3RfWL/piexLogo.png" alt="piex>_" />
+          <h3>piex>_</h3>
+          <p>Head of Development & Data</p>
         </div>
         <div class="member">
-            <img src="EliX Tag.png" alt="EliX">
-            <h3>EliXTech</h3>
-            <p>Developler & Cybersecurity</p>
+          <img src="EliX Tag.png" alt="EliX" />
+          <h3>EliXTech</h3>
+          <p>Developer & Cybersecurity</p>
         </div>
         <!-- weitere Teammitglieder möglich -->
+      </div>
     </div>
-</div>
 
-<footer>
-    &copy; 2026 GoalNews – <img src="EliX Tag.png" alt="EliX" style="width:60px; vertical-align:middle;"> powered by EliXTech and PieX <img src="Piex pfad datei hier:" alt="PieX" style="width:60px; vertical-align:middle;">
-</footer>
-
-
-</body>
+    <footer>
+      &copy; 2026 GoalNews –
+      <img src="EliX Tag.png" alt="EliX" />
+      powered by EliXTech and piex>_
+      <img src="https://i.ibb.co/qLg3RfWL/piexLogo.png" alt="piex>_" />
+    </footer>
+  </body>
 </html>
-
