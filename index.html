@@ -15,16 +15,6 @@
 
     <!-- PWA -->
     <meta name="theme-color" content="#1db954" />
-    <meta
-      name="description"
-      content="GoalNews – aktuelle Fußballnews, Live-Spiele & Experten-Tipps"
-    />
-    <meta property="og:title" content="GoalNews - Foot- & Fußballnews" />
-    <meta
-      property="og:description"
-      content="Aktuelle Fußballnews, Live-Spiele, Experten-Tipps und Berichterstattung von der Bundesliga bis zum Afrika-Cup."
-    />
-    <meta property="og:image" content="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
     <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
     <link rel="manifest" href="manifest.json" />
 
@@ -59,449 +49,12 @@
         transform: scale(0.97);
         box-shadow: 0 6px 15px rgba(29, 185, 84, 0.4);
       }
-
-      /* ===== Allgemein ===== */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-      }
-
-      body {
-        background-color: #0f0f0f;
-        color: #eee;
-        overflow-x: hidden;
-        text-align: center;
-        line-height: 1.6;
-      }
-
-      /* Links */
-      a {
-        color: #1db954;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-
-      a:hover {
-        color: #14a34a;
-      }
-
-      /* ===== Header ===== */
-      header,
-      .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        background: linear-gradient(90deg, #1db954, #14a34a);
-        color: white;
-        position: relative;
-        z-index: 100;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-      }
-
-      header .logo,
-      .navbar .logo {
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: white;
-      }
-
-      /* ===== Hamburger ===== */
-      .menu-toggle {
-        display: none;
-      }
-
-      .hamburger-icon {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 25px;
-        height: 18px;
-        cursor: pointer;
-        z-index: 101;
-      }
-
-      .bar {
-        height: 3px;
-        width: 100%;
-        background: white;
-        border-radius: 2px;
-        transition: all 0.3s ease-in-out;
-      }
-
-      /* Menu */
-      .nav-menu {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100%;
-        background-color: #111;
-        padding-top: 60px;
-        gap: 20px;
-        transition: right 0.3s ease-in-out;
-      }
-
-      .nav-menu li {
-        text-align: center;
-      }
-
-      .nav-menu a {
-        color: #1db954;
-        font-size: 1.1rem;
-      }
-
-      #menu-toggle:checked ~ .nav-menu {
-        right: 0;
-      }
-
-      /* Hamburger Animation */
-      #menu-toggle:checked ~ .hamburger-icon .bar:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      #menu-toggle:checked ~ .hamburger-icon .bar:nth-child(2) {
-        opacity: 0;
-      }
-      #menu-toggle:checked ~ .hamburger-icon .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
-
-      /* ===== Breaking News ===== */
-      #breakingNews {
-        background: #111;
-        overflow: hidden;
-        border-left: 4px solid #1db954;
-        height: 40px;
-        display: flex;
-        align-items: center;
-      }
-
-      .news-wrapper {
-        display: inline-flex;
-        white-space: nowrap;
-        animation: scrollNews 25s linear infinite;
-      }
-
-      .news-item {
-        padding: 0 50px;
-        font-weight: 600;
-        color: #1db954;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-        flex-shrink: 0;
-      }
-
-      @keyframes scrollNews {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-
-      #breakingNews:hover .news-wrapper {
-        animation-play-state: paused;
-      }
-
-      /* ===== Countdown ===== */
-      .countdown-section {
-        text-align: center;
-        margin: 50px 0;
-        color: #1db954;
-      }
-
-      /* Überschrift kleiner */
-      .countdown-section h2 {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-        color: #1db954;
-      }
-
-      /* Countdown-Zeit größer und gleichmäßig */
-      #countdown {
-        font-size: 2.5rem; /* größer für die Zahlen */
-        font-weight: bold;
-        color: #fff;
-        letter-spacing: 2px; /* optional für gleichmäßiges Layout */
-        font-family: "Courier New", monospace; /* alle Zahlen gleich groß */
-      }
-
-      /* ===== Matches ===== */
-      .matches {
-        padding: 30px 20px;
-        max-width: 950px;
-        margin: auto;
-        background: #111;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-      }
-
-      .matches h2 {
-        color: #1db954;
-        margin-bottom: 15px;
-      }
-
-      .matches h3,
-      .matches h4 {
-        margin-bottom: 10px;
-      }
-
-      .topspiel {
-        color: #14a34a;
-      }
-
-      /* ===== Footer ===== */
-      footer {
-        text-align: center;
-        padding: 25px;
-        background: #111;
-        font-size: 0.9rem;
-        color: #aaa;
-      }
-
-      /* ===== Responsive ===== */
-      @media (max-width: 768px) {
-        .matches {
-          padding: 20px 15px;
-        }
-        .countdown-section h2 {
-          font-size: 1.5rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .news-item {
-          padding: 0 20px;
-          font-size: 0.8rem;
-        }
-        .socials {
-          flex-direction: column;
-          gap: 12px;
-        }
-        .matches {
-          padding: 15px 10px;
-        }
-      }
-
-      /* ==========================================================
-   DEIN ZUSÄTZLICHER LIVE-MATCH CODE (voll integriert)
-   ========================================================== */
-
-      body {
-        font-family: "Poppins", sans-serif;
-        background: #0f0f0f;
-        color: #eee;
-        text-align: center;
-        margin: 0;
-        user-select: none;
-      }
-
-      h2 {
-        margin: 20px 0;
-        color: #1db954;
-      }
-
-      /* Tabelle Live Spiele */
-      .matches-table {
-        width: 95%;
-        max-width: 1200px;
-        margin: 20px auto;
-        border-collapse: collapse;
-      }
-      .matches-table th,
-      .matches-table td {
-        border: 1px solid #444;
-        padding: 15px 20px;
-        text-align: center;
-        transition: all 0.5s ease;
-        position: relative;
-        font-size: 1rem;
-      }
-
-      .matches-table th {
-        background: #1db954;
-        color: #000;
-      }
-
-      .goal-animation {
-        background: #00ff00;
-        color: #000;
-        font-weight: bold;
-        transform: scale(1.2);
-        animation: pop 0.5s forwards;
-      }
-
-      .over-game {
-        text-decoration: line-through;
-        opacity: 0.6;
-        transition: all 0.5s ease;
-      }
-
-      @keyframes pop {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.5);
-        }
-        100% {
-          transform: scale(1.2);
-        }
-      }
-
-      #nextGameCountdown {
-        font-size: 1.5rem;
-        margin: 15px 0;
-        color: #1db954;
-      }
-
-      footer {
-        margin-top: 30px;
-        padding: 15px;
-        background: #111;
-        color: #eee;
-      }
-
-      /* Halbzeit Label */
-      .half-time-animation {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        background: rgba(29, 185, 84, 0.9);
-        color: #000;
-        font-weight: bold;
-        padding: 2px 8px;
-        border-radius: 6px;
-        font-size: 0.8rem;
-        pointer-events: none;
-        animation: halftimePulse 1.5s infinite alternate;
-      }
-
-      @keyframes halftimePulse {
-        0% {
-          transform: scale(1);
-          opacity: 0.8;
-        }
-        50% {
-          transform: scale(1.2);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 0.9;
-        }
-      }
-
-      /* Uhr */
-      .match-timer {
-        display: block;
-        margin-top: 8px;
-        font-size: 0.9rem;
-        color: #1db954;
-      }
-
-      /* VAR Kommentar */
-      .var-comment {
-        display: block;
-        margin-top: 5px;
-        background: linear-gradient(135deg, #ffd700, #ffea70);
-        color: #000;
-        font-weight: bold;
-        padding: 4px 12px;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        opacity: 0;
-        transform: translateY(20px) scale(0.8);
-        animation:
-          varCool 1.5s ease forwards,
-          varGlow 2s ease-in-out infinite alternate;
-        text-align: center;
-      }
-
-      @keyframes varCool {
-        0% {
-          opacity: 0;
-          transform: translateY(20px) scale(0.8);
-        }
-        50% {
-          opacity: 1;
-          transform: translateY(-5px) scale(1.1);
-        }
-        70% {
-          transform: translateY(0) scale(1);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-
-      @keyframes varGlow {
-        0% {
-          box-shadow: 0 0 5px rgba(255, 223, 0, 0.6);
-        }
-        50% {
-          box-shadow: 0 0 15px rgba(255, 255, 200, 0.9);
-        }
-        100% {
-          box-shadow: 0 0 5px rgba(255, 223, 0, 0.6);
-        }
-      }
-
-      /* Sperranimation Breaking News */
-      #breakingNews.locked {
-        position: relative;
-        pointer-events: none;
-        height: 50px;
-        overflow: hidden;
-      }
-      #breakingNews.locked::before {
-        content: "🔒 Breaking News gesperrt! Kaufe sie mit COINS";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #1db954;
-        font-weight: bold;
-        font-size: 1.2rem;
-        animation: lockSlide 2s infinite alternate;
-      }
-      #breakingNews.locked .news-wrapper {
-        display: none;
-      }
-
-      @keyframes lockSlide {
-        0% {
-          transform: translateX(-50%) translateY(0);
-          opacity: 0.6;
-        }
-        50% {
-          transform: translateX(-50%) translateY(-5px);
-          opacity: 1;
-        }
-        100% {
-          transform: translateX(-50%) translateY(0);
-          opacity: 0.6;
-        }
-      }
     </style>
   </head>
 
   <body>
     <!-- Breaking News -->
-    <div
-      id="breakingNews"
-      class="locked"
-      role="region"
-      aria-live="polite"
-      aria-atomic="true"
-    >
+    <div id="breakingNews" class="locked">
       <div class="news-wrapper">
         <span class="news-item">
           🔴 Arsenal kämpft sich ins Carabao-Cup-Halbfinale durch Penalty-Drama
@@ -526,23 +79,15 @@
     </div>
 
     <!-- Header -->
-    <header class="navbar" role="navigation" aria-label="Hauptnavigation">
+    <header class="navbar">
       <div class="logo">GoalNews</div>
       <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-      <label
-        for="menu-toggle"
-        class="hamburger-icon"
-        role="button"
-        tabindex="0"
-        aria-controls="nav-menu"
-        aria-expanded="false"
-        aria-label="Menü"
-      >
+      <label for="menu-toggle" class="hamburger-icon">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
       </label>
-      <ul class="nav-menu" id="nav-menu">
+      <ul class="nav-menu">
         <li><a href="über_uns.html">About Us</a></li>
         <li><a href="experten-tipp.html">Experten-Tipp</a></li>
         <li><a href="votings.html">Abstimmungen</a></li>
@@ -634,9 +179,7 @@
     <script>
       // Countdown
       const countdownEl = document.getElementById("countdown");
-      // Use explicit Date constructor (month is 0-based) to avoid inconsistent
-      // string parsing across browsers
-      const targetDate = new Date(2026, 0, 9, 20, 30, 0); // 9. Jan 2026 20:30 local time
+      const targetDate = new Date("2026-1-9 20:30:00");
       function updateCountdown() {
         const now = new Date();
         let diff = targetDate - now;
@@ -659,54 +202,7 @@
         countdownEl.textContent = parts.join(" ");
       }
       updateCountdown();
-      const __countdownInterval = setInterval(updateCountdown, 1000);
-      // clear interval on unload
-      window.addEventListener("beforeunload", () =>
-        clearInterval(__countdownInterval),
-      );
-    </script>
-
-    <script>
-      // keyboard support for the hamburger label and sync aria-expanded
-      (function () {
-        const checkbox = document.getElementById("menu-toggle");
-        const label = document.querySelector('label[for="menu-toggle"]');
-        const nav = document.getElementById("nav-menu");
-        if (!label || !checkbox || !nav) return;
-
-        function updateAria() {
-          const expanded = checkbox.checked;
-          label.setAttribute("aria-expanded", expanded ? "true" : "false");
-        }
-
-        // toggle checkbox on Enter/Space when label is focused
-        label.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            checkbox.checked = !checkbox.checked;
-            updateAria();
-          }
-        });
-
-        // also update when checkbox changes (e.g. click)
-        checkbox.addEventListener("change", updateAria);
-        // init
-        updateAria();
-      })();
-    </script>
-
-    <script>
-      // Service Worker registration (if supported)
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/HTML/sw.js")
-            .then((reg) => {
-              console.log("Service Worker registered:", reg.scope);
-            })
-            .catch((err) => console.warn("SW registration failed:", err));
-        });
-      }
+      setInterval(updateCountdown, 1000);
     </script>
 
     <script type="module">
@@ -741,7 +237,7 @@
 
       function watchMaintenance() {
         const docRef = doc(db, "settings", "main");
-        const __unwatch = onSnapshot(docRef, (snap) => {
+        onSnapshot(docRef, (snap) => {
           if (snap.exists()) {
             const data = snap.data();
             if (data.maintenance === true)
@@ -750,55 +246,27 @@
             console.error("❌ Einstellungen nicht gefunden");
           }
         });
-        __unsubscribes.push(__unwatch);
       }
       watchMaintenance();
 
       const breakingEl = document.getElementById("breakingNews");
-      // keep a reference to auth unsubscribe and per-user doc unsubscribe
-      const __authUnsub = onAuthStateChanged(auth, (user) => {
+      onAuthStateChanged(auth, (user) => {
         if (!user) {
           breakingEl.classList.add("locked");
-          if (__userDocUnsub) {
-            __userDocUnsub();
-            __userDocUnsub = null;
-          }
           return;
         }
         const userRef = doc(db, "users", user.uid);
-        // unsubscribe previous user doc listener if present
-        if (__userDocUnsub) __userDocUnsub();
-        __userDocUnsub = onSnapshot(userRef, (snap) => {
+        onSnapshot(userRef, (snap) => {
           const data = snap.data();
           if (data && data.breakingNews === true)
             breakingEl.classList.remove("locked");
           else breakingEl.classList.add("locked");
         });
-        __unsubscribes.push(() => __userDocUnsub && __userDocUnsub());
       });
-      __unsubscribes.push(__authUnsub);
 
       // Live Games
       const tableBody = document.getElementById("tableBody");
       const matchTimers = new Map();
-      // map docId -> tr element for incremental updates
-      const docRows = new Map();
-
-      // Subscription cleanup helpers
-      const __unsubscribes = [];
-      let __userDocUnsub = null;
-      let __liveGamesUnsub = null;
-
-      function clearAllMatchTimers() {
-        for (const [id, iv] of matchTimers) clearInterval(iv);
-        matchTimers.clear();
-      }
-
-      // ensure we cleanup on page unload
-      window.addEventListener("beforeunload", () => {
-        clearAllMatchTimers();
-        __unsubscribes.forEach((u) => u && u());
-      });
 
       function addHalfTimeAnimation(td) {
         if (!td.querySelector(".half-time-animation")) {
@@ -822,16 +290,11 @@
       }
 
       function startMatchTimer(id, td, startTime, halfTime) {
-        // clear old timer (if any)
         if (matchTimers.has(id)) clearInterval(matchTimers.get(id));
-        let paused = !!halfTime;
-        // reuse existing timer element if present
-        let timerEl = td.querySelector(".match-timer");
-        if (!timerEl) {
-          timerEl = document.createElement("span");
-          timerEl.className = "match-timer";
-          td.appendChild(timerEl);
-        }
+        let paused = halfTime;
+        const timerEl = document.createElement("span");
+        timerEl.className = "match-timer";
+        td.appendChild(timerEl);
 
         const interval = setInterval(() => {
           if (!paused) {
@@ -860,121 +323,44 @@
         setTimeout(() => (varDiv.style.opacity = 0), 5000);
       }
 
-      // create safe table row (no innerHTML from remote data)
-      function createMatchRow(data) {
-        const tr = document.createElement("tr");
-
-        const tdHome = document.createElement("td");
-        tdHome.className = data.over ? "over-game" : "";
-        tdHome.textContent = data.home || "";
-        tr.appendChild(tdHome);
-
-        const tdAway = document.createElement("td");
-        tdAway.className = data.over ? "over-game" : "";
-        tdAway.textContent = data.away || "";
-        tr.appendChild(tdAway);
-
-        const tdScore = document.createElement("td");
-        tdScore.className =
-          `${data.goal ? "goal-animation" : ""} ${data.over ? "over-game" : ""}`.trim();
-        tdScore.textContent = data.score || "";
-        tr.appendChild(tdScore);
-
-        return { tr, tdScore };
-      }
-
       async function initLiveGames() {
         const colRef = collection(db, "liveGames");
-        // unsubscribe previous liveGames listener if any
-        if (__liveGamesUnsub) {
-          __liveGamesUnsub();
-          __liveGamesUnsub = null;
-        }
-        __liveGamesUnsub = onSnapshot(colRef, (snapshot) => {
-          // If there are no docs at all, clear rows and show empty state
+        onSnapshot(colRef, (snapshot) => {
+          tableBody.innerHTML = "";
           if (snapshot.empty) {
-            // remove existing rows and timers
-            for (const [id, tr] of docRows) {
-              tr.remove();
-              if (matchTimers.has(id)) {
-                clearInterval(matchTimers.get(id));
-                matchTimers.delete(id);
-              }
-            }
-            docRows.clear();
-            tableBody.innerHTML = "";
-            const tr = document.createElement("tr");
-            const td = document.createElement("td");
-            td.setAttribute("colspan", "3");
-            td.textContent = "Keine aktuellen Spiele";
-            tr.appendChild(td);
-            tableBody.appendChild(tr);
+            tableBody.innerHTML =
+              "<tr><td colspan='3'>Keine aktuellen Spiele</td></tr>";
             return;
           }
-
-          // Process incremental changes to avoid full rebuilds
-          const changes = snapshot.docChanges();
-          changes.forEach((change) => {
-            const docSnap = change.doc;
-            const id = docSnap.id;
-            if (id === "next_game") return;
+          snapshot.forEach((docSnap) => {
             const data = docSnap.data();
-
-            if (change.type === "added") {
-              const { tr, tdScore } = createMatchRow(data);
-              tr.dataset.docId = id;
-              tableBody.appendChild(tr);
-              docRows.set(id, tr);
-              if (data.halfTime) addHalfTimeAnimation(tdScore);
-              if (data.startTime)
-                startMatchTimer(
-                  id,
-                  tdScore,
-                  data.startTime.toDate().getTime(),
-                  data.halfTime,
-                );
-              if (data.varComment) showVARComment(tdScore, data.varComment);
-            }
-
-            if (change.type === "modified") {
-              const tr = docRows.get(id);
-              if (!tr) return;
-              const tdHome = tr.children[0];
-              const tdAway = tr.children[1];
-              const tdScore = tr.children[2];
-              tdHome.textContent = data.home || "";
-              tdHome.className = data.over ? "over-game" : "";
-              tdAway.textContent = data.away || "";
-              tdAway.className = data.over ? "over-game" : "";
-              tdScore.textContent = data.score || "";
-              tdScore.className =
-                `${data.goal ? "goal-animation" : ""} ${data.over ? "over-game" : ""}`.trim();
-              if (data.halfTime) addHalfTimeAnimation(tdScore);
-              else removeHalfTimeAnimation(tdScore);
-              if (data.startTime)
-                startMatchTimer(
-                  id,
-                  tdScore,
-                  data.startTime.toDate().getTime(),
-                  data.halfTime,
-                );
-              if (data.varComment) showVARComment(tdScore, data.varComment);
-            }
-
-            if (change.type === "removed") {
-              const tr = docRows.get(id);
-              if (tr) {
-                tr.remove();
-                docRows.delete(id);
-              }
-              if (matchTimers.has(id)) {
-                clearInterval(matchTimers.get(id));
-                matchTimers.delete(id);
-              }
-            }
+            if (docSnap.id === "next_game") return;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="${data.over ? "over-game" : ""}">${
+                data.home || ""
+              }</td>
+              <td class="${data.over ? "over-game" : ""}">${
+                data.away || ""
+              }</td>
+              <td class="${data.goal ? "goal-animation" : ""} ${
+                data.over ? "over-game" : ""
+              }">${data.score || ""}</td>
+            `;
+            tableBody.appendChild(tr);
+            const td = tr.querySelector("td:nth-child(3)");
+            if (data.halfTime) addHalfTimeAnimation(td);
+            else removeHalfTimeAnimation(td);
+            if (data.startTime)
+              startMatchTimer(
+                docSnap.id,
+                td,
+                data.startTime.toDate().getTime(),
+                data.halfTime,
+              );
+            if (data.varComment) showVARComment(td, data.varComment);
           });
         });
-        __unsubscribes.push(__liveGamesUnsub);
       }
       initLiveGames();
     </script>
