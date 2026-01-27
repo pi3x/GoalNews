@@ -436,11 +436,29 @@ header .logo,
 /* ===== Footer ===== */
 footer {
   text-align: center;
-  padding: 25px;
-  background: #111;
-  font-size: 0.9rem;
-  color: #aaa;
-  margin-top: 30px;
+  padding: 15px 0;
+  background-color: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+footer .signature {
+  color: #1db954;
+  font-weight: bold;
+}
+
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 /* ===== Accessibility & Reduced motion ===== */
