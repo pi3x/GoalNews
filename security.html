@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
     <link
@@ -114,7 +114,9 @@
         background: #111;
         border: 2px solid #00d8ff;
         border-radius: 8px;
-        box-shadow: 0 0 15px #00d8ff inset, 0 0 10px #00d8ff;
+        box-shadow:
+          0 0 15px #00d8ff inset,
+          0 0 10px #00d8ff;
         font-family: "Courier New", monospace;
       }
 
@@ -194,11 +196,14 @@
         Für weitere Fragen melden Sie sich bitte an, um Zugriff auf unsere
         Support-Informationen zu erhalten.
       </p>
-      <button onclick="window.location.href='server-info.html'">
+      <button onclick="window.location.href = 'server-info.html'">
         Server-Infos anzeigen
       </button>
     </div>
 
-    <footer>© 2025 GoalNews | Don't Steal Our Stuff</footer>
+    <footer>
+      © 2025 GoalNews | Built by
+      <code class="signature">piex_ and EliX</code>
+    </footer>
   </body>
 </html>

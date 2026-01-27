@@ -1,165 +1,144 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <title>Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <style>
-    body {
-      background: #0f0f0f;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container {
-      background: #1a1a1a;
-      padding: 30px;
-      width: 330px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 6px;
-      border: none;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 6px;
-      background: #1db954;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      background: #555;
-      cursor: not-allowed;
-    }
-
-    .error {
-      margin-top: 10px;
-      color: #ff5555;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <h2>Login</h2>
-
-    <input id="email" type="email" placeholder="E-Mail" />
-    <input id="password" type="password" placeholder="Passwort" />
-
-    <button id="loginBtn">Login</button>
-    <div id="errorMsg" class="error"></div>
-  </div>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-    import { getFirestore, doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-
-    // 🔐 Firebase Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
-      authDomain: "goalnewsde-community.firebaseapp.com",
-      projectId: "goalnewsde-community",
-      storageBucket: "goalnewsde-community.firebasestorage.app",
-      messagingSenderId: "134523022055",
-      appId: "1:134523022055:web:4f35ed7812d06e4fb55042",
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    const loginBtn = document.getElementById("loginBtn");
-    const errorMsg = document.getElementById("errorMsg");
-
-    // 🧠 NEUE LOGIK
-    let failedAttempts = 0;
-    let lockedUntil = 0;
-
-    loginBtn.addEventListener("click", async () => {
-      const now = Date.now();
-
-      // ⛔ Login gesperrt?
-      if (now < lockedUntil) {
-        const wait = Math.ceil((lockedUntil - now) / 1000);
-        errorMsg.textContent = `Zu viele Versuche. Bitte warte ${wait} Sekunden.`;
-        return;
+  <head>
+    <link
+      rel="icon"
+      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
+      type="image/jpeg"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      errorMsg.textContent = "";
-
-      if (!email || !password) {
-        errorMsg.textContent = "Bitte E-Mail und Passwort eingeben.";
-        return;
+      html,
+      body {
+        height: 100%;
       }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #0f0f0f;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+      .container {
+        background: #1a1a1a;
+        padding: 30px;
+        width: 330px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      }
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 6px;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background: #1db954;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #14a34a;
+      }
+      a {
+        display: block;
+        margin-top: 15px;
+        color: #1db954;
+        text-decoration: none;
+      }
+      .error {
+        color: #ff5555;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Login</h2>
+      <input id="email" type="email" placeholder="E-Mail" />
+      <input id="password" type="password" placeholder="Passwort" />
+      <button id="loginBtn">Login</button>
+      <div id="errorMsg" class="error"></div>
+      <a href="register.html">Noch kein Konto? Registrieren</a>
+    </div>
 
-      loginBtn.disabled = true;
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        updateDoc,
+        serverTimestamp,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-      try {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+      const firebaseConfig = {
+        apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
+        authDomain: "goalnewsde-community.firebaseapp.com",
+        projectId: "goalnewsde-community",
+        storageBucket: "goalnewsde-community.firebasestorage.app",
+        messagingSenderId: "134523022055",
+        appId: "1:134523022055:web:4f35ed7812d06e4fb55042",
+      };
 
-        // ✅ ERFOLG → Reset
-        failedAttempts = 0;
-        lockedUntil = 0;
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
 
-        const user = userCredential.user;
+      const loginBtn = document.getElementById("loginBtn");
+      const errorMsg = document.getElementById("errorMsg");
 
-        // 🕒 letzten Login speichern
-        const userRef = doc(db, "users", user.uid);
-        await updateDoc(userRef, {
-          last_login: serverTimestamp(),
-        });
+      loginBtn.addEventListener("click", async () => {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        errorMsg.textContent = ""; // vorherige Fehlermeldung löschen
 
-        window.location.href = "special.html";
-
-      } catch (err) {
-        console.error(err);
-        failedAttempts++;
-
-        if (failedAttempts >= 5) {
-          lockedUntil = Date.now() + 5000; // ⏱️ 5 Sekunden Sperre
-          errorMsg.textContent =
-            "Zu viele Login‑Versuche erkannt.Dein Zugriff wurde vorübergehend eingeschränkt.Wiederholte Verstöße können zu einer längeren oder dauerhaften Sperre führen.";
-        } else {
-          errorMsg.textContent =
-            `Login fehlgeschlagen (${failedAttempts}/5).`;
+        if (!email || !password) {
+          errorMsg.textContent = "Gib deine E-Mail und Passwort ein!";
+          return;
         }
-      }
 
-      // Button kurz deaktiviert lassen (UX)
-      setTimeout(() => {
-        loginBtn.disabled = false;
-      }, 800);
-    });
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+          const user = userCredential.user;
 
-    // ⏎ Enter-Taste
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") loginBtn.click();
-    });
-  </script>
-</body>
+          // ✅ Letzten Login speichern
+          const userRef = doc(db, "users", user.uid);
+          await updateDoc(userRef, {
+            last_login: serverTimestamp(),
+          });
+
+          // ✅ Weiterleitung nach Login
+          window.location.href = "special.html";
+        } catch (err) {
+          console.error(err);
+          errorMsg.textContent =
+            "Deine E-Mail oder dein Passwort ist falsch! Überprüfe deine Eingabe!";
+        }
+      });
+    </script>
+  </body>
 </html>
