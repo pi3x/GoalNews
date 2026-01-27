@@ -490,13 +490,3 @@ a:focus-visible {
     animation-duration: 40s;
   }
 }
-
-/* Utility */
-.signature {
-  font-family: monospace;
-  color: #1db954;
-  background: #0f0f0f;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-}
