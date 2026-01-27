@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
     <link
@@ -103,6 +103,36 @@
         margin-top: 15px;
         text-decoration: none;
       }
+      /* ===== Footer ===== */
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 10px;
+        background-color: #111;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      footer a {
+        color: #ffcc00;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 480px) {
+        footer {
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -180,7 +210,7 @@
           const userCred = await createUserWithEmailAndPassword(
             auth,
             email,
-            password
+            password,
           );
           const user = userCred.user;
 
@@ -194,7 +224,7 @@
           await sendEmailVerification(user);
 
           alert(
-            "Check deine E-Mail (Auch den Spam) und bestätige deinen Account!"
+            "Check deine E-Mail (Auch den Spam) und bestätige deinen Account!",
           );
           window.location.href = "login.html";
         } catch (err) {

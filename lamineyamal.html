@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
     <link
@@ -16,7 +16,9 @@
         background: #fff;
         color: #111;
         text-align: center;
-        transition: background 0.3s, color 0.3s;
+        transition:
+          background 0.3s,
+          color 0.3s;
       }
 
       body.dark {
@@ -95,13 +97,45 @@
       }
 
       .back-btn:hover {
-        box-shadow: 0 0 15px #1db954, 0 0 25px #00d4ff;
+        box-shadow:
+          0 0 15px #1db954,
+          0 0 25px #00d4ff;
         transform: scale(1.05);
       }
 
       @media (max-width: 480px) {
         h1 {
           font-size: 12vw;
+        }
+      }
+      /* ===== Footer ===== */
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 10px;
+        background-color: #111;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      footer a {
+        color: #ffcc00;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 480px) {
+        footer {
+          flex-direction: column;
+          gap: 5px;
         }
       }
     </style>
@@ -148,5 +182,11 @@
     <button class="back-btn" onclick="window.history.back()">
       Zurück zur Tabelle
     </button>
+    <footer>
+      © 2026 GoalNews | Built by piex_ and EliXTech |
+      <a href="https://goalnews.website/impressum">Impressum</a> |
+      <a href="https://goalnews.website/agb.html">AGB</a> |
+      <a href="https://goalnews.website/datenschutz.html">Datenschutz</a>
+    </footer>
   </body>
 </html>

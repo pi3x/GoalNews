@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
     <link
@@ -32,6 +32,36 @@
       th {
         background: #1a1a1a;
       }
+      /* ===== Footer ===== */
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 10px;
+        background-color: #111;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      footer a {
+        color: #ffcc00;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 480px) {
+        footer {
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
     </style>
   </head>
 
@@ -45,6 +75,13 @@
         <th>Ladezeit (ms)</th>
       </tr>
     </table>
+
+    <footer>
+      © 2026 GoalNews | Built by piex_ and EliXTech |
+      <a href="https://goalnews.website/impressum">Impressum</a> |
+      <a href="https://goalnews.website/agb.html">AGB</a> |
+      <a href="https://goalnews.website/datenschutz.html">Datenschutz</a>
+    </footer>
 
     <script>
       const logs = JSON.parse(localStorage.getItem("monitor_logs") || "[]");

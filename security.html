@@ -141,6 +141,36 @@
         background: #0099cc;
         box-shadow: 0 0 10px #00d8ff;
       }
+      /* ===== Footer ===== */
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 10px;
+        background-color: #111;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      footer a {
+        color: #ffcc00;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 480px) {
+        footer {
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -202,8 +232,10 @@
     </div>
 
     <footer>
-      © 2025 GoalNews | Built by
-      <p class="signature">piex_ and EliX</p>
+      © 2026 GoalNews | Built by piex_ and EliXTech |
+      <a href="https://goalnews.website/impressum">Impressum</a> |
+      <a href="https://goalnews.website/agb.html">AGB</a> |
+      <a href="https://goalnews.website/datenschutz.html">Datenschutz</a>
     </footer>
   </body>
 </html>
