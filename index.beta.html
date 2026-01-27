@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoalNews - Foot- & Fußballnews</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
+      type="image/jpeg"
+    />
+    <link rel="stylesheet" href="style.beta.css" />
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#1db954" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
+    <link rel="manifest" href="manifest.json" />
+  </head>
+
+  <body>
+    <!-- Breaking News -->
+    <div id="breakingNews" class="locked">
+      <div class="news-wrapper">
+        <span class="news-item">
+          🔴 Arsenal kämpft sich ins Carabao-Cup-Halbfinale durch Penalty-Drama
+          gegen Crystal Palace
+        </span>
+        <span class="news-item">
+          🏴 Man City verpflichtet Bournemouth-Stürmer Antoine Semenyo im
+          Winter-Transferfenster
+        </span>
+        <span class="news-item">
+          👑 Real-Madrid-Talent Endrick wechselt für den Rest der Saison auf
+          Leihbasis zu Olympique Lyon
+        </span>
+        <span class="news-item">
+          🇸🇳 Senegal startet mit einem 3:0-Sieg gegen Botswana in den Afrika-Cup
+        </span>
+        <span class="news-item">
+          💸 Martha Stewart wird Miteigentümerin von Swansea City – gemeinsam
+          mit Snoop Dogg und Luka Modrić
+        </span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="navbar">
+      <div class="logo">GoalNews</div>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <label for="menu-toggle" class="hamburger-icon">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </label>
+      <ul class="nav-menu">
+        <li><a href="über_uns.html">About Us</a></li>
+        <li><a href="experten-tipp.html">Experten-Tipp</a></li>
+        
+        <li><a href="login.html">Login/Registrieren</a></li>
+        <li><a href="bundesliga.html">Bundesliga</a></li>
+        <li><a href="2liga.html">2. Bundesliga</a></li>
+        <li><a href="comments.html">Kommentar Forum</a></li>
+        <li><a href="feedback.html">Helfen Sie uns!</a></li>
+        <li><a href="coins.html">Was sind COINS</a></li>
+        <li><a href="download.html">Downloads/PDFs</a></li>
+        <li>
+          <a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y"
+            >WhatsApp</a
+          >
+        </li>
+        <li><a href="https://www.youtube.com/@Goalnewsde">YouTube</a></li>
+      </ul>
+    </header>
+
+    <!-- Promotional Banner (under navbar) -->
+    <div
+      id="promoBanner"
+      class="promo-banner"
+      role="region"
+      aria-label="Werbebanner"
+    >
+      <div class="promo-inner">
+        <div class="promo-text">
+          <strong>Jetzt Follower werden</strong>
+          <div class="promo-sub">
+            Aktuelle News und Liveticker auf dem WhatsApp-Kanal!
+          </div>
+        </div>
+        <div class="promo-actions">
+          <a
+            href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y"
+            class="gn-button gn-button--small"
+            >Jetzt Mitglied werden!</a
+          >
+          <button class="promo-close" aria-label="Banner schließen">✕</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Countdown -->
+    <h2>⏱️ 20. Spieltag startet in:</h2>
+    <div id="countdown">lade...</div>
+
+    <!-- 🏆 Bundesliga Spieltag -->
+    <div class="matches" style="text-align: center; margin-top: 40px">
+      <h2>🏆 Bundesliga-Spieltag 20</h2>
+      <h3>20. Spieltag (30.1.2026 - 1.2.2026)</h3>
+      <div>
+        <h4>Freitag, 30.1.2026:</h4>
+      
+      </p>1.FC Köln 20:30 VfL Wolfsburg</p>
+        
+      <h4>Samstag, 31.1.2026:</h4>
+        <p>
+          Eintracht Frankfurt 15:30 Bayer Leverkusen <br />
+          FC Augsburg -15:30 FC St. Pauli<br />
+          RB Leipzig 15:30 FSV Mainz 05 <br />
+          TSG Hoffenheim 15:30 1. FC Union Berlin<br />
+          Werder Bremen 15:30 Bor. M'galdbach<br />
+          <strong class="topspiel">
+            Topspiel: Hamburger SV 18:30 Bayern München
+          </strong>
+        </p>
+        <h4>Sonntag, 1.2.2026:</h4>
+        <p>
+          VfB Stuttgart 15:30 SC Freiburg<br />
+          Bor. Dortmund 17:30 1. FC Heidenheim
+        </p>
+      </div>
+    </div>
+
+    <!-- Live Spiele -->
+    <section id="liveGamesSection">
+      <h2>Live Spiele</h2>
+      <p>Alle Spiele sind live und im Gange</p>
+      <p>Durchgestrichene Spiele sind beendet</p>
+      <p>
+        Unser Experten Tipp Gibt es auf unserer
+        <a href="experten-tipp.html">Experten Seite</a>
+      </p>
+      <table class="matches-table">
+        <thead>
+          <tr>
+            <th>Heimteam</th>
+            <th>Gastteam</th>
+            <th>Ergebnis / Zeit</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td colspan="3">Lade Spiele...</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <footer>
+  © 2025 GoalNews | Built by <code class="signature">piex>_ and EliX&gt;</code>
+</footer>
+      <br />
+      <a href="mailto:info@goalnewsde.de">Email</a> |
+      <a href="agb.html">Datenschutz</a> |
+      <a href="security.html">Sicherheit</a> |
+      <a href="Impressum.html">Impressum</a>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Countdown
+      const countdownEl = document.getElementById("countdown");
+      const targetDate = new Date("2026-1-30 20:30:00");
+      function updateCountdown() {
+        const now = new Date();
+        let diff = targetDate - now;
+        if (diff <= 0) {
+          countdownEl.textContent = "läuft!";
+          return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff %= 1000 * 60 * 60 * 24;
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff %= 1000 * 60 * 60;
+        const minutes = Math.floor(diff / (1000 * 60));
+        diff %= 1000 * 60;
+        const seconds = Math.floor(diff / 1000);
+        const parts = [];
+        if (days > 0) parts.push(`${days}d`);
+        if (hours > 0) parts.push(`${hours}h`);
+        if (minutes > 0) parts.push(`${minutes}m`);
+        parts.push(`${seconds}s`);
+        countdownEl.textContent = parts.join(" ");
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+
+    <script type="module">
+      // Firebase + Live Games
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        doc,
+        onSnapshot,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        setPersistence,
+        browserLocalPersistence,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
+        authDomain: "goalnewsde-community.firebaseapp.com",
+        projectId: "goalnewsde-community",
+        storageBucket: "goalnewsde-community.firebasestorage.app",
+        messagingSenderId: "134523022055",
+        appId: "1:134523022055:web:4f35ed7812d06e4fb55042",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+      setPersistence(auth, browserLocalPersistence);
+
+      function watchMaintenance() {
+        const docRef = doc(db, "settings", "main");
+        onSnapshot(docRef, (snap) => {
+          if (snap.exists()) {
+            const data = snap.data();
+            if (data.maintenance === true)
+              window.location.href = "wartungsarbeiten.html";
+          } else {
+            console.error("❌ Einstellungen nicht gefunden");
+          }
+        });
+      }
+      watchMaintenance();
+
+      const breakingEl = document.getElementById("breakingNews");
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          breakingEl.classList.add("locked");
+          return;
+        }
+        const userRef = doc(db, "users", user.uid);
+        onSnapshot(userRef, (snap) => {
+          const data = snap.data();
+          if (data && data.breakingNews === true)
+            breakingEl.classList.remove("locked");
+          else breakingEl.classList.add("locked");
+        });
+      });
+
+      // Live Games
+      const tableBody = document.getElementById("tableBody");
+      const matchTimers = new Map();
+
+      function addHalfTimeAnimation(td) {
+        if (!td.querySelector(".half-time-animation")) {
+          const overlay = document.createElement("div");
+          overlay.className = "half-time-animation";
+          overlay.textContent = "Halbzeit!";
+          td.appendChild(overlay);
+        }
+      }
+
+      function removeHalfTimeAnimation(td) {
+        const overlay = td.querySelector(".half-time-animation");
+        if (overlay) overlay.remove();
+      }
+
+      function formatTime(ms) {
+        const totalSeconds = Math.floor(ms / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+      }
+
+      function startMatchTimer(id, td, startTime, halfTime) {
+        if (matchTimers.has(id)) clearInterval(matchTimers.get(id));
+        let paused = halfTime;
+        const timerEl = document.createElement("span");
+        timerEl.className = "match-timer";
+        td.appendChild(timerEl);
+
+        const interval = setInterval(() => {
+          if (!paused) {
+            const elapsed = Date.now() - startTime;
+            if (elapsed < 90 * 60 * 1000)
+              timerEl.textContent = `⏱️ ${formatTime(elapsed)}`;
+            else {
+              timerEl.textContent = "🕛 90:00";
+              clearInterval(interval);
+            }
+          } else timerEl.textContent = "⏸️ Halbzeit";
+        }, 1000);
+
+        matchTimers.set(id, interval);
+      }
+
+      function showVARComment(td, comment) {
+        let varDiv = td.querySelector(".var-comment");
+        if (!varDiv) {
+          varDiv = document.createElement("span");
+          varDiv.className = "var-comment";
+          td.appendChild(varDiv);
+        }
+        varDiv.textContent = comment;
+        varDiv.style.opacity = 1;
+        setTimeout(() => (varDiv.style.opacity = 0), 5000);
+      }
+
+      async function initLiveGames() {
+        const colRef = collection(db, "liveGames");
+        onSnapshot(colRef, (snapshot) => {
+          tableBody.innerHTML = "";
+          if (snapshot.empty) {
+            tableBody.innerHTML =
+              "<tr><td colspan='3'>Keine aktuellen Spiele</td></tr>";
+            return;
+          }
+          snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            if (docSnap.id === "next_game") return;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="${data.over ? "over-game" : ""}">${
+                data.home || ""
+              }</td>
+              <td class="${data.over ? "over-game" : ""}">${
+                data.away || ""
+              }</td>
+              <td class="${data.goal ? "goal-animation" : ""} ${
+                data.over ? "over-game" : ""
+              }">${data.score || ""}</td>
+            `;
+            tableBody.appendChild(tr);
+            const td = tr.querySelector("td:nth-child(3)");
+            if (data.halfTime) addHalfTimeAnimation(td);
+            else removeHalfTimeAnimation(td);
+            if (data.startTime)
+              startMatchTimer(
+                docSnap.id,
+                td,
+                data.startTime.toDate().getTime(),
+                data.halfTime,
+              );
+            if (data.varComment) showVARComment(td, data.varComment);
+          });
+        });
+      }
+      initLiveGames();
+    </script>
+    <script>
+      // Promo banner: close and persist state in localStorage (placed before closing body)
+      (function () {
+        const banner = document.getElementById("promoBanner");
+        if (!banner) return;
+        const closeBtn = banner.querySelector(".promo-close");
+        const storageKey = "promoBannerClosed_v1";
+
+        function hideBanner(save) {
+          try {
+            banner.style.display = "none";
+            if (save) localStorage.setItem(storageKey, "1");
+          } catch (e) {
+            // ignore storage errors
+            banner.style.display = "none";
+          }
+        }
+
+        // Initialize: hide if user previously closed
+        try {
+          if (localStorage.getItem(storageKey) === "1")
+            banner.style.display = "none";
+        } catch (e) {
+          /* ignore */
+        }
+
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => hideBanner(true));
+          closeBtn.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              hideBanner(true);
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
