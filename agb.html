@@ -47,20 +47,6 @@
         margin-bottom: 15px;
       }
 
-      /* ========== Footer ========== */
-      footer {
-        text-align: center;
-        padding: 25px;
-        background: #111;
-        font-size: 0.9rem;
-        color: #aaa;
-      }
-
-      footer span {
-        display: block;
-        margin-top: 5px;
-        color: #555;
-      }
       /* ===== Footer ===== */
       footer {
         display: flex;
@@ -87,8 +73,9 @@
 
       @media (max-width: 480px) {
         footer {
-          flex-direction: column;
-          gap: 5px;
+          flex-direction: row;
+          flex-wrap: wrap; 
+          gap: 8px;
         }
       }
     </style>
