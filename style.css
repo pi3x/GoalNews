@@ -308,15 +308,12 @@ footer {
   flex-wrap: wrap;
 }
 footer a {
-  color: #aaa;
+  color: #ffcc00;
   text-decoration: none;
-  transition:
-    color 0.3s,
-    transform 0.2s;
 }
+
 footer a:hover {
-  color: #1db954;
-  transform: scale(1.1);
+  text-decoration: underline;
 }
 
 /* ===== Responsive ===== */
