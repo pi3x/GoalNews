@@ -454,13 +454,23 @@ header .logo,
 }
 
 /* ===== Footer ===== */
-footer {
-        text-align: center;
-        padding: 25px;
-        background: #111;
-        font-size: 0.9rem;
-        color: #aaa;
-      }
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.footer-copy {
+  line-height: 1.4;
+}
+
+.footer-links {
+  display: flex;
+  gap: 6px; /* nur zwischen Links */
+  margin: 0;
+  padding: 0;
+}
 
 
 /* ===== Accessibility & Reduced motion ===== */
@@ -637,13 +647,16 @@ a:focus-visible {
     </section>
 
     <!-- Footer -->
-  <footer>
-  © 2025 GoalNews | Built by piex_ and EliXTech
-  <a href="https://goalnews.website/impressum">Impressum</a> |
-  <a href="https://goalnews.website/agb.html">AGB</a> |
-  <a href="https://goalnews.website/datenschutz.html">Datenschutz</a>
+  <footer class="footer">
+  <span class="footer-copy">
+    © 2025 GoalNews | Built by piex_ and EliXTech
+  </span>
+  <nav class="footer-links">
+    <a href="/impressum">Impressum</a> |
+    <a href="/agb.html">AGB</a> |
+    <a href="/datenschutz.html">Datenschutz</a>
+  </nav>
 </footer>
-
     <!-- Scripts -->
     <script>
       // Countdown
