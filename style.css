@@ -1,4 +1,4 @@
-/* ===== Reset & Base ===== */
+/* ===== Main ===== */
 * {
   margin: 0;
   padding: 0;
@@ -17,29 +17,26 @@ body {
   overflow-x: hidden;
   text-align: center;
   line-height: 1.6;
-  margin: 0;
-  /* allow users to select/copy text (better UX) */
   user-select: text;
 }
 
-/* Links */
+/* ===== Links & Hover ===== */
 a {
   color: #1db954;
   text-decoration: none;
   transition: color 0.3s;
 }
-
 a:hover {
   color: #14a34a;
 }
 
-/* small helper for button variant */
+/* ===== Buttons ===== */
 .gn-button--small {
   padding: 8px 14px;
   font-size: 0.95rem;
 }
 
-/* ===== Header / Navigation ===== */
+/* ===== Header / Navbar ===== */
 header,
 .navbar {
   display: flex;
@@ -53,20 +50,17 @@ header,
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-header .logo,
-.navbar .logo {
+.logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: white;
 }
 
-/* Hamburger */
 .menu-toggle {
   display: none;
 }
-
 .hamburger-icon {
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 25px;
@@ -74,7 +68,6 @@ header .logo,
   cursor: pointer;
   z-index: 101;
 }
-
 .bar {
   height: 3px;
   width: 100%;
@@ -82,8 +75,16 @@ header .logo,
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
 }
+#menu-toggle:checked ~ .hamburger-icon .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-toggle:checked ~ .hamburger-icon .bar:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked ~ .hamburger-icon .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
 
-/* Off-canvas Menu */
 .nav-menu {
   list-style: none;
   display: flex;
@@ -98,32 +99,18 @@ header .logo,
   gap: 20px;
   transition: right 0.3s ease-in-out;
 }
-
 .nav-menu li {
   text-align: center;
 }
-
 .nav-menu a {
   color: #1db954;
   font-size: 1.1rem;
 }
-
 #menu-toggle:checked ~ .nav-menu {
   right: 0;
 }
 
-/* Hamburger Animation */
-#menu-toggle:checked ~ .hamburger-icon .bar:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-#menu-toggle:checked ~ .hamburger-icon .bar:nth-child(2) {
-  opacity: 0;
-}
-#menu-toggle:checked ~ .hamburger-icon .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* ===== Promotional Banner (below header) ===== */
+/* ===== Promotion Banner ===== */
 .promo-banner {
   width: 100%;
   background: linear-gradient(
@@ -142,9 +129,6 @@ header .logo,
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-}
-.promo-text {
-  text-align: left;
 }
 .promo-text strong {
   color: #fff;
@@ -170,20 +154,6 @@ header .logo,
   padding: 6px 8px;
   border-radius: 6px;
 }
-.promo-close:focus {
-  outline: 2px solid rgba(29, 185, 84, 0.9);
-}
-
-@media (max-width: 700px) {
-  .promo-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .promo-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-}
 
 /* ===== Breaking News / Marquee ===== */
 #breakingNews {
@@ -194,13 +164,11 @@ header .logo,
   display: flex;
   align-items: center;
 }
-
 .news-wrapper {
   display: inline-flex;
   white-space: nowrap;
   animation: scrollNews 25s linear infinite;
 }
-
 .news-item {
   padding: 0 50px;
   font-weight: 600;
@@ -209,7 +177,6 @@ header .logo,
   font-size: 0.9rem;
   flex-shrink: 0;
 }
-
 @keyframes scrollNews {
   0% {
     transform: translateX(0);
@@ -218,17 +185,11 @@ header .logo,
     transform: translateX(-50%);
   }
 }
-
 #breakingNews:hover .news-wrapper {
   animation-play-state: paused;
 }
 
-#breakingNews.locked {
-  position: relative;
-  pointer-events: none;
-  height: 50px;
-  overflow: hidden;
-}
+/* Locked Breaking News */
 #breakingNews.locked::before {
   content: "🔒 Breaking News gesperrt! Kaufe sie mit COINS";
   position: absolute;
@@ -243,7 +204,6 @@ header .logo,
 #breakingNews.locked .news-wrapper {
   display: none;
 }
-
 @keyframes lockSlide {
   0% {
     transform: translateX(-50%) translateY(0);
@@ -260,15 +220,11 @@ header .logo,
 }
 
 /* ===== Countdown ===== */
-.countdown-section {
+.countdown-section,
+#countdown {
+  color: #1db954;
   text-align: center;
   margin: 50px 0;
-  color: #1db954;
-}
-.countdown-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: #1db954;
 }
 #countdown {
   font-size: 2.5rem;
@@ -278,11 +234,11 @@ header .logo,
   font-family: "Courier New", monospace;
 }
 
-/* ===== Matches container ===== */
+/* ===== Matches ===== */
 .matches {
   padding: 30px 20px;
   max-width: 950px;
-  margin: auto;
+  margin: 40px auto;
   background: #111;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -291,15 +247,11 @@ header .logo,
   color: #1db954;
   margin-bottom: 15px;
 }
-.matches h3,
-.matches h4 {
-  margin-bottom: 10px;
-}
 .topspiel {
   color: #14a34a;
+  font-weight: bold;
 }
 
-/* Tabelle Live Spiele */
 .matches-table {
   width: 95%;
   max-width: 1200px;
@@ -311,8 +263,6 @@ header .logo,
   border: 1px solid #444;
   padding: 15px 20px;
   text-align: center;
-  transition: all 0.5s ease;
-  position: relative;
   font-size: 1rem;
 }
 .matches-table th {
@@ -324,13 +274,7 @@ header .logo,
   background: #66ff66;
   color: #000;
   font-weight: bold;
-  transform: scale(1.05);
   animation: pop 0.35s ease forwards;
-}
-.over-game {
-  text-decoration: line-through;
-  opacity: 0.6;
-  transition: all 0.5s ease;
 }
 @keyframes pop {
   0% {
@@ -344,150 +288,48 @@ header .logo,
   }
 }
 
-#nextGameCountdown {
-  font-size: 1.5rem;
-  margin: 15px 0;
-  color: #1db954;
-}
-
-/* Halbzeit Label */
-.half-time-animation {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: rgba(29, 185, 84, 0.9);
-  color: #000;
-  font-weight: bold;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  pointer-events: none;
-  animation: halftimePulse 1.5s infinite alternate;
-}
-@keyframes halftimePulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-}
-
-/* Uhr */
-.match-timer {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #1db954;
-}
-
-/* VAR Kommentar */
-.var-comment {
-  display: block;
-  margin-top: 5px;
-  background: linear-gradient(135deg, #ffd700, #ffea70);
-  color: #000;
-  font-weight: bold;
-  padding: 4px 12px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  opacity: 0;
-  transform: translateY(20px) scale(0.8);
-  animation:
-    varCool 1.5s ease forwards,
-    varGlow 2s ease-in-out infinite alternate;
-  text-align: center;
-}
-@keyframes varCool {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-5px) scale(1.1);
-  }
-  70% {
-    transform: translateY(0) scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-@keyframes varGlow {
-  0% {
-    box-shadow: 0 0 5px rgba(255, 223, 0, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba(255, 255, 200, 0.9);
-  }
-  100% {
-    box-shadow: 0 0 5px rgba(255, 223, 0, 0.6);
-  }
+.over-game {
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
 /* ===== Footer ===== */
 footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 15px 10px;
-  background-color: #111;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
   text-align: center;
+  padding: 25px;
+  background: #111;
+  font-size: 0.9rem;
+  color: #aaa;
 }
-
+.footer-links {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 footer a {
-  color: #ffcc00;
+  color: #aaa;
   text-decoration: none;
+  transition:
+    color 0.3s,
+    transform 0.2s;
 }
-
 footer a:hover {
-  text-decoration: underline;
+  color: #1db954;
+  transform: scale(1.1);
 }
 
-@media (max-width: 480px) {
-  footer {
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+  .promo-inner {
     flex-direction: column;
-    gap: 5px;
+    align-items: flex-start;
+  }
+  .promo-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 }
-
-/* ===== Accessibility & Reduced motion ===== */
-/* visible focus outlines for keyboard users */
-.hamburger-icon:focus,
-.hamburger-icon:focus-visible,
-.nav-menu a:focus,
-.nav-menu a:focus-visible,
-a:focus-visible {
-  outline: 3px solid rgba(29, 185, 84, 0.9);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .news-wrapper,
-  .goal-animation,
-  .var-comment,
-  .half-time-animation,
-  .hamburger-icon .bar {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* Slower marquee on very small screens to improve readability */
 @media (max-width: 480px) {
   .news-wrapper {
     animation-duration: 40s;
