@@ -340,92 +340,104 @@
 
       // ===== Live Games Rendering =====
       const tableBody = document.getElementById("tableBody");
-      const matchTimers = new Map();
+const matchTimers = new Map();
 
-      function addHalfTimeAnimation(td) {
-        if (!td.querySelector(".half-time-animation")) {
-          const overlay = document.createElement("div");
-          overlay.className = "half-time-animation";
-          overlay.textContent = "Halbzeit!";
-          td.appendChild(overlay);
-        }
-      }
+// Map für bestehende Tabellenzeilen
+const matchRows = new Map();
 
-      function removeHalfTimeAnimation(td) {
-        const overlay = td.querySelector(".half-time-animation");
-        if (overlay) overlay.remove();
-      }
+async function loadBundesligaMatches() {
+  try {
+    const res = await fetch("https://api.openligadb.de/getmatchdata/bl1");
+    const matches = await res.json();
 
-      function formatTime(ms) {
-        const s = Math.floor(ms / 1000);
-        return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
-      }
+    if (!matches.length) {
+      tableBody.innerHTML =
+        "<tr><td colspan='3'>Keine Spiele gefunden</td></tr>";
+      return;
+    }
 
-      function startMatchTimer(id, td, startTime, halfTime) {
-        if (matchTimers.has(id)) clearInterval(matchTimers.get(id));
-        let paused = !!halfTime;
-        const timerEl = document.createElement("span");
-        timerEl.className = "match-timer";
-        td.appendChild(timerEl);
-        const interval = setInterval(() => {
-          if (!paused) {
-            const elapsed = Date.now() - startTime;
-            timerEl.textContent =
-              elapsed < 90 * 60 * 1000
-                ? `⏱️ ${formatTime(elapsed)}`
-                : "🕛 90:00";
-            if (elapsed >= 90 * 60 * 1000) clearInterval(interval);
-          } else timerEl.textContent = "⏸️ Halbzeit";
-        }, 1000);
-        matchTimers.set(id, interval);
-      }
+    matches.forEach(updateOrCreateRow);
+  } catch (err) {
+    console.error(err);
+    tableBody.innerHTML =
+      "<tr><td colspan='3'>Fehler beim Laden der Daten</td></tr>";
+  }
+}
 
-      function showVARComment(td, comment) {
-        let varDiv = td.querySelector(".var-comment");
-        if (!varDiv) {
-          varDiv = document.createElement("span");
-          varDiv.className = "var-comment";
-          td.appendChild(varDiv);
-        }
-        varDiv.textContent = comment;
-        varDiv.style.opacity = 1;
-        setTimeout(() => (varDiv.style.opacity = 0), 5000);
-      }
+function updateOrCreateRow(match) {
+  const id = match.matchID;
 
-      function initLiveGames() {
-        const colRef = collection(db, "liveGames");
-        onSnapshot(colRef, (snapshot) => {
-          tableBody.innerHTML = "";
-          if (snapshot.empty) {
-            tableBody.innerHTML =
-              '<tr><td colspan="3">Keine aktuellen Spiele</td></tr>';
-            return;
-          }
-          snapshot.forEach((docSnap) => {
-            const data = docSnap.data();
-            if (docSnap.id === "next_game") return;
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-          <td class="${data.over ? "over-game" : ""}">${data.home || ""}</td>
-          <td class="${data.over ? "over-game" : ""}">${data.away || ""}</td>
-          <td class="${data.goal ? "goal-animation" : ""} ${data.over ? "over-game" : ""}">${data.score || ""}</td>`;
-            tableBody.appendChild(tr);
-            const td = tr.querySelector("td:nth-child(3)");
-            if (data.halfTime) addHalfTimeAnimation(td);
-            else removeHalfTimeAnimation(td);
-            if (data.startTime)
-              startMatchTimer(
-                docSnap.id,
-                td,
-                data.startTime.toDate().getTime(),
-                data.halfTime,
-              );
-            if (data.varComment) showVARComment(td, data.varComment);
-          });
-        });
-      }
-      initLiveGames();
-    </script>
+  const home = match.team1.teamName;
+  const away = match.team2.teamName;
+
+  const goals = match.goals || [];
+  const lastGoal = goals[goals.length - 1] || {};
+  const score = goals.length
+    ? `${lastGoal.scoreTeam1} : ${lastGoal.scoreTeam2}`
+    : "- : -";
+
+  const status = match.matchIsFinished
+    ? "Beendet"
+    : match.matchIsRunning
+    ? "Live"
+    : "Noch nicht gestartet";
+
+  const minute = match.matchIsRunning ? `${match.matchMinute}'` : "";
+
+  let row = matchRows.get(id);
+
+  // Falls die Reihe noch nicht existiert → erstellen
+  if (!row) {
+    row = document.createElement("tr");
+    row.innerHTML = `
+      <td class="home"></td>
+      <td class="away"></td>
+      <td class="info"></td>
+    `;
+    tableBody.appendChild(row);
+    matchRows.set(id, row);
+  }
+
+  // Inhalte aktualisieren (ohne Flackern)
+  row.querySelector(".home").innerHTML = `
+    <strong>${home}</strong><br>
+    <small>${match.location?.locationCity || ""}</small>
+  `;
+
+  row.querySelector(".away").innerHTML = `
+    <strong>${away}</strong><br>
+    <small>${match.location?.locationStadium || ""}</small>
+  `;
+
+  row.querySelector(".info").innerHTML = `
+    <div><strong>${score}</strong> ${minute}</div>
+    <div><small>${status}</small></div>
+    <div class="events">${renderEvents(goals)}</div>
+  `;
+}
+
+function renderEvents(goals) {
+  if (!goals.length) return "";
+
+  return goals
+    .map(
+      (g) => `
+      <div class="event">
+        ${g.matchMinute}' – 
+        <strong>${g.goalGetterName}</strong>
+        (${g.scoreTeam1}:${g.scoreTeam2})
+      </div>
+    `
+    )
+    .join("");
+}
+
+// Alle 10 Sekunden aktualisieren
+loadBundesligaMatches();
+setInterval(loadBundesligaMatches, 10000);
+</script>
+
+
 
     <script>
       // ===== Countdown =====
