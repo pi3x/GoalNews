@@ -376,13 +376,44 @@ function updateOrCreateRow(match) {
     ? `${lastGoal.scoreTeam1} : ${lastGoal.scoreTeam2}`
     : "- : -";
 
-  const status = match.matchIsFinished
-    ? "Beendet"
-    : match.matchIsRunning
-    ? "Live"
-    : "Noch nicht gestartet";
+  // --- Status korrekt bestimmen ---
+  let status = "Noch nicht gestartet";
+  let minute = "";
 
-  const minute = match.matchIsRunning ? `${match.matchMinute}'` : "";
+  const start = new Date(match.matchDateTime);
+  const now = new Date();
+
+  const results = match.matchResults || [];
+  const finalResult = results.find(r => r.resultTypeID === 2);
+
+  // --- 1) Spiel beendet (sicher) ---
+  if (finalResult) {
+    status = "Beendet";
+  }
+
+  // --- 2) Live (Startzeit vorbei, aber kein Endstand) ---
+  else if (now > start) {
+    status = "Live";
+
+    if (match.matchMinute) {
+      minute = `${match.matchMinute}'`;
+    } else {
+      const diff = Math.floor((now - start) / 60000);
+      minute = diff < 90 ? `${diff}'` : "90+";
+    }
+  }
+
+  // --- 3) Notfall: Keine Daten verfügbar ---
+  const endTime = new Date(start.getTime() + 120 * 60000); // 2h nach Start
+
+  if (
+    now > endTime &&          // Spiel müsste vorbei sein
+    goals.length === 0 &&     // keine Tore
+    !finalResult              // kein Endstand
+  ) {
+    status = "Keine Daten verfügbar";
+    minute = "";
+  }
 
   let row = matchRows.get(id);
 
@@ -435,6 +466,7 @@ function renderEvents(goals) {
 // Alle 10 Sekunden aktualisieren
 loadBundesligaMatches();
 setInterval(loadBundesligaMatches, 10000);
+
 </script>
 
 
