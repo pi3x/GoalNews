@@ -1,70 +1,9 @@
 <!doctype html>
 <html lang="de">
   <head>
-    <!-- Basics -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoalNews – Foot- & Fußballnews</title>
-
-    <!-- SEO -->
-    <meta
-      name="description"
-      content="GoalNews liefert dir die heißesten Fußball-News, Ergebnisse, Transfers und Highlights rund um die Welt!"
-    />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://goalnews.website/" />
-
-    <!-- Autor & Publisher -->
-    <meta name="author" content="GoalNews" />
-    <meta name="publisher" content="GoalNews" />
-
-    <!-- Browser & Sicherheit -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-
-    <!-- Content Security Policy
-       (GA erlaubt, sonst hättest du Analytics nur zum Anschauen) -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="
-      default-src 'self';
-      img-src 'self' https:;
-      script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com;
-      connect-src https://www.google-analytics.com;
-    "
-    />
-
-    <!-- Theme & PWA -->
-    <meta name="theme-color" content="#1db954" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="GoalNews" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-    <!-- Icons -->
-    <link
-      rel="icon"
-      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
-      type="image/jpeg"
-    />
-    <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json" />
-
-    <!-- Open Graph (WhatsApp, Insta, etc.) -->
-    <meta property="og:title" content="GoalNews – Foot- & Fußballnews" />
-    <meta
-      property="og:description"
-      content="Liveticker, Ergebnisse und Highlights aus der Fußballwelt – alles bei GoalNews."
-    />
-    <meta property="og:image" content="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
-    <meta property="og:url" content="https://goalnews.website/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="de_DE" />
+    <title>GoalNews - Foot- & Fußballnews</title>
 
     <!-- Google Analytics 4 -->
     <script
@@ -79,6 +18,76 @@
       gtag("js", new Date());
       gtag("config", "G-C1HQFFK8NB", { anonymize_ip: true });
     </script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
+      type="image/jpeg"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#1db954" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
+    <link rel="manifest" href="manifest.json" />
+
+    <style>
+      /* ===== Super Bowl Countdown ===== */
+      .sb-countdown {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 30px 20px;
+        background: linear-gradient(145deg, var(--bg-card), #0b0b0b);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .sb-label {
+        display: block;
+        margin-bottom: 20px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--green-main);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .sb-timer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+
+      .sb-box {
+        background: #0f0f0f;
+        border-radius: var(--radius-md);
+        padding: 18px 10px;
+        box-shadow: inset 0 0 0 1px #1c1c1c;
+      }
+
+      .sb-box span {
+        display: block;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #fff;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .sb-box small {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--green-soft);
+      }
+
+      /* Mobile */
+      @media (max-width: 600px) {
+        .sb-timer {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
   </head>
 
   <body>
