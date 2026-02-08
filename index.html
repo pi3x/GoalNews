@@ -1,36 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoalNews - Foot- & Fußballnews</title>
+<head>
+  <!-- Basics -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoalNews – Foot- & Fußballnews</title>
 
-    <!-- Google Analytics 4 -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-C1HQFFK8NB"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-C1HQFFK8NB", { anonymize_ip: true });
-    </script>
+  <!-- SEO -->
+  <meta name="description" content="GoalNews liefert dir die heißesten Fußball-News, Ergebnisse, Transfers und Highlights rund um die Welt!" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://goalnews.website/" />
 
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
-      type="image/jpeg"
-    />
-    <link rel="stylesheet" href="style.css" />
+  <!-- Autor & Publisher -->
+  <meta name="author" content="GoalNews" />
+  <meta name="publisher" content="GoalNews" />
 
-    <!-- PWA -->
-    <meta name="theme-color" content="#1db954" />
-    <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
-    <link rel="manifest" href="manifest.json" />
+  <!-- Browser & Sicherheit -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Content Security Policy
+       (GA erlaubt, sonst hättest du Analytics nur zum Anschauen) -->
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="
+      default-src 'self';
+      img-src 'self' https:;
+      script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com;
+      connect-src https://www.google-analytics.com;
+    "
+  />
+
+  <!-- Theme & PWA -->
+  <meta name="theme-color" content="#1db954" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="GoalNews" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <!-- Icons -->
+  <link rel="icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Open Graph (WhatsApp, Insta, etc.) -->
+  <meta property="og:title" content="GoalNews – Foot- & Fußballnews" />
+  <meta property="og:description" content="Liveticker, Ergebnisse und Highlights aus der Fußballwelt – alles bei GoalNews." />
+  <meta property="og:image" content="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
+  <meta property="og:url" content="https://goalnews.website/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_DE" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C1HQFFK8NB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-C1HQFFK8NB", { anonymize_ip: true });
+  </script>
+</head>
 
     <style>
       /* ===== Super Bowl Countdown ===== */
