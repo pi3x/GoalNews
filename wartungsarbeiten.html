@@ -3,150 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wartungsarbeiten – GoalNews</title>
+<meta name="theme-color" content="#0b1220">
+<meta name="description" content="GoalNews ist aufgrund geplanter Wartungsarbeiten vorübergehend nicht erreichbar.">
+<title>Serverwartung – GoalNews</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  :root {
+    color-scheme: dark;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0b1220;
+    color: #f8fafc;
+    font-synthesis: none;
+  }
+
+  * { box-sizing: border-box; }
 
   body {
-    margin:0;
-    padding:0;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg,#0d0d0d,#1a1a1a);
-    color:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    padding: 28px 18px;
+    overflow-x: hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(30, 64, 110, .35), transparent 55%),
+      linear-gradient(145deg, #0b1220 0%, #101827 55%, #0b1220 100%);
   }
 
-  .container {
-    text-align:center;
-    max-width:600px;
-    padding:50px 30px;
-    border-radius:12px;
-    background: rgba(20,20,20,0.95);
-    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  .card {
     position: relative;
+    width: min(100%, 560px);
+    padding: clamp(30px, 7vw, 56px);
+    text-align: center;
+    border: 1px solid rgba(148, 163, 184, .18);
+    border-radius: 22px;
+    background: rgba(15, 23, 42, .88);
+    box-shadow: 0 28px 90px rgba(0, 0, 0, .42);
+    backdrop-filter: blur(12px);
   }
 
-  h1 {
-    font-size:2.8rem;
-    margin-bottom:15px;
-    color:#ffd700;
+  .brand {
+    margin: 0 0 34px;
+    color: #cbd5e1;
+    font-size: .85rem;
+    font-weight: 750;
+    letter-spacing: .16em;
+    text-transform: uppercase;
   }
 
-  p {
-    font-size:1.1rem;
-    margin-bottom:30px;
-    color:#ccc;
-    line-height:1.5;
+  .brand span { color: #f4c542; }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 24px;
+    padding: 8px 13px;
+    border: 1px solid rgba(244, 197, 66, .25);
+    border-radius: 999px;
+    background: rgba(244, 197, 66, .08);
+    color: #f8d978;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f4c542;
+    box-shadow: 0 0 12px rgba(244, 197, 66, .75);
   }
 
   .icon {
-    font-size:6rem;
-    margin-bottom:20px;
-    animation: bounce 1.5s infinite;
-    display:block;
+    display: grid;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 25px;
+    place-items: center;
+    border: 1px solid rgba(244, 197, 66, .2);
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(244, 197, 66, .16), rgba(244, 197, 66, .04));
+    color: #f4c542;
   }
 
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+  .icon svg { width: 38px; height: 38px; }
+
+  h1 {
+    margin: 0 0 16px;
+    font-size: clamp(2rem, 7vw, 2.65rem);
+    line-height: 1.12;
+    letter-spacing: -.045em;
+  }
+
+  .intro {
+    max-width: 410px;
+    margin: 0 auto;
+    color: #cbd5e1;
+    font-size: 1.04rem;
+    line-height: 1.75;
+  }
+
+  .divider {
+    height: 1px;
+    margin: 30px 0 23px;
+    border: 0;
+    background: rgba(148, 163, 184, .16);
+  }
+
+  .detail {
+    margin: 0;
+    color: #94a3b8;
+    font-size: .91rem;
+    line-height: 1.65;
   }
 
   .loader {
-    margin:0 auto 25px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    border:6px solid rgba(255,215,0,0.2);
-    border-top-color:#ffd700;
-    animation:spin 1s linear infinite;
+    width: 22px;
+    height: 22px;
+    margin: 23px auto 15px;
+    border: 2px solid rgba(244, 197, 66, .2);
+    border-top-color: #f4c542;
+    border-radius: 50%;
+    animation: spin .9s linear infinite;
   }
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   .check-btn {
-    padding:14px 32px;
-    font-size:1rem;
-    font-weight:600;
-    background:#ffd700;
-    color:#1a1a1a;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    transition:0.3s;
-    box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+    min-height: 46px;
+    margin-top: 18px;
+    padding: 0 20px;
+    border: 1px solid rgba(148, 163, 184, .28);
+    border-radius: 10px;
+    background: rgba(30, 41, 59, .7);
+    color: #e2e8f0;
+    font: inherit;
+    font-size: .9rem;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background .18s ease, border-color .18s ease, transform .18s ease;
   }
 
-  .check-btn:hover {
-    background:#e6c200;
-    box-shadow: 0 8px 20px rgba(255,215,0,0.6);
+  .check-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    border-color: rgba(244, 197, 66, .55);
+    background: rgba(51, 65, 85, .8);
   }
+
+  .check-btn:focus-visible { outline: 3px solid rgba(244, 197, 66, .55); outline-offset: 3px; }
+  .check-btn:disabled { cursor: wait; opacity: .65; }
 
   .status-msg {
-    margin-top:15px;
-    font-size:1rem;
-    color:#fff;
-    opacity:0.85;
-    min-height:1.2em;
+    min-height: 1.4em;
+    margin: 13px 0 0;
+    color: #cbd5e1;
+    font-size: .87rem;
+    line-height: 1.5;
   }
 
-  /* Sanfte Hintergrundanimation */
-  .bg-dots {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    overflow:hidden;
-    z-index:0;
-  }
-
-  .bg-dots span {
-    position:absolute;
-    display:block;
-    width:6px;
-    height:6px;
-    background:#ffd700;
-    opacity:0.15;
-    border-radius:50%;
-    animation: floatDots 10s linear infinite;
-  }
-
-  @keyframes floatDots {
-    0% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-300px) translateX(50px); }
-    100% { transform: translateY(0) translateX(0); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
   }
 </style>
 </head>
 <body>
-
-<div class="container">
-  <div class="icon">⚠️</div>
-  <h1>🚧 Wartungsarbeiten</h1>
-  <p>GoalNews wird gerade verbessert.<br>
-     Bitte habe einen Moment Geduld.</p>
-
-  <div class="loader"></div>
-
-  <button class="check-btn" id="checkBtn">🔄 Wartung prüfen</button>
-  <div class="status-msg" id="statusMsg"></div>
-</div>
-
-<div class="bg-dots">
-  <!-- Dynamische Punkte -->
-  <span style="top:10%; left:20%; animation-delay:0s;"></span>
-  <span style="top:50%; left:40%; animation-delay:2s;"></span>
-  <span style="top:80%; left:60%; animation-delay:4s;"></span>
-  <span style="top:30%; left:70%; animation-delay:1s;"></span>
-  <span style="top:60%; left:10%; animation-delay:3s;"></span>
-</div>
+<main class="card">
+  <p class="brand">Goal<span>News</span></p>
+  <div class="status-pill"><span class="status-dot" aria-hidden="true"></span>Geplante Wartung</div>
+  <div class="icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="6" rx="1.5"></rect>
+      <rect x="3" y="14" width="18" height="6" rx="1.5"></rect>
+      <path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"></path>
+    </svg>
+  </div>
+  <h1>Wir warten unsere Server</h1>
+  <p class="intro">GoalNews ist gerade vorübergehend nicht erreichbar. Unsere Server werden gewartet, damit anschließend wieder alles zuverlässig für dich läuft.</p>
+  <hr class="divider">
+  <p class="detail">Die Wartung läuft bereits. Bitte schau in wenigen Minuten noch einmal vorbei. Vielen Dank für deine Geduld.</p>
+  <div class="loader" aria-hidden="true"></div>
+  <button class="check-btn" id="checkBtn" type="button">Verfügbarkeit erneut prüfen</button>
+  <p class="status-msg" id="statusMsg" role="status" aria-live="polite"></p>
+</main>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
@@ -163,30 +203,36 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 const statusMsg = document.getElementById("statusMsg");
 const checkBtn = document.getElementById("checkBtn");
 
 async function checkMaintenance() {
-  statusMsg.textContent = "🔎 Prüfe Wartungsstatus...";
-  const docRef = doc(db, "settings", "main");
-  const snap = await getDoc(docRef);
-  if (snap.exists()) {
-    const data = snap.data();
-    if (data.maintenance === true) {
-      statusMsg.textContent = "⚠️ Wartung läuft noch...";
-    } else {
-      statusMsg.textContent = "✅ Wartung beendet! Weiterleitung…";
-      setTimeout(()=>window.location.href="index.html",1500);
+  checkBtn.disabled = true;
+  statusMsg.textContent = "Wartungsstatus wird geprüft …";
+
+  try {
+    const snap = await getDoc(doc(db, "settings", "main"));
+    if (!snap.exists()) {
+      statusMsg.textContent = "Der Wartungsstatus ist momentan nicht verfügbar. Bitte versuche es später erneut.";
+      return;
     }
-  } else {
-    statusMsg.textContent = "❌ Fehler: Einstellungen nicht gefunden.";
+
+    if (snap.data().maintenance === true) {
+      statusMsg.textContent = "Die Wartung dauert noch an. Bitte versuche es später erneut.";
+      return;
+    }
+
+    statusMsg.textContent = "GoalNews ist wieder verfügbar. Du wirst weitergeleitet …";
+    window.setTimeout(() => { window.location.href = "index.html"; }, 1200);
+  } catch (error) {
+    console.error("Wartungsstatus konnte nicht abgerufen werden:", error);
+    statusMsg.textContent = "Der Wartungsstatus konnte nicht abgerufen werden. Bitte prüfe deine Verbindung und versuche es erneut.";
+  } finally {
+    checkBtn.disabled = false;
   }
 }
 
 checkBtn.addEventListener("click", checkMaintenance);
 </script>
-
 </body>
 </html>
-
