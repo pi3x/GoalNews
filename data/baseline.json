@@ -1,0 +1,32 @@
+{
+  "/": {
+    "hash": "d51653aea4513af31dce7d8180940567982cfd3fd99aa6ff61d78701796f177c",
+    "status": 200,
+    "score": 0
+  },
+  "/login.html": {
+    "hash": "688cde5409268258f7f0b82d9e9c46722df436fdda9817eb3c3fa88ce065773c",
+    "status": 200,
+    "score": 0
+  },
+  "/register.html": {
+    "hash": "bedcc55c052c60d3b761200d15c1b00b2e1cd07247384d6c6e145be3f5640d1f",
+    "status": 200,
+    "score": 0
+  },
+  "/comments.html": {
+    "hash": "d81624c509e9c902e8786d62caa2e94d7fac3ca04dfcccd5e7af39824ad3b9bf",
+    "status": 200,
+    "score": 0
+  },
+  "/feedback.html": {
+    "hash": "9820a51b8060d04d19bc58272db0d5c09d2e811d85cedcca38c0cce51bd0cab5",
+    "status": 200,
+    "score": 0
+  },
+  "/security.html": {
+    "hash": "3019e53a7f2fb7598edae1040b7802ed6b290cc2e6c49072dde8aa82ff240350",
+    "status": 200,
+    "score": 0
+  }
+}

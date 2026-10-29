@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoalNews - Helft uns!</title>
+
+    <link rel="stylesheet" href="../assets/css/pages/feedback.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Helft uns, GoalNews besser zu machen</h1>
+      <p>
+        Dein Feedback hilft uns, die Seite weiterzuentwickeln. Wähle aus, was du
+        uns mitteilen möchtest.
+      </p>
+      <a class="home-link" href="../index.html">← Zurück zur Startseite</a>
+    </header>
+
+    <div class="help-section">
+      <div class="help-card" data-form="bugForm">
+        <h2>Fehler melden</h2>
+        <p>Gefundenen Fehler oder Bugs melden, anonym und sicher.</p>
+      </div>
+      <div class="help-card" data-form="ideaForm">
+        <h2>Neue Idee</h2>
+        <p>Teile uns deine Ideen für neue Features oder Verbesserungen mit.</p>
+      </div>
+      <div class="help-card" data-form="feedbackForm">
+        <h2>Feedback</h2>
+        <p>Allgemeines Feedback zu GoalNews – News, Kommentare oder Design.</p>
+      </div>
+      <div class="help-card" data-form="featureForm">
+        <h2>Feature Wunsch</h2>
+        <p>Welche Funktionen wünschst du dir für GoalNews?</p>
+      </div>
+    </div>
+
+    <div id="bugForm" class="reportForm">
+      <h3>Fehler melden</h3>
+      <label>Art des Fehlers:</label>
+      <select id="errorType">
+        <option value="Sicherheitsfehler">Sicherheitsfehler</option>
+        <option value="Anzeigeproblem">Anzeigeproblem</option>
+        <option value="Falsche Information">Falsche Information</option>
+        <option value="Kommentarproblem">Kommentarproblem</option>
+        <option value="Anderes">Anderes</option>
+      </select>
+      <textarea
+        id="errorDescription"
+        rows="4"
+        placeholder="Beschreibe den Fehler..."
+      ></textarea>
+      <button id="sendBug">📨 Absenden</button>
+    </div>
+
+    <div id="ideaForm" class="reportForm">
+      <h3>Neue Idee einreichen</h3>
+      <input type="text" id="ideaTitle" placeholder="Titel deiner Idee" />
+      <textarea
+        id="ideaDescription"
+        rows="4"
+        placeholder="Beschreibe deine Idee..."
+      ></textarea>
+      <button id="sendIdea">📨 Absenden</button>
+    </div>
+
+    <div id="feedbackForm" class="reportForm">
+      <h3>Allgemeines Feedback</h3>
+      <textarea
+        id="feedbackText"
+        rows="4"
+        placeholder="Dein Feedback..."
+      ></textarea>
+      <button id="sendFeedback">📨 Absenden</button>
+    </div>
+
+    <div id="featureForm" class="reportForm">
+      <h3>Feature Wunsch</h3>
+      <input type="text" id="featureTitle" placeholder="Titel des Features" />
+      <textarea
+        id="featureDescription"
+        rows="4"
+        placeholder="Beschreibe dein Wunsch-Feature..."
+      ></textarea>
+      <button id="sendFeature">📨 Absenden</button>
+    </div>
+
+    <footer>
+      GoalNewsDE © 2026 – Danke für eure Unterstützung!<br />
+      <a href="mailto:info@goalnewsde.de">E-Mail</a>
+    </footer>
+
+    <script type="module" src="../assets/js/pages/feedback.js"></script>
+
+    <script src="../assets/js/beta-banner.js"></script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080f1b" />
+    <meta
+      name="description"
+      content="Aktuelle Bundesliga-Tabelle und nächste Spiele."
+    />
+    <title>Bundesliga-Tabelle – GoalNews</title>
+    <link
+      rel="icon"
+      href="../assets/images/goalnews-logo.webp"
+      type="image/webp"
+    />
+    <link rel="stylesheet" href="../assets/css/league-table.css" />
+    <script type="module" src="../assets/js/league-table.js"></script>
+    <link rel="stylesheet" href="../assets/css/pages/bundesliga-tabelle.css" />
+  </head>
+  <body data-league="bl1">
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="GoalNews Startseite"
+        >Goal<span>News</span></a
+      >
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <a href="../index.html">Startseite</a>
+        <a href="bundesliga-tabelle.html" aria-current="page">1. Bundesliga</a>
+        <a href="zweite-bundesliga.html">2. Bundesliga</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Deutschland · Männer</p>
+          <h1>Bundesliga</h1>
+          <p class="season">
+            Saison <span id="seasonLabel">wird geladen</span
+            ><span class="season-separator"> · </span>Tabelle mit aktuellen
+            Ergebnissen
+          </p>
+        </div>
+        <button class="refresh" id="refreshButton" type="button">
+          Tabelle aktualisieren
+        </button>
+      </section>
+
+      <section class="panel" aria-labelledby="tableHeading">
+        <div class="panel-head">
+          <h2 id="tableHeading">Ligatabelle</h2>
+          <span
+            class="updated"
+            id="statusLabel"
+            role="status"
+            aria-live="polite"
+            >Tabelle wird geladen …</span
+          >
+        </div>
+        <div
+          class="table-scroll"
+          tabindex="0"
+          aria-label="Ligatabelle, horizontal scrollbar auf kleinen Bildschirmen"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Platz</th>
+                <th scope="col" class="team-heading">Verein</th>
+                <th scope="col">Sp.</th>
+                <th scope="col">S</th>
+                <th scope="col">U</th>
+                <th scope="col">N</th>
+                <th scope="col">Tore</th>
+                <th scope="col">Diff.</th>
+                <th scope="col">Pkt.</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr>
+                <td class="state" colspan="9">Tabelle wird geladen …</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="legend" aria-label="Bedeutung der Tabellenfarben">
+        <span><i class="legend-champions"></i>Champions League</span>
+        <span><i class="legend-europa"></i>Europa League</span>
+        <span><i class="legend-conference"></i>Conference League</span>
+        <span><i class="legend-relegation"></i>Relegation</span>
+        <span><i class="legend-relegation-zone"></i>Abstieg</span>
+      </div>
+
+      <section class="panel fixtures-panel" aria-labelledby="fixturesHeading">
+        <div class="panel-head">
+          <h2 id="fixturesHeading">Nächste Spiele</h2>
+          <span
+            class="updated"
+            id="fixtureStatus"
+            role="status"
+            aria-live="polite"
+            >Spielplan wird geladen …</span
+          >
+        </div>
+        <div class="fixtures" id="fixtureList">
+          <p class="state">Spielplan wird geladen …</p>
+        </div>
+      </section>
+
+      <p class="form-note">
+        <span class="dot" aria-hidden="true"></span>Datenquelle: OpenLigaDB. Die
+        Daten werden automatisch aktualisiert und im Browser kurz
+        zwischengespeichert.
+      </p>
+    </main>
+
+    <footer class="footer">
+      Fußballdaten:
+      <a
+        href="https://www.openligadb.de/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >OpenLigaDB</a
+      >
+      ·
+      <a
+        href="https://www.openligadb.de/lizenz"
+        target="_blank"
+        rel="noopener noreferrer"
+        >ODbL 1.0</a
+      >
+    </footer>
+  </body>
+</html>

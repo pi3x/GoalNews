@@ -1,0 +1,132 @@
+/* Page-specific styles: sicherheitsinformationen */
+body {
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #111;
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00d8ff;
+  border-bottom: 3px solid #00d8ff;
+}
+
+main {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.rack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.server,
+.database,
+.firewall {
+  background: #1a1a1a;
+  border: 2px solid #00d8ff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 0 10px #00d8ff;
+  position: relative;
+}
+
+.server h3,
+.database h3,
+.firewall h3 {
+  color: #00d8ff;
+  margin-top: 0;
+  text-align: center;
+}
+
+.led {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: red;
+  box-shadow: 0 0 5px red;
+  animation: blink 1.5s infinite;
+}
+
+.led.green {
+  background: #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+@keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0.2;
+  }
+}
+
+p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  border-top: 2px solid #00d8ff;
+  margin-top: 40px;
+}
+
+.info-box {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 600px;
+  text-align: center;
+  background: #111;
+  border: 2px solid #00d8ff;
+  border-radius: 8px;
+  box-shadow:
+    0 0 15px #00d8ff inset,
+    0 0 10px #00d8ff;
+  font-family: "Courier New", monospace;
+}
+
+.info-box p {
+  margin: 0 0 15px 0;
+  color: #00d8ff;
+  font-size: 1rem;
+}
+
+.info-box button {
+  padding: 10px 20px;
+  background: #00d8ff;
+  color: #111;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.info-box button:hover {
+  background: #0099cc;
+  box-shadow: 0 0 10px #00d8ff;
+}

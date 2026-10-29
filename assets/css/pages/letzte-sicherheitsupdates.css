@@ -1,0 +1,139 @@
+/* Page-specific styles: letzte-sicherheitsupdates */
+:root {
+  --bg: #0b0f14;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #2ecc71;
+  --text-muted: #9aa4af;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #121826, var(--bg));
+  color: white;
+}
+
+header {
+  padding: 60px 20px 40px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: auto;
+}
+
+.status {
+  margin: 30px auto 0;
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(46, 204, 113, 0.15);
+  border: 1px solid rgba(46, 204, 113, 0.4);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.update {
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.update::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--accent);
+}
+
+.date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.update h2 {
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+}
+
+ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 6px;
+  color: #d6dce2;
+}
+
+.impact {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.info {
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+a {
+  color: #2ecc71;
+}
+.update.high::before {
+  background: #e74c3c;
+} /* kritisch */
+.update.medium::before {
+  background: #f1c40f;
+} /* mittel */
+.update.low::before {
+  background: #2ecc71;
+} /* gering */

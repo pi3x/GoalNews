@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1421" />
+    <title>GoalNews Beta · Fehler und Ideen</title>
+
+    <link rel="stylesheet" href="../assets/css/pages/beta-feedback.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <a class="back" href="../index.html">← Zurück zur Startseite</a>
+      <header>
+        <p class="eyebrow">GoalNews · Beta-Feedback</p>
+        <h1>Fehler melden oder Idee teilen</h1>
+        <p>
+          Deine Rückmeldung hilft dem Entwicklerteam, die Beta zu verbessern.
+          Beschreibe kurz und sachlich, was passiert ist oder was du dir
+          wünschst.
+        </p>
+      </header>
+      <div class="notice">
+        <strong>Bitte beachten:</strong> Einsendungen werden in der echten
+        GoalNews-Datenbank gespeichert. Bitte keine Passwörter, privaten Daten
+        oder Spam eintragen. Die Meldungen können nur von Admins gelesen werden.
+      </div>
+      <section class="panel">
+        <div id="loginBox" class="login-box" hidden>
+          Zum Senden brauchst du ein angemeldetes GoalNews-Konto.
+          <a href="anmelden.html">Jetzt anmelden</a>.
+        </div>
+        <div id="forms" hidden>
+          <div class="tabs" role="tablist" aria-label="Art der Rückmeldung">
+            <button
+              class="tab active"
+              id="bugTab"
+              type="button"
+              role="tab"
+              aria-selected="true"
+            >
+              🐞 Fehler melden
+            </button>
+            <button
+              class="tab"
+              id="ideaTab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+            >
+              💡 Idee teilen
+            </button>
+          </div>
+          <section
+            class="form-section"
+            id="bugForm"
+            role="tabpanel"
+            aria-labelledby="bugTab"
+          >
+            <h2>Was ist schiefgelaufen?</h2>
+            <p>
+              Hilf uns, den Fehler nachzustellen. Schreibe dazu, auf welcher
+              Seite du warst und welche Schritte zum Problem geführt haben.
+            </p>
+            <label for="bugType">Art des Fehlers</label
+            ><select id="bugType">
+              <option>Anzeigeproblem</option>
+              <option>Falsche Information</option>
+              <option>Funktion funktioniert nicht</option>
+              <option>Login- oder Kontoproblem</option>
+              <option>Anderes</option>
+            </select>
+            <label for="bugDescription">Beschreibung</label
+            ><textarea
+              id="bugDescription"
+              maxlength="3000"
+              placeholder="Was hast du gemacht? Was ist passiert? Was hättest du erwartet?"
+            ></textarea>
+            <p class="hint">
+              Maximal 3000 Zeichen. Bitte keine Passwörter oder privaten Daten
+              angeben.
+            </p>
+            <button class="submit" id="sendBug" type="button">
+              Fehlerbericht senden
+            </button>
+            <p class="status" id="bugStatus" aria-live="polite"></p>
+          </section>
+          <section
+            class="form-section"
+            id="ideaForm"
+            role="tabpanel"
+            aria-labelledby="ideaTab"
+            hidden
+          >
+            <h2>Welche Idee hast du?</h2>
+            <p>
+              Schlage eine Verbesserung oder neue Funktion vor. Je konkreter die
+              Idee, desto besser können wir sie einschätzen.
+            </p>
+            <label for="ideaTitle">Kurzer Titel</label
+            ><input
+              id="ideaTitle"
+              maxlength="120"
+              placeholder="Zum Beispiel: Spielplan nach Datum filtern"
+            />
+            <label for="ideaDescription">Beschreibung</label
+            ><textarea
+              id="ideaDescription"
+              maxlength="3000"
+              placeholder="Wie sollte es funktionieren und wem würde es helfen?"
+            ></textarea>
+            <p class="hint">Maximal 3000 Zeichen.</p>
+            <button class="submit" id="sendIdea" type="button">
+              Idee senden
+            </button>
+            <p class="status" id="ideaStatus" aria-live="polite"></p>
+          </section>
+        </div>
+      </section>
+      <footer>GoalNews Beta · Danke, dass du beim Testen hilfst ⚽</footer>
+    </main>
+    <script type="module" src="../assets/js/pages/beta-feedback.js"></script>
+    <script src="../assets/js/beta-banner.js"></script>
+  </body>
+</html>

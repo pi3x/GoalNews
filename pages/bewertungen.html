@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <meta
+      name="description"
+      content="Bewerte GoalNews mit Sternen und optionalem Kommentar."
+    />
+    <title>Bewertungen – GoalNews</title>
+    <link rel="stylesheet" href="../assets/css/league-table.css" />
+
+    <link rel="stylesheet" href="../assets/css/pages/bewertungen.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html">Goal<span>News</span></a>
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <a href="../index.html">Startseite</a>
+        <a href="kommentare.html">Kommentarforum</a>
+        <a href="bewertungen.html" aria-current="page">Bewertungen</a>
+      </nav>
+    </header>
+    <main>
+      <section class="rating-hero">
+        <p class="eyebrow">Deine Meinung zählt</p>
+        <h1>GoalNews bewerten</h1>
+        <p>
+          Wie gefällt dir GoalNews? Vergib ein bis fünf Sterne. Einen kurzen
+          Text kannst du freiwillig ergänzen. Bewertungen schreiben können nur
+          angemeldete Mitglieder.
+        </p>
+      </section>
+      <div class="rating-layout">
+        <section class="rating-panel" aria-labelledby="formHeading">
+          <div class="panel-heading">
+            <h2 id="formHeading">Deine Bewertung</h2>
+            <span class="updated">Text optional</span>
+          </div>
+          <form class="rating-form" id="ratingForm">
+            <fieldset id="ratingFields" disabled>
+              <span class="rating-label" id="starLabel">Sterne auswählen</span>
+              <div class="star-picker" role="group" aria-labelledby="starLabel">
+                <button
+                  class="star-button"
+                  type="button"
+                  data-rating="1"
+                  aria-label="1 Stern"
+                >
+                  ★
+                </button>
+                <button
+                  class="star-button"
+                  type="button"
+                  data-rating="2"
+                  aria-label="2 Sterne"
+                >
+                  ★
+                </button>
+                <button
+                  class="star-button"
+                  type="button"
+                  data-rating="3"
+                  aria-label="3 Sterne"
+                >
+                  ★
+                </button>
+                <button
+                  class="star-button"
+                  type="button"
+                  data-rating="4"
+                  aria-label="4 Sterne"
+                >
+                  ★
+                </button>
+                <button
+                  class="star-button"
+                  type="button"
+                  data-rating="5"
+                  aria-label="5 Sterne"
+                >
+                  ★
+                </button>
+              </div>
+              <label class="rating-label" for="reviewText"
+                >Dein Kommentar
+                <span style="color: #91a0b4; font-weight: 400"
+                  >(optional)</span
+                ></label
+              >
+              <textarea
+                id="reviewText"
+                maxlength="600"
+                placeholder="Was gefällt dir oder was können wir verbessern?"
+              ></textarea>
+              <div class="form-footer">
+                <span class="auth-note" id="authNote"
+                  >Bitte anmelden, um eine Bewertung abzugeben.</span
+                >
+                <button
+                  class="submit-rating"
+                  id="submitRating"
+                  type="submit"
+                  disabled
+                >
+                  Bewertung senden
+                </button>
+              </div>
+            </fieldset>
+            <p
+              class="status-message"
+              id="formStatus"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+        </section>
+        <section class="rating-panel" aria-labelledby="reviewsHeading">
+          <div class="panel-heading">
+            <h2 id="reviewsHeading">Stimmen der Community</h2>
+          </div>
+          <div class="rating-summary">
+            <span class="average" id="averageRating">–</span
+            ><span
+              ><span class="average-stars" id="averageStars">☆☆☆☆☆</span
+              ><span class="review-count" id="reviewCount"
+                >Noch keine Bewertungen</span
+              ></span
+            >
+          </div>
+          <div class="review-list" id="reviewList" aria-live="polite">
+            <p class="empty-reviews">Bewertungen werden geladen …</p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <a href="../index.html">Zurück zur Startseite</a>
+    </footer>
+    <script type="module" src="../assets/js/pages/bewertungen.js"></script>
+    <script src="../assets/js/beta-banner.js"></script>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+/* Page-specific styles: highlights */
+.highlights-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid #ffffff18;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 85% 0, #314c2877, transparent 45%),
+    linear-gradient(135deg, #172638, #101a29);
+}
+.highlights-hero::after {
+  content: "⚽";
+  position: absolute;
+  right: clamp(14px, 5vw, 55px);
+  top: 50%;
+  transform: translateY(-50%) rotate(-12deg);
+  color: #c8f27914;
+  font-size: clamp(6rem, 17vw, 12rem);
+  pointer-events: none;
+}
+.highlights-hero h1 {
+  max-width: 700px;
+}
+.hero-copy {
+  max-width: 650px;
+  margin: 14px 0 0;
+  color: #aebcd0;
+  line-height: 1.65;
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 20px 0 14px;
+}
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #ffffff20;
+  border-radius: 999px;
+  background: #111b2a;
+  color: #b5c1d0;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.filter-button[aria-pressed="true"] {
+  border-color: #c8f27975;
+  background: #c8f27918;
+  color: #e3ffad;
+}
+.refresh-button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #c8f27955;
+  border-radius: 10px;
+  background: #c8f279;
+  color: #102013;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.refresh-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.match-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 14px;
+}
+.match-card {
+  overflow: hidden;
+  border: 1px solid #ffffff16;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #121e2e, #0f1926);
+  box-shadow: 0 16px 38px #0003;
+}
+.match-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px 11px;
+  color: #98a8bb;
+  font-size: 0.76rem;
+}
+.league-tag {
+  color: #c8f279;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.scoreline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px 17px;
+}
+.team {
+  font-weight: 800;
+  line-height: 1.35;
+}
+.team.away {
+  text-align: right;
+}
+.score {
+  padding: 9px 13px;
+  border: 1px solid #ffffff18;
+  border-radius: 10px;
+  background: #081321;
+  color: #e3ffad;
+  font-size: 1.24rem;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.events {
+  margin: 0 14px 14px;
+  border: 1px solid #ffffff12;
+  border-radius: 11px;
+  background: #ffffff04;
+}
+.events summary {
+  padding: 12px 13px;
+  color: #d4deea;
+  font-size: 0.85rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+.goal-list {
+  display: grid;
+  gap: 8px;
+  padding: 0 13px 13px;
+}
+.goal-event {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  color: #d3dce7;
+  font-size: 0.82rem;
+}
+.goal-minute {
+  color: #c8f279;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+.goal-score {
+  color: #96a6b9;
+  font-weight: 750;
+}
+.no-goals {
+  color: #92a1b4;
+  font-size: 0.82rem;
+}
+.data-note {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border: 1px solid #ffffff12;
+  border-radius: 12px;
+  color: #91a0b4;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+.data-note a {
+  color: #c8f279;
+}
+@media (max-width: 600px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .refresh-button {
+    width: 100%;
+  }
+  .match-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .scoreline {
+    gap: 7px;
+    padding-inline: 12px;
+  }
+  .score {
+    padding: 8px 9px;
+    font-size: 1.05rem;
+  }
+  .team {
+    font-size: 0.89rem;
+  }
+}

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GoalNews – Dashboard</title>
+
+    <link rel="stylesheet" href="../assets/css/pages/user-dashboard.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="logoSmall">GN</div>
+        <div id="homeBtn" class="iconBtn" title="Home">🏠</div>
+        <div id="liveBtn" class="iconBtn" title="Live">⚡</div>
+        <div
+          id="spinBtn"
+          class="iconBtn"
+          title="Daily Spin pausiert"
+          aria-disabled="true"
+        >
+          🎡
+        </div>
+        <div id="notifBtn" class="iconBtn" title="Spielhinweis">⚽</div>
+        <div id="profileBtn" class="iconBtn" title="Profil">👤</div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div class="profileHeader card" style="flex: 1">
+            <div class="avatar" id="avatar">U</div>
+            <div class="profileInfo">
+              <h3 id="username">User</h3>
+              <p id="subtitle" class="small">Willkommen zurück!</p>
+              <div
+                style="
+                  margin-top: 8px;
+                  display: flex;
+                  gap: 8px;
+                  align-items: center;
+                "
+              >
+                <div class="coinBadge" id="coinBadge">0</div>
+                <div style="min-width: 140px">
+                  <div class="small">
+                    Level <span id="userLevel">1</span> • XP
+                    <span id="userXP">0</span>
+                  </div>
+                  <div class="levelBar" style="margin-top: 6px">
+                    <i id="levelFill" style="width: 10%"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                margin-left: auto;
+                display: flex;
+                gap: 8px;
+                align-items: center;
+              "
+            >
+              <button id="logoutBtn" class="btn ghost">Logout</button>
+            </div>
+          </div>
+        </div>
+
+        <section class="grid">
+          <!-- Coins card -->
+          <div class="card">
+            <div class="h2">
+              <div>
+                <div class="title">💰 Coins</div>
+                <div class="small">Dein Kontostand</div>
+              </div>
+              <div style="text-align: right">
+                <div style="font-size: 13px; color: var(--muted)">
+                  ID: <span id="userIdShort">—</span>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                margin-top: 12px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div class="coinsBig">
+                <div class="coinBadge" id="coinsDisplay">0</div>
+                <div>
+                  <div style="font-weight: 700; font-size: 18px" id="coinsText">
+                    0 Coins
+                  </div>
+                  <div class="small">
+                    Coins und Käufe sind aus Sicherheitsgründen pausiert.
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <button id="openDailySpin" class="btn" disabled>
+                  Daily Spin pausiert
+                </button>
+                <button id="buyBreakingBtn" class="btn" disabled>
+                  🔥 Käufe pausiert
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lieblingsverein card -->
+          <div class="card">
+            <div class="title">⚽ Lieblingsverein</div>
+            <div class="small">Zeige deinen Verein & erhalte Updates</div>
+            <div
+              style="
+                margin-top: 12px;
+                display: flex;
+                gap: 8px;
+                align-items: center;
+              "
+            >
+              <input
+                id="favTeamInput"
+                class="input"
+                placeholder="z. B. Bayern München"
+                maxlength="80"
+              />
+              <button id="saveTeamBtn" class="btn">Speichern</button>
+            </div>
+            <div style="margin-top: 8px" class="small">
+              Dein Team: <b id="favTeamLabel">—</b>
+            </div>
+          </div>
+
+          <!-- Messages -->
+          <div class="card">
+            <div class="h2">
+              <div>
+                <div class="title">✉️ Nachrichten</div>
+                <div class="small">Persönliche Mitteilungen</div>
+              </div>
+            </div>
+            <div class="messages" id="personalMsg">
+              Noch keine Nachricht erhalten.
+            </div>
+          </div>
+
+          <!-- Breaking News -->
+          <div class="card">
+            <div class="title">🔥 Breaking News Leiste</div>
+            <div class="small">
+              Bestehende Freischaltungen bleiben erhalten. Neue Käufe sind
+              pausiert.
+            </div>
+            <div
+              style="
+                margin-top: 12px;
+                display: flex;
+                gap: 8px;
+                align-items: center;
+              "
+            >
+              <div id="breakingStatus" class="small">
+                Status: <b>Deaktiviert</b>
+              </div>
+              <div style="margin-left: auto">
+                <button id="openBreakingBtn" class="btn ghost">Öffnen</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="grid-column: span 3">
+            <div class="title">🛍️ GoalNews Coin-Shop</div>
+            <div class="small">
+              Coin-Käufe sind aus Sicherheitsgründen vorübergehend deaktiviert.
+            </div>
+            <div class="shop-grid">
+              <div class="shop-item">
+                <strong>✨ Goldener Profilrahmen</strong
+                ><span class="small"
+                  >Ein goldener Rahmen für deinen Avatar.</span
+                ><button
+                  class="btn shop-buy"
+                  data-item="goldFrame"
+                  data-cost="500"
+                  disabled
+                >
+                  Käufe pausiert
+                </button>
+              </div>
+              <div class="shop-item">
+                <strong>💎 Neon-Profilrahmen</strong
+                ><span class="small">Ein leuchtender grüner Avatar-Rahmen.</span
+                ><button
+                  class="btn shop-buy"
+                  data-item="neonFrame"
+                  data-cost="900"
+                  disabled
+                >
+                  Käufe pausiert
+                </button>
+              </div>
+              <div class="shop-item">
+                <strong>🏷️ GoalNews VIP-Titel</strong
+                ><span class="small">Zeigt den VIP-Titel in deinem Profil.</span
+                ><button
+                  class="btn shop-buy"
+                  data-item="vipTitle"
+                  data-cost="1200"
+                  disabled
+                >
+                  Käufe pausiert
+                </button>
+              </div>
+              <div class="shop-item">
+                <strong>🔥 Breaking-News-Leiste</strong
+                ><span class="small"
+                  >Schaltet die Breaking-News-Leiste frei.</span
+                ><button
+                  class="btn shop-buy"
+                  data-item="breakingNews"
+                  data-cost="3000"
+                  disabled
+                >
+                  Käufe pausiert
+                </button>
+              </div>
+            </div>
+            <p
+              class="status-msg"
+              id="shopStatus"
+              role="status"
+              aria-live="polite"
+            >
+              Coin-Shop und Coin-Verwaltung sind aus Sicherheitsgründen
+              pausiert.
+            </p>
+          </div>
+
+          <div class="card notification-card">
+            <div class="title">⚽ Nächstes Spiel deines Lieblingsvereins</div>
+            <div class="small" id="reminderStatus" style="margin-top: 8px">
+              Der Spielplan wird geladen …
+            </div>
+            <div
+              class="small"
+              id="favMatchNotice"
+              style="margin-top: 8px"
+            ></div>
+          </div>
+
+          <!-- Admin card -->
+          <div class="card" id="adminCard" style="display: none">
+            <div class="title">🔒 Admin Panel</div>
+            <div class="small">Benutzer verwalten & Nachrichten senden</div>
+            <div style="margin-top: 10px">
+              <div id="usersList" class="adminPanel"></div>
+              <div style="margin-top: 8px">
+                <div class="small">Aktion auf ausgewählten Benutzer:</div>
+                <input
+                  id="adminMsgInput"
+                  class="input"
+                  placeholder="Nachricht an Benutzer"
+                  maxlength="1000"
+                />
+                <button id="sendAdminMsgBtn" class="btn">
+                  Nachricht senden
+                </button>
+                <div style="display: flex; gap: 8px; margin-top: 8px">
+                  <input
+                    id="addCoinsInput"
+                    type="number"
+                    class="input"
+                    placeholder="Coins"
+                    disabled
+                  />
+                  <button id="addCoinsBtn" class="btn" disabled>
+                    Coin-Verwaltung pausiert
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badges & Level -->
+          <div class="card">
+            <div class="title">🏅 Badges & Level</div>
+            <div class="small">Sammle XP & schalte Badges frei</div>
+            <div
+              style="margin-top: 12px"
+              class="badges"
+              id="badgesContainer"
+            ></div>
+            <div style="margin-top: 12px" class="small">
+              Nächster Level in <span id="xpToNext">100</span> XP
+            </div>
+          </div>
+
+          <!-- Live games quick-link -->
+          <div class="card">
+            <div class="title">⚡ Live Ticker</div>
+            <div class="small">Alle Spiele & Minuten auf einen Blick</div>
+            <div style="margin-top: 12px">
+              <a href="../index.html" class="btn ghost">Zum Live Ticker</a>
+              <a
+                href="../index.html#liveGamesSection"
+                class="btn"
+                style="margin-left: 6px"
+                >Spiele</a
+              >
+            </div>
+          </div>
+
+          <!-- Profile settings & footer -->
+          <div class="card" style="grid-column: span 3">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div>
+                <div style="font-weight: 800">Einstellungen & Profil</div>
+                <div class="small">Ändere Username & Profilbild</div>
+              </div>
+              <div style="display: flex; gap: 8px">
+                <button id="changeNameBtn" class="btn ghost">
+                  Username ändern
+                </button>
+              </div>
+            </div>
+            <div
+              style="
+                margin-top: 12px;
+                display: flex;
+                gap: 12px;
+                align-items: center;
+              "
+            >
+              <input
+                id="changeNameInput"
+                class="input"
+                placeholder="Neuer Username"
+                maxlength="40"
+              />
+              <input
+                id="avatarInput"
+                type="file"
+                accept=".jpg,.jpeg,.png"
+                class="input"
+                style="max-width: 180px"
+              />
+              <button id="saveProfileBtn" class="btn">Speichern</button>
+            </div>
+          </div>
+        </section>
+
+        <div class="footer card">
+          © 2026 GoalNews · Dein persönliches Dashboard
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="../assets/js/pages/special.js"></script>
+    <script src="../assets/js/beta-banner.js"></script>
+  </body>
+</html>

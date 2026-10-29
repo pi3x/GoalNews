@@ -1,0 +1,70 @@
+/* Page-specific styles: naechste-spieltage */
+.fixture-groups {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+.matchday {
+  overflow: hidden;
+  border: 1px solid #ffffff14;
+  border-radius: 14px;
+  background: #ffffff04;
+}
+.matchday h3 {
+  margin: 0;
+  padding: 12px 14px;
+  border-bottom: 1px solid #ffffff12;
+  color: #d8ff91;
+  font-size: 0.9rem;
+}
+.match-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid #ffffff0d;
+}
+.match-row:last-child {
+  border-bottom: 0;
+}
+.match-date {
+  color: #aebcd0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+.match-teams {
+  font-weight: 700;
+  line-height: 1.45;
+}
+.match-location {
+  margin-top: 3px;
+  color: #8796aa;
+  font-size: 0.72rem;
+}
+.status {
+  color: #93a3b8;
+  font-size: 0.8rem;
+}
+.league-grid {
+  display: grid;
+  gap: 22px;
+}
+.source {
+  margin-top: 18px;
+  color: #91a0b4;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+.source a {
+  color: #d8ff91;
+}
+@media (max-width: 560px) {
+  .match-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .fixture-groups {
+    padding: 10px;
+  }
+}

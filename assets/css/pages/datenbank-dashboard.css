@@ -1,0 +1,36 @@
+/* Page-specific styles: datenbank-dashboard */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #1f1f1f;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00ff00;
+}
+main {
+  padding: 20px;
+}
+.collection-container {
+  margin-bottom: 30px;
+}
+.collection-container h2 {
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+.doc {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+.doc small {
+  color: #888;
+}

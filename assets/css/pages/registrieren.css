@@ -1,0 +1,209 @@
+/* Page-specific styles: registrieren */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  min-height: 100%;
+}
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 18% 12%, #1b4536 0, transparent 36%),
+    radial-gradient(ellipse at 90% 85%, #18334d 0, transparent 35%), #08111d;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #f5f8fc;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(#ffffff08 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+.container {
+  position: relative;
+  width: min(100%, 460px);
+  padding: clamp(26px, 6vw, 42px);
+  border: 1px solid #ffffff1c;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #142132f5, #0e1927f5);
+  text-align: center;
+  box-shadow:
+    0 28px 90px #0008,
+    inset 0 1px #ffffff12;
+  backdrop-filter: blur(14px);
+}
+.container::before {
+  content: "GOALNEWS  /  MITGLIEDERBEREICH";
+  display: block;
+  margin-bottom: 18px;
+  color: #b9e875;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+h2 {
+  margin-bottom: 25px;
+  font-size: clamp(1.85rem, 7vw, 2.35rem);
+  letter-spacing: -0.05em;
+}
+input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin: 12px 0;
+  padding: 0 16px;
+  border: 1px solid #ffffff20;
+  border-radius: 12px;
+  outline: none;
+  background: #091321;
+  color: #f5f8fc;
+  font: inherit;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+input:not([type="checkbox"])::placeholder {
+  color: #8391a2;
+}
+input:not([type="checkbox"]):focus {
+  border-color: #b9e875;
+  background: #0b1725;
+  box-shadow: 0 0 0 4px #b9e8751c;
+}
+.togglePwd {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  padding: 6px;
+  color: #bdc9d6;
+  cursor: pointer;
+  user-select: none;
+}
+.input-wrapper {
+  position: relative;
+}
+.input-wrapper input {
+  padding-right: 52px !important;
+}
+button {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 15px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #b9e875, #8fcf54);
+  color: #102013;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px #8fcf5430;
+  transition:
+    transform 0.18s,
+    filter 0.18s,
+    box-shadow 0.18s;
+}
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 12px 30px #8fcf5440;
+}
+button:active {
+  transform: translateY(0);
+}
+.link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #c5ee8a;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.link:hover {
+  color: #e4ffb5;
+  text-decoration: underline;
+}
+.auth-switch {
+  margin-top: 20px;
+  color: #aeb9c8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.success-note {
+  display: none;
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border: 1px solid #b9e87555;
+  border-radius: 11px;
+  background: #b9e87512;
+  color: #d8ff91;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: left;
+}
+.success-note.visible {
+  display: block;
+}
+.home-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: #c5ee8a;
+  font-size: 0.86rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+.home-link:hover {
+  color: #e4ffb5;
+  text-decoration: underline;
+}
+.email-optin {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 14px 0 4px;
+  color: #b7c3d0;
+  text-align: left;
+  font-size: 0.83rem;
+  line-height: 1.45;
+}
+.email-optin input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: #a9df69;
+}
+.email-optin label {
+  cursor: pointer;
+}
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+  }
+  .container {
+    border-radius: 20px;
+  }
+}

@@ -1,455 +1,152 @@
 <!doctype html>
 <html lang="de">
   <head>
-    <!-- Basics -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoalNews – Foot- & Fußballnews</title>
-
-    <!-- SEO -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1421" />
     <meta
       name="description"
-      content="GoalNews liefert dir die heißesten Fußball-News, Ergebnisse, Transfers und Highlights rund um die Welt!"
+      content="Willkommen bei der GoalNews Beta. Teste neue Funktionen und hilf uns mit deinem Feedback."
     />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://goalnews.website/" />
+    <title>GoalNews Beta – Willkommen</title>
 
-    <!-- Autor & Publisher -->
-    <meta name="author" content="GoalNews Redaktion" />
-    <meta name="publisher" content="GoalNews" />
-
-    <!-- Theme & Mobile -->
-    <meta name="theme-color" content="#1db954" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="GoalNews" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-    <!-- Icons -->
-    <link
-      rel="icon"
-      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
-      type="image/jpeg"
-    />
-    <link rel="apple-touch-icon" href="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json" />
-
-    <!-- Open Graph (Social Media) -->
-    <meta property="og:title" content="GoalNews – Foot- & Fußballnews" />
-    <meta
-      property="og:description"
-      content="Liveticker, Ergebnisse und Highlights aus der Fußballwelt – alles bei GoalNews."
-    />
-    <meta property="og:image" content="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
-    <meta property="og:url" content="https://goalnews.website/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="de_DE" />
-
-    <!-- Google Analytics 4 -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-C1HQFFK8NB"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-C1HQFFK8NB", { anonymize_ip: true });
-    </script>
+    <link rel="stylesheet" href="assets/css/pages/index.css" />
   </head>
-
   <body>
-    <!-- Header -->
-    <header>
-      <div class="logo">GoalNews</div>
+    <div class="wrap">
+      <div class="topline">
+        <div class="brand">Goal<span>News</span></div>
+        <div class="label">
+          <i class="pulse" aria-hidden="true"></i> BETA-PHASE
+        </div>
+      </div>
 
-      <!-- Hamburger -->
-      <button id="burger" class="menu" aria-label="Menü anzeigen">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <!-- Side Menu -->
-      <nav id="sideMenu" class="side-menu">
-        <ul>
-          <li><a href="highlights.html">Bundesliga Highlights</a></li>
-          <li><a href="ueber_uns.html">About Us</a></li>
-          <li><a href="experten-tipp.html">Experten-Tipp</a></li>
-          <li><a href="live-football.html">Football Liveticker</a></li>
-          <li><a href="login.html">Login/Registrieren</a></li>
-          <li><a href="bundesliga.html">Bundesliga</a></li>
-          <li><a href="2liga.html">2. Bundesliga</a></li>
-          <li><a href="comments.html">Kommentar Forum</a></li>
-          <li><a href="feedback.html">Helfen Sie uns!</a></li>
-          <li><a href="coins.html">Was sind COINS</a></li>
-          <li><a href="download.html">Downloads/PDFs</a></li>
-          <li>
-            <a href="https://whatsapp.com/channel/0029Vb7PDwN8V0toB3ATWZ1Y"
-              >WhatsApp</a
+      <main>
+        <section class="hero">
+          <p class="eyebrow">Früher dabei. Gemeinsam besser.</p>
+          <h1>Willkommen bei der<br /><span>GoalNews Beta.</span></h1>
+          <p class="intro">
+            Schön, dass du beim Testen dabei bist! Hier probierst du neue und
+            überarbeitete Funktionen aus, bevor sie für alle bereitstehen. Dein
+            Feedback hilft unserem Entwicklerteam, GoalNews weiter zu
+            verbessern.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#beta-lesen"
+              >Hinweise lesen und starten <span aria-hidden="true">↓</span></a
             >
-          </li>
-        </ul>
-      </nav>
-    </header>
+            <a class="button secondary" href="pages/feedback.html"
+              >Einen Bug melden</a
+            >
+          </div>
+        </section>
 
-    <!-- Breaking News -->
-    <div id="breakingNews" class="locked">
-      <div class="news-wrapper">
-        <span class="news-item">
-          Die Seattle Seahawks holen sich den 2. Superbowl in ihrer
-          Verinsgeschichte und gewinnen mit 29:13 gegen die New England
-          Patriots!
-        </span>
-        <span class="news-item">
-          Der BVB mit klarer Machtdemonstration gegen Mainz 05 (4:0)!
-        </span>
-        <span class="news-item">
-          Gemischte meinungen zu Bad Bunny Halftimeshow beim Super Bowl!
-        </span>
-        <span class="news-item"
-          >Können die Bayern ihre Führung gegen Bremen ausbauen?</span
+        <section class="grid" aria-label="Informationen zur Beta">
+          <article class="card">
+            <div class="icon" aria-hidden="true">⚙</div>
+            <h2>Was ist die Beta?</h2>
+            <p>
+              Eine Testversion von GoalNews. Einzelne Bereiche können noch
+              unfertig sein, sich ändern oder Fehler enthalten. Das ist während
+              der Testphase normal.
+            </p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🐞</div>
+            <h2>Fehler gefunden?</h2>
+            <p>
+              Bitte melde Bugs mit einer kurzen Beschreibung: Was hast du
+              gemacht, was ist passiert und was hättest du erwartet? So können
+              wir den Fehler leichter nachstellen.
+            </p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">💬</div>
+            <h2>Dein Feedback zählt</h2>
+            <p>
+              Auch Ideen und Hinweise zu Bedienung, Darstellung oder neuen
+              Funktionen sind willkommen. Danke, dass du dir Zeit fürs Testen
+              nimmst.
+            </p>
+          </article>
+        </section>
+
+        <aside class="notice" aria-label="Wichtiger Datenbankhinweis">
+          <div class="notice-icon" aria-hidden="true">⚠️</div>
+          <div>
+            <h2>Bitte vor dem Testen beachten</h2>
+            <p>
+              Der Beta-Server verwendet die
+              <strong>echte GoalNews-Datenbank</strong>. Bitte keine privaten
+              oder sensiblen Informationen und keine absichtlichen Test-, Spam-
+              oder unsinnigen Einträge hinterlassen. Änderungen und Einsendungen
+              können für andere Nutzer sichtbar sein.
+            </p>
+          </div>
+        </aside>
+
+        <section
+          class="read-gate"
+          id="beta-lesen"
+          aria-labelledby="read-heading"
         >
-      </div>
-    </div>
-
-    <!-- Countdown -->
-    <h2>⏱️ 23. Spieltag startet in:</h2>
-    <div id="countdown">lade...</div>
-
-    <!-- Bundesliga Spieltag -->
-    <div class="matches" style="text-align: center; margin-top: 40px">
-      <h2>🏆 Bundesliga-Spieltag 23</h2>
-      <h3>23. Spieltag (20.2.2026 - 22.2.2026)</h3>
-      <div>
-        <h4>Freitag, 20.2.2026:</h4>
-        <p>FSV Mainz 05 20:30 Hamburger SV</p>
-        <h4>Samstag, 21.2.2026:</h4>
-        <p>
-          FC Bayern München 15:30 Eintracht Frankfurt<br />
-          VfL Wolfsburg 15:30 FC Augsburg<br />
-          FC Union Berlin 15:30 Bayer 04 Leverkusen<br />
-          FC Köln 15:30 TSG 1899 Hoffenheim<br />
-          <strong class="topspiel"
-            >Topspiel: RB Leipzig 18:30 Borussia Dortmund</strong
+          <h2 id="read-heading">Vor dem Start kurz lesen</h2>
+          <p>
+            Scrolle im Hinweisfeld bis ganz nach unten. Danach kannst du
+            bestätigen und den Beta-Server öffnen.
+          </p>
+          <div
+            class="reading-box"
+            id="readingBox"
+            tabindex="0"
+            aria-label="Beta-Hinweise zum Durchlesen"
           >
-        </p>
-        <h4>Sonntag, 22.2.2026:</h4>
-        <p>
-          SC Freiburg 15:30 Bor. M'gladbach<br />
-          FC St. Pauli 17:30 SV Werder Bremen<br />
-          FC Heidenheim 19:30 VfB Stuttgart
-        </p>
-      </div>
+            <h3>Wichtige Beta-Regeln</h3>
+            <p>
+              Du nutzt eine unfertige Testversion. Funktionen und Inhalte können
+              sich ändern oder Fehler enthalten. Bitte melde Fehler über „Einen
+              Bug melden“ und beschreibe möglichst genau, wie sie aufgetreten
+              sind.
+            </p>
+            <p>
+              Der Beta-Server verbindet sich mit der echten GoalNews-Datenbank.
+              Deine Einträge können daher für andere Nutzer sichtbar sein.
+              Erstelle keine absichtlichen Test-, Spam- oder unsinnigen Inhalte
+              und gib keine privaten oder sensiblen Informationen ein.
+            </p>
+            <p>
+              Mit dem Öffnen des Servers bestätigst du, dass du diese Hinweise
+              gelesen hast und beim Testen sorgfältig mit den echten Daten
+              umgehst. Viel Spaß — das GoalNews-Entwicklerteam freut sich auf
+              dein Feedback!
+            </p>
+          </div>
+          <label class="confirm-row"
+            ><input id="readConfirm" type="checkbox" disabled /><span
+              >Ich habe die Hinweise bis zum Ende gelesen und verstanden.</span
+            ></label
+          >
+          <p class="gate-status" id="gateStatus" aria-live="polite">
+            Bitte scrolle im Hinweisfeld bis zum Ende.
+          </p>
+          <button
+            class="button primary launch-button"
+            id="launchBeta"
+            type="button"
+            disabled
+          >
+            Bestätigen und Beta-Server öffnen <span aria-hidden="true">↗</span>
+          </button>
+        </section>
+      </main>
+
+      <footer>
+        <strong>Viel Spaß beim Testen!</strong><br />Das GoalNews-Entwicklerteam
+        freut sich auf eure Rückmeldungen.<br />Danke, dass ihr helft, GoalNews
+        besser zu machen. ⚽
+      </footer>
     </div>
-
-    <!-- Live Spiele -->
-    <section id="liveGamesSection">
-      <h2>Live Spiele</h2>
-      <p>Alle Spiele sind live und im Gange</p>
-      <p>Durchgestrichene Spiele sind beendet</p>
-      <p>
-        Unser Experten Tipp Gibt es auf unserer
-        <a href="experten-tipp.html">Experten Seite</a>
-      </p>
-      <table class="matches-table">
-        <thead>
-          <tr>
-            <th>Heimteam</th>
-            <th>Gastteam</th>
-            <th>Ergebnis / Zeit</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          <tr>
-            <td colspan="3">Lade Spiele...</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <span class="footer-copy"
-        >© 2026 GoalNews | Built by piex_ and EliXTech</span
-      >
-      <nav class="footer-links">
-        <a href="impressum.html">Impressum</a> | <a href="agb.html">AGB</a> |
-        <a href="datenschutz.html">Datenschutz</a>
-      </nav>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-      // ===== Countdown Timer =====
-      const countdownEl = document.getElementById("countdown");
-      const targetDate = new Date("2026-02-20T20:30:00");
-
-      function updateCountdown() {
-        const now = new Date();
-        const diff = targetDate - now;
-
-        if (diff <= 0) {
-          countdownEl.textContent = "Der Spieltag hat begonnen!";
-          return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
-
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    </script>
-    <script type="module">
-      // ===== Firebase & Live Games Setup =====
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-      import {
-        getFirestore,
-        collection,
-        doc,
-        onSnapshot,
-      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-      import {
-        getAuth,
-        onAuthStateChanged,
-        setPersistence,
-        browserLocalPersistence,
-      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-
-      const firebaseConfig = {
-        apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
-        authDomain: "goalnewsde-community.firebaseapp.com",
-        projectId: "goalnewsde-community",
-        storageBucket: "goalnewsde-community.firebasestorage.app",
-        messagingSenderId: "134523022055",
-        appId: "1:134523022055:web:4f35ed7812d06e4fb55042",
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-      const auth = getAuth(app);
-      setPersistence(auth, browserLocalPersistence);
-
-      // ===== Maintenance Redirect =====
-      function watchMaintenance() {
-        const docRef = doc(db, "settings", "main");
-        onSnapshot(docRef, (snap) => {
-          if (!snap.exists())
-            return console.error("Einstellungen nicht gefunden");
-          const data = snap.data();
-          if (data.maintenance) window.location.href = "wartungsarbeiten.html";
-        });
-      }
-      watchMaintenance();
-
-      // ===== Breaking News Toggle =====
-      const breakingEl = document.getElementById("breakingNews");
-      onAuthStateChanged(auth, (user) => {
-        if (!user) {
-          breakingEl.classList.add("locked");
-          return;
-        }
-        const userRef = doc(db, "users", user.uid);
-        onSnapshot(userRef, (snap) => {
-          const data = snap.data() || {};
-          breakingEl.classList.toggle("locked", !data.breakingNews);
-        });
-      });
-
-      // ===== Live Games Rendering =====
-      const tableBody = document.getElementById("tableBody");
-      const matchTimers = new Map();
-
-      // Map für bestehende Tabellenzeilen
-      const matchRows = new Map();
-
-      async function loadBundesligaMatches() {
-        try {
-          const res = await fetch("https://api.openligadb.de/getmatchdata/bl1");
-          const matches = await res.json();
-
-          if (!matches.length) {
-            tableBody.innerHTML =
-              "<tr><td colspan='3'>Keine Spiele gefunden</td></tr>";
-            return;
-          }
-
-          matches.forEach(updateOrCreateRow);
-        } catch (err) {
-          console.error(err);
-          tableBody.innerHTML =
-            "<tr><td colspan='3'>Fehler beim Laden der Daten</td></tr>";
-        }
-      }
-
-      function updateOrCreateRow(match) {
-        const id = match.matchID;
-
-        const home = match.team1.teamName;
-        const away = match.team2.teamName;
-
-        const goals = match.goals || [];
-        const lastGoal = goals[goals.length - 1] || {};
-        const score = goals.length
-          ? `${lastGoal.scoreTeam1} : ${lastGoal.scoreTeam2}`
-          : "- : -";
-
-        // --- Status korrekt bestimmen ---
-        let status = "Noch nicht gestartet";
-        let minute = "";
-
-        const start = new Date(match.matchDateTime);
-        const now = new Date();
-
-        const results = match.matchResults || [];
-        const finalResult = results.find((r) => r.resultTypeID === 2);
-
-        // --- 1) Spiel beendet (sicher) ---
-        if (finalResult) {
-          status = "Beendet";
-        }
-
-        // --- 2) Live (Startzeit vorbei, aber kein Endstand) ---
-        else if (now > start) {
-          status = "Live";
-
-          if (match.matchMinute) {
-            minute = `${match.matchMinute}'`;
-          } else {
-            const diff = Math.floor((now - start) / 60000);
-            minute = diff < 90 ? `${diff}'` : "90+";
-          }
-        }
-
-        // --- 3) Notfall: Keine Daten verfügbar ---
-        const endTime = new Date(start.getTime() + 120 * 60000); // 2h nach Start
-
-        if (
-          now > endTime && // Spiel müsste vorbei sein
-          goals.length === 0 && // keine Tore
-          !finalResult // kein Endstand
-        ) {
-          status = "Keine Daten verfügbar";
-          minute = "";
-        }
-
-        let row = matchRows.get(id);
-
-        // Falls die Reihe noch nicht existiert → erstellen
-        if (!row) {
-          row = document.createElement("tr");
-          row.innerHTML = `
-      <td class="home"></td>
-      <td class="away"></td>
-      <td class="info"></td>
-    `;
-          tableBody.appendChild(row);
-          matchRows.set(id, row);
-        }
-
-        // Inhalte aktualisieren (ohne Flackern)
-        row.querySelector(".home").innerHTML = `
-    <strong>${home}</strong><br>
-    <small>${match.location?.locationCity || ""}</small>
-  `;
-
-        row.querySelector(".away").innerHTML = `
-    <strong>${away}</strong><br>
-    <small>${match.location?.locationStadium || ""}</small>
-  `;
-
-        row.querySelector(".info").innerHTML = `
-    <div><strong>${score}</strong> ${minute}</div>
-    <div><small>${status}</small></div>
-    <div class="events">${renderEvents(goals)}</div>
-  `;
-      }
-
-      function renderEvents(goals) {
-        if (!goals.length) return "";
-
-        return goals
-          .map(
-            (g) => `
-      <div class="event">
-        ${g.matchMinute}' – 
-        <strong>${g.goalGetterName}</strong>
-        (${g.scoreTeam1}:${g.scoreTeam2})
-      </div>
-    `,
-          )
-          .join("");
-      }
-
-      // Alle 10 Sekunden aktualisieren
-      loadBundesligaMatches();
-      setInterval(loadBundesligaMatches, 10000);
-    </script>
-
-    <script>
-      // ===== Cookie Consent + Google Tag Manager & GA4 =====
-      (function () {
-        const COOKIE_KEY = "cookieConsent_v1";
-        const GTM_ID = "GTM-XXXXXXX";
-        function loadGTM() {
-          if (window.gtmLoaded) return;
-          window.gtmLoaded = true;
-
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            "gtm.start": new Date().getTime(),
-            event: "gtm.js",
-          });
-
-          const gtmScript = document.createElement("script");
-          gtmScript.async = true;
-          gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-          document.head.appendChild(gtmScript);
-        }
-
-        function initCookieBanner() {
-          const banner = document.getElementById("cookieBanner");
-          const acceptBtn = document.getElementById("cookieAccept");
-          const declineBtn = document.getElementById("cookieDecline");
-          if (!banner || !acceptBtn || !declineBtn) return;
-
-          const consent = localStorage.getItem(COOKIE_KEY);
-          if (!consent) banner.style.display = "block";
-          else if (consent === "accepted") loadGTM();
-
-          acceptBtn.addEventListener("click", () => {
-            localStorage.setItem(COOKIE_KEY, "accepted");
-            banner.style.display = "none";
-            loadGTM();
-          });
-          declineBtn.addEventListener("click", () => {
-            localStorage.setItem(COOKIE_KEY, "declined");
-            banner.style.display = "none";
-          });
-        }
-
-        document.addEventListener("DOMContentLoaded", initCookieBanner);
-      })();
-
-      // ===== Hamburger Toggle =====
-      const burger = document.getElementById("burger");
-      const sideMenu = document.getElementById("sideMenu");
-      burger.addEventListener("click", () => {
-        burger.classList.toggle("active");
-        sideMenu.classList.toggle("active");
-      });
-    </script>
+    <script src="assets/js/pages/index.js"></script>
+    <script src="assets/js/beta-banner.js"></script>
   </body>
 </html>

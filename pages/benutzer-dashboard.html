@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GoalNews – Benutzer Dashboard</title>
+
+    <link rel="stylesheet" href="../assets/css/pages/benutzer-dashboard.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Willkommen im Dashboard</h2>
+
+      <p><b id="username">User</b>, schön dass du da bist!</p>
+
+      <!-- Lieblingsverein -->
+      <label>Dein Lieblingsverein:</label>
+      <input id="favTeamInput" placeholder="z. B. Bayern München" />
+      <button id="saveTeamBtn">Verein speichern</button>
+
+      <div class="successMsg" id="saveTeamMsg" style="display: none">
+        ✔ Lieblingsverein gespeichert!
+      </div>
+
+      <!-- Persönliche Nachricht -->
+      <label>Deine Nachricht:</label>
+      <div
+        id="personalMsg"
+        style="
+          padding: 12px;
+          background: #f0f0f0;
+          border-radius: 6px;
+          margin-top: 5px;
+        "
+      >
+        Noch keine Nachricht erhalten.
+      </div>
+
+      <!-- ADMIN BEREICH -->
+      <div class="adminBox" id="adminBox">
+        <h3>🔒 Admin – Nachricht an Benutzer senden</h3>
+
+        <label>User UID:</label>
+        <input id="targetUID" placeholder="UID eingeben" />
+
+        <label>Nachricht:</label>
+        <input id="adminMsgInput" placeholder="Nachricht schreiben" />
+
+        <button id="sendMsgBtn">Nachricht senden</button>
+
+        <div class="successMsg" id="msgSent" style="display: none">
+          ✔ Nachricht verschickt!
+        </div>
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="../assets/js/pages/benutzer-dashboard.js"
+    ></script>
+    <script src="../assets/js/beta-banner.js"></script>
+  </body>
+</html>

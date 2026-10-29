@@ -1,164 +1,25 @@
 <!doctype html>
 <html lang="de">
   <head>
-    <link
-      rel="icon"
-      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
-      type="image/jpeg"
-    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seite nicht gefunden – GoalNews</title>
     <link
       rel="icon"
-      href="https://i.ibb.co/21R6p75W/Logo-1.jpg"
-      type="image/jpeg"
+      href="assets/images/goalnews-logo.webp"
+      type="image/webp"
     />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Inter", "Poppins", sans-serif;
-      }
 
-      body {
-        background: linear-gradient(to bottom right, #f7f9f8, #e9eceb);
-        color: #111;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        text-align: center;
-        overflow: hidden;
-        position: relative;
-      }
-
-      /* halbtransparentes Logo als Hintergrund-Wasserzeichen */
-      .bg-logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-10deg);
-        opacity: 0.06;
-        width: 65%;
-        max-width: 600px;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      img.logo {
-        width: 90px;
-        margin-bottom: 25px;
-        opacity: 0.95;
-        z-index: 2;
-      }
-
-      h1 {
-        font-size: 7rem;
-        font-weight: 800;
-        color: #00a33f;
-        margin-bottom: 10px;
-        z-index: 2;
-      }
-
-      h2 {
-        font-size: 1.8rem;
-        font-weight: 500;
-        color: #333;
-        margin-bottom: 25px;
-        z-index: 2;
-      }
-
-      p {
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 35px;
-        max-width: 420px;
-        z-index: 2;
-      }
-
-      a.button {
-        display: inline-block;
-        padding: 14px 36px;
-        background-color: #00a33f;
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 14px rgba(0, 163, 63, 0.3);
-        z-index: 2;
-        position: relative;
-      }
-
-      a.button:hover {
-        background-color: #00973b;
-        box-shadow: 0 6px 18px rgba(0, 163, 63, 0.45);
-        transform: translateY(-2px);
-      }
-
-      footer {
-        position: absolute;
-        bottom: 15px;
-        font-size: 0.9rem;
-        color: #777;
-        z-index: 2;
-      }
-
-      @media (max-width: 600px) {
-        h1 {
-          font-size: 5rem;
-        }
-        h2 {
-          font-size: 1.4rem;
-        }
-        .bg-logo {
-          width: 90%;
-        }
-      }
-      /* ===== Footer ===== */
-      footer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        padding: 15px 10px;
-        background-color: rgba(0, 0, 0, 0);
-        color: #fff;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        text-align: center;
-      }
-
-      footer a {
-        color: #ffcc00;
-        text-decoration: none;
-      }
-
-      footer a:hover {
-        text-decoration: underline;
-      }
-
-      @media (max-width: 480px) {
-        footer {
-          flex-direction: row;
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/pages/404.css" />
   </head>
   <body>
     <img
-      src="https://i.ibb.co/21R6p75W/Logo-1.jpg"
+      src="assets/images/goalnews-logo.webp"
       alt="GoalNews Wasserzeichen"
       class="bg-logo"
     />
     <img
-      src="https://i.ibb.co/21R6p75W/Logo-1.jpg"
+      src="assets/images/goalnews-logo.webp"
       alt="GoalNews Logo"
       class="logo"
     />
@@ -168,14 +29,8 @@
       Die Seite, die du suchst, wurde möglicherweise verschoben oder existiert
       nicht mehr.
     </p>
-    <a class="button" href="https://goalnews.website">Zur Startseite</a>
-
-    <!-- Footer -->
-    <footer>
-      © 2026 GoalNews | Built by piex>_ and EliXTech<br />
-      <a href="https://goalnews.website/Impressum.html">Impressum</a> |
-      <a href="https://goalnews.website/agb.html">AGB</a> |
-      <a href="https://goalnews.website/datenschutz.html">Datenschutz</a>
-    </footer>
+    <a class="button" href="index.html">Zur Startseite</a>
+    <footer>© 2025 GoalNews – Alle Rechte vorbehalten</footer>
+    <script src="assets/js/beta-banner.js"></script>
   </body>
 </html>

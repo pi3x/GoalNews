@@ -1,0 +1,59 @@
+/* Page-specific styles: adventskalender */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom, #001 0%, #111 100%);
+    margin:0; padding:0; text-align:center; color:white; overflow-x:hidden;
+}
+.container {
+    max-width: 800px;
+    background: rgba(0,0,0,0.6);
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+h1 { color: #FFD700; font-size: 2.2em; text-shadow: 0 0 10px #fff; }
+#coinDisplay { font-size: 1.5em; margin-bottom: 20px; color:#1db954; }
+.calendar { display:flex; flex-wrap: wrap; justify-content:center; gap:15px; margin-top:20px; }
+.day {
+    width: 70px; height:70px; background: #8B0000; color: gold;
+    display:flex; justify-content:center; align-items:center;
+    font-weight:bold; border-radius:15px; cursor:pointer;
+    position:relative; box-shadow: 0 0 10px #fff;
+    transition: transform 0.3s, background 0.3s;
+}
+.day:hover { transform: scale(1.1); background: #B22222; }
+.day.opened { background: green; color:white; cursor:default; box-shadow:0 0 20px #1db954; }
+.tooltip { position:absolute; top:-40px; left:50%; transform:translateX(-50%);
+    background:#333; padding:5px 10px; border-radius:5px; font-size:0.8em; display:none; }
+.day.opened .tooltip { display:block; animation: pop 0.5s ease forwards; }
+@keyframes pop { 0% {transform:scale(0.5);opacity:0;} 100%{transform:scale(1);opacity:1;} }
+#result { margin-top:20px; font-size:1.2em; color:#FFD700; text-shadow:0 0 5px #fff; }
+.lights { width:100%; display:flex; justify-content:space-around; margin-bottom:20px; }
+.light { width:15px; height:15px; border-radius:50%; box-shadow:0 0 10px #fff; animation: blink 1.5s infinite alternate; }
+.light.red { background:red; }
+.light.yellow { background:yellow; }
+.light.green { background:green; }
+.light.blue { background:blue; }
+@keyframes blink { 0% {opacity:0.3;} 50%{opacity:1;} 100%{opacity:0.3;} }
+/* Schnee */
+.snowflake {
+    position: fixed; top:-10px; color:white; font-size:1em;
+    animation-name: fall; animation-iteration-count: infinite;
+    animation-timing-function: linear; z-index:9999;
+}
+@keyframes fall { 0% {transform:translateY(0) rotate(0deg);} 100% {transform:translateY(100vh) rotate(360deg);} }
+
+.logo{
+  width: 180px;                  /* Größe */
+  border-radius: 20px;           /* Ecken abrunden */
+  transition: 0.3s ease;         /* weiche Animation */
+  object-fit: cover;             /* passt perfekt in den Rahmen */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* moderner Schatten */
+}
+
+/* Beim Drüberfahren */
+.logo:hover {
+  transform: scale(1.05);        /* leicht größer */
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}

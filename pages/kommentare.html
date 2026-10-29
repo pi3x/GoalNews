@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08111f">
+  <title>Kommentarforum – GoalNews</title>
+  <link rel="stylesheet" href="../assets/css/league-table.css">
+  
+<link rel="stylesheet" href="../assets/css/pages/kommentare.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">Goal<span>News</span></a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a href="../index.html">Startseite</a>
+      <a href="bewertungen.html">Bewertungen</a>
+      <a href="special.html">Dashboard</a>
+    </nav>
+  </header>
+  <main>
+    <section class="forum-hero">
+      <p class="eyebrow">Austausch unter Fußballfans</p>
+      <h1>Kommentarforum</h1>
+      <p>Diskutiere Spieltage, Teams und Fußballthemen mit der Community. Kommentare schreiben können angemeldete Mitglieder.</p>
+    </section>
+    <div class="forum-layout">
+      <section class="forum-panel" aria-labelledby="feedHeading">
+        <div class="panel-heading"><h2 id="feedHeading">Community-Diskussion</h2><span class="updated">Live aktualisiert</span></div>
+        <div class="comment-box">
+          <textarea id="commentInput" placeholder="Was möchtest du mit der Community teilen?" rows="4" maxlength="1000" disabled></textarea>
+          <div class="comment-actions">
+            <span class="auth-hint" id="authHint">Zum Schreiben bitte <a href="anmelden.html">anmelden</a>.</span>
+            <button id="sendComment" type="button" disabled>Kommentar posten</button>
+          </div>
+        </div>
+        <div id="commentsContainer" aria-live="polite"><p class="empty-comments">Kommentare werden geladen …</p></div>
+      </section>
+      <aside class="forum-panel forum-side">
+        <h2>Wie findest du GoalNews?</h2>
+        <p>Gib der Seite eine Sternebewertung. Du kannst optional einen kurzen Kommentar hinzufügen. Bewerten können nur angemeldete Mitglieder.</p>
+        <a class="panel-link" href="bewertungen.html">⭐ Zur Bewertungsseite</a>
+      </aside>
+    </div>
+  </main>
+  <footer class="footer"><a href="../index.html">Zurück zur Startseite</a></footer>
+
+  <script type="module" src="../assets/js/pages/kommentare.js"></script>
+  <script src="../assets/js/beta-banner.js"></script>
+</body>
+</html>

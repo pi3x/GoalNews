@@ -1,0 +1,10 @@
+/* Page-specific styles: zweite-bundesliga */
+.qualify-top td:first-child {
+  box-shadow: inset 3px 0 #718cff;
+}
+.qualify-mid td:first-child {
+  box-shadow: inset 3px 0 #ed9f52;
+}
+.qualify-bottom td:first-child {
+  box-shadow: inset 3px 0 #df6675;
+}

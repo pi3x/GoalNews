@@ -1,0 +1,61 @@
+/* Page-specific styles: vereins-news */
+.notice {
+  margin: 0 0 22px;
+  padding: 18px 20px;
+  border: 1px solid #c8f27930;
+  border-radius: 16px;
+  background: #c8f2790b;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+.notice strong {
+  color: #e3ffad;
+}
+.match-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+.match-card {
+  padding: 16px;
+  border: 1px solid #ffffff14;
+  border-radius: 13px;
+  background: #ffffff05;
+}
+.match-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #a5b2c4;
+  font-size: 0.78rem;
+}
+.match-teams {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.match-score {
+  margin-top: 8px;
+  color: #e3ffad;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.empty {
+  grid-column: 1/-1;
+  padding: 18px;
+  color: #aebcd0;
+  text-align: center;
+}
+.auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+@media (max-width: 650px) {
+  .match-meta {
+    flex-direction: column;
+  }
+}

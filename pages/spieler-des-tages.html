@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spieler der Woche</title>
+
+<link rel="stylesheet" href="../assets/css/pages/spieler-des-tages.css">
+</head>
+<body>
+
+<header>
+    <h1>Spieler der Woche</h1>
+    <p>powered by GoalNewsDE</p>
+</header>
+
+<div class="container" id="playerContainer"></div>
+
+<div style="text-align:center;">
+    <h3>Wähle deinen Spieler:</h3>
+    <div id="voteButtons"></div>
+    <p>Abstimmen ist vorübergehend pausiert, damit Stimmen nicht über den Browser manipuliert werden können.</p>
+</div>
+
+<div id="adminPanel" class="admin-panel" style="display:none;">
+    <h3>Admin Panel</h3>
+    <input type="text" id="newPlayerName" placeholder="Spielername">
+    <input type="text" id="newPlayerImg" placeholder="Bild-URL">
+    <input type="text" id="newPlayerStats" placeholder="Stats z.B. 2 Tore">
+    <button id="addPlayerBtn">Spieler hinzufügen</button>
+</div>
+
+<footer>
+    <p>© 2025 GoalNewsDE • <a href="../index.html">Zurück zur Startseite</a></p>
+</footer>
+
+<script type="module" src="../assets/js/pages/spieler-des-tages.js"></script>
+
+  <script src="../assets/js/beta-banner.js"></script>
+</body>
+</html>
