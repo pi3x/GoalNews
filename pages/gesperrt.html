@@ -53,6 +53,19 @@
         <div id="accountState" role="status" aria-live="polite">
           Kontostatus wird geprüft …
         </div>
+        <form id="deleteReauthForm" class="reauth" hidden>
+          <h2>Für die Kontolöschung erneut anmelden</h2>
+          <p>Dein Konto bleibt bestehen, bis du die Löschung bestätigst.</p>
+          <label for="deleteEmail">E-Mail-Adresse</label>
+          <input id="deleteEmail" type="email" autocomplete="username" required />
+          <label for="deletePassword">Passwort</label>
+          <input id="deletePassword" type="password" autocomplete="current-password" required />
+          <p id="deleteReauthError" class="form-error" role="alert"></p>
+          <div class="actions">
+            <button class="button" type="submit">Anmelden und löschen</button>
+            <button class="button secondary" id="cancelDeleteReauth" type="button">Abbrechen</button>
+          </div>
+        </form>
         <div class="actions">
           <button
             class="button"

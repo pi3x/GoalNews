@@ -63,7 +63,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
           getDoc(doc(db, "accountDeletionLogs", user.uid)),
         ]);
         if ((userSnapshot.exists() && userSnapshot.data().banned === true) || (!userSnapshot.exists() && deletionRequest.exists())) {
-          window.location.href = "banned%20screen.html";
+          window.location.href = "gesperrt.html";
           return;
         }
         if (!userSnapshot.exists()) {
