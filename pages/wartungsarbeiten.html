@@ -1,34 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b1220">
-<meta name="description" content="GoalNews ist aufgrund geplanter Wartungsarbeiten vorübergehend nicht erreichbar.">
-<title>Serverwartung – GoalNews</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1220" />
+    <meta
+      name="description"
+      content="GoalNews ist aufgrund geplanter Wartungsarbeiten vorübergehend nicht erreichbar."
+    />
+    <title>Serverwartung – GoalNews</title>
+    <link
+      rel="icon"
+      type="image/webp"
+      href="https://imagepaste.org/i/fqs6zz8d.webp"
+    />
+    <link rel="stylesheet" href="../assets/css/pages/wartungsarbeiten.css" />
+  </head>
+  <body>
+    <main class="card">
+      <p class="brand">Goal<span>News</span></p>
+      <div class="status-pill">
+        <span class="status-dot" aria-hidden="true"></span>Geplante Wartung
+      </div>
+      <div class="icon" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="4" width="18" height="6" rx="1.5"></rect>
+          <rect x="3" y="14" width="18" height="6" rx="1.5"></rect>
+          <path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"></path>
+        </svg>
+      </div>
+      <h1>Wir warten unsere Server</h1>
+      <p class="intro">
+        GoalNews ist gerade vorübergehend nicht erreichbar. Unsere Server werden
+        gewartet, damit anschließend wieder alles zuverlässig für dich läuft.
+      </p>
+      <hr class="divider" />
+      <p class="detail">
+        Die Wartung läuft bereits. Bitte schau in wenigen Minuten noch einmal
+        vorbei. Vielen Dank für deine Geduld.
+      </p>
+      <div class="loader" aria-hidden="true"></div>
+      <button class="check-btn" id="checkBtn" type="button">
+        Verfügbarkeit erneut prüfen
+      </button>
+      <p class="status-msg" id="statusMsg" role="status" aria-live="polite"></p>
+    </main>
 
-<link rel="stylesheet" href="../assets/css/pages/wartungsarbeiten.css">
-</head>
-<body>
-<main class="card">
-  <p class="brand">Goal<span>News</span></p>
-  <div class="status-pill"><span class="status-dot" aria-hidden="true"></span>Geplante Wartung</div>
-  <div class="icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="6" rx="1.5"></rect>
-      <rect x="3" y="14" width="18" height="6" rx="1.5"></rect>
-      <path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"></path>
-    </svg>
-  </div>
-  <h1>Wir warten unsere Server</h1>
-  <p class="intro">GoalNews ist gerade vorübergehend nicht erreichbar. Unsere Server werden gewartet, damit anschließend wieder alles zuverlässig für dich läuft.</p>
-  <hr class="divider">
-  <p class="detail">Die Wartung läuft bereits. Bitte schau in wenigen Minuten noch einmal vorbei. Vielen Dank für deine Geduld.</p>
-  <div class="loader" aria-hidden="true"></div>
-  <button class="check-btn" id="checkBtn" type="button">Verfügbarkeit erneut prüfen</button>
-  <p class="status-msg" id="statusMsg" role="status" aria-live="polite"></p>
-</main>
-
-<script type="module" src="../assets/js/pages/wartungsarbeiten.js"></script>
-</body>
+    <script type="module" src="../assets/js/pages/wartungsarbeiten.js"></script>
+  </body>
 </html>

@@ -1,33 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#08111f">
-<title>Daily Spin – GoalNews</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="../assets/css/pages/taeglicher-spin.css">
-</head>
-<body>
-<main class="panel">
-  <p class="brand">Goal<span>News</span> · Daily Bonus</p>
-  <h1>Dein täglicher Spin</h1>
-  <p class="lead">Der Daily Spin ist aus Sicherheitsgründen vorübergehend pausiert. Ohne serverseitige Prüfung könnte die Coin-Belohnung manipuliert werden.</p>
-  <div class="wheel-wrap" aria-label="Glücksrad mit Coin-Belohnungen">
-    <div class="pointer" aria-hidden="true"></div>
-    <div class="wheel" id="wheel" aria-hidden="true"></div>
-    <div class="wheel-labels" aria-hidden="true"><span>10</span><span>25</span><span>50</span><span>15</span><span>150</span><span>20</span><span>75</span><span>30</span></div>
-    <div class="hub" aria-hidden="true">⚽</div>
-  </div>
-  <button class="spin-btn" id="spinBtn" type="button" disabled>Lade dein Konto …</button>
-  <p class="result" id="result" role="status" aria-live="polite"></p>
-  <p class="meta" id="balance">Dein Kontostand wird geladen.</p>
-  <p class="meta" id="lastSpin"></p>
-  <a class="back" href="user-dashboard.html">← Zurück zum Dashboard</a>
-</main>
-<script type="module" src="../assets/js/pages/taeglicher-spin.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#08111f" />
+    <title>Daily Spin – GoalNews</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/webp"
+      href="https://imagepaste.org/i/fqs6zz8d.webp"
+    />
+    <link rel="stylesheet" href="../assets/css/pages/taeglicher-spin.css" />
+  </head>
+  <body>
+    <main class="panel">
+      <p class="brand">Goal<span>News</span> · Daily Bonus</p>
+      <h1>Dein täglicher Spin</h1>
+      <p class="lead">
+        Der Daily Spin ist aus Sicherheitsgründen vorübergehend pausiert. Ohne
+        serverseitige Prüfung könnte die Coin-Belohnung manipuliert werden.
+      </p>
+      <div class="wheel-wrap" aria-label="Glücksrad mit Coin-Belohnungen">
+        <div class="pointer" aria-hidden="true"></div>
+        <div class="wheel" id="wheel" aria-hidden="true"></div>
+        <div class="wheel-labels" aria-hidden="true">
+          <span>10</span><span>25</span><span>50</span><span>15</span
+          ><span>150</span><span>20</span><span>75</span><span>30</span>
+        </div>
+        <div class="hub" aria-hidden="true">⚽</div>
+      </div>
+      <button class="spin-btn" id="spinBtn" type="button" disabled>
+        Lade dein Konto …
+      </button>
+      <p class="result" id="result" role="status" aria-live="polite"></p>
+      <p class="meta" id="balance">Dein Kontostand wird geladen.</p>
+      <p class="meta" id="lastSpin"></p>
+      <a class="back" href="user-dashboard.html">← Zurück zum Dashboard</a>
+    </main>
+    <script type="module" src="../assets/js/pages/taeglicher-spin.js"></script>
+  </body>
 </html>

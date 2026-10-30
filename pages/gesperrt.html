@@ -1,27 +1,77 @@
 <!doctype html>
 <html lang="de">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08111b">
-  <title>Kontozugriff pausiert · GoalNews</title>
-  
-<link rel="stylesheet" href="../assets/css/pages/gesperrt.css">
-</head>
-<body>
-  <main class="shell">
-    <div class="brand"><span class="brand-mark" aria-hidden="true">GN</span>GoalNews</div>
-    <section class="card" aria-labelledby="pageTitle">
-      <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 19 6v5.2c0 4.4-2.8 7.5-7 9.3-4.2-1.8-7-4.9-7-9.3V6l7-2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 8v4.7m0 3h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
-      <p class="eyebrow">Kontostatus</p>
-      <h1 id="pageTitle">Dieses Konto ist gesperrt</h1>
-      <p class="lead">Du kannst GoalNews-Seiten weiterhin ansehen. Wenn du GoalNews wieder mit einem Konto nutzen möchtest, musst du dieses gesperrte Konto löschen und anschließend ein neues erstellen.</p>
-      <div class="notice"><span class="notice-mark" aria-hidden="true">ⓘ</span><div><strong>Was passiert beim Löschen?</strong>Dein Firebase-Anmeldekonto und dein GoalNews-Profil werden gelöscht. Eine Löschanfrage mit Zeitpunkt und Konto-ID wird im Admin-PC protokolliert.</div></div>
-      <div id="accountState" role="status" aria-live="polite">Kontostatus wird geprüft …</div>
-      <div class="actions"><button class="button" id="deleteAccountButton" type="button" disabled>Konto löschen und neues erstellen</button><a class="button secondary" href="../index.html">Weiter zu GoalNews</a><button class="button secondary" id="signOutButton" type="button">Abmelden</button></div>
-    </section>
-    <p class="foot">GoalNews <span>· Fair bleiben. Gemeinsam Fußball erleben.</span></p>
-  </main>
-  <script type="module" src="../assets/js/pages/gesperrt.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111b" />
+    <title>Kontozugriff pausiert · GoalNews</title>
+    <link
+      rel="icon"
+      type="image/webp"
+      href="https://imagepaste.org/i/fqs6zz8d.webp"
+    />
+    <link rel="stylesheet" href="../assets/css/pages/gesperrt.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">GN</span>GoalNews
+      </div>
+      <section class="card" aria-labelledby="pageTitle">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 3.5 19 6v5.2c0 4.4-2.8 7.5-7 9.3-4.2-1.8-7-4.9-7-9.3V6l7-2.5Z"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 8v4.7m0 3h.01"
+              stroke="currentColor"
+              stroke-width="1.9"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <p class="eyebrow">Kontostatus</p>
+        <h1 id="pageTitle">Dieses Konto ist gesperrt</h1>
+        <p class="lead">
+          Du kannst GoalNews-Seiten weiterhin ansehen. Wenn du GoalNews wieder
+          mit einem Konto nutzen möchtest, musst du dieses gesperrte Konto
+          löschen und anschließend ein neues erstellen.
+        </p>
+        <div class="notice">
+          <span class="notice-mark" aria-hidden="true">ⓘ</span>
+          <div>
+            <strong>Was passiert beim Löschen?</strong>Dein
+            Firebase-Anmeldekonto und dein GoalNews-Profil werden gelöscht. Eine
+            Löschanfrage mit Zeitpunkt und Konto-ID wird im Admin-PC
+            protokolliert.
+          </div>
+        </div>
+        <div id="accountState" role="status" aria-live="polite">
+          Kontostatus wird geprüft …
+        </div>
+        <div class="actions">
+          <button
+            class="button"
+            id="deleteAccountButton"
+            type="button"
+            disabled
+          >
+            Konto löschen und neues erstellen</button
+          ><a class="button secondary" href="../index.html"
+            >Weiter zu GoalNews</a
+          ><button class="button secondary" id="signOutButton" type="button">
+            Abmelden
+          </button>
+        </div>
+      </section>
+      <p class="foot">
+        GoalNews <span>· Fair bleiben. Gemeinsam Fußball erleben.</span>
+      </p>
+    </main>
+    <script type="module" src="../assets/js/pages/gesperrt.js"></script>
+  </body>
 </html>

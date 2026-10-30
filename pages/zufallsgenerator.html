@@ -1,50 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Random User Picker — GoalNews (Admin)</title>
-
-<link rel="stylesheet" href="../assets/css/pages/zufallsgenerator.css">
-</head>
-<body>
-  <div class="card">
-    <h1>Random User Picker</h1>
-    <div class="meta">Zeigt zufällig genau einen User aus der Collection <code>users</code>. Nur für Admins.</div>
-
-    <div id="content">
-      <div id="loading">Lade Nutzer…</div>
-
-      <div id="userDisplay" style="display:none" class="user-box" aria-live="polite">
-        <div class="row">
-          <div class="label">UID</div><div id="uid" class="value"></div>
-        </div>
-        <div class="row">
-          <div class="label">Username</div><div id="username" class="value"></div>
-        </div>
-        <div class="row">
-          <div class="label">Coins</div><div id="coins" class="value"></div>
-        </div>
-        <div class="row">
-          <div class="label">Favorit</div><div id="fav" class="value"></div>
-        </div>
-        <div class="row">
-          <div class="label">Letzte Aktionen</div><div id="extra" class="value"></div>
-        </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Random User Picker — GoalNews (Admin)</title>
+    <link
+      rel="icon"
+      type="image/webp"
+      href="https://imagepaste.org/i/fqs6zz8d.webp"
+    />
+    <link rel="stylesheet" href="../assets/css/pages/zufallsgenerator.css" />
+  </head>
+  <body>
+    <div class="card">
+      <h1>Random User Picker</h1>
+      <div class="meta">
+        Zeigt zufällig genau einen User aus der Collection <code>users</code>.
+        Nur für Admins.
       </div>
 
-      <div id="noAccess" style="display:none" class="notice error"></div>
-      <div id="noUsers" style="display:none" class="notice">Keine Nutzer gefunden.</div>
+      <div id="content">
+        <div id="loading">Lade Nutzer…</div>
 
-      <div style="margin-top:14px">
-        <button id="pickBtn" style="display:none">Neuen zufälligen User auswählen</button>
-        <button id="refreshBtn" class="ghost" style="display:none">Neu laden</button>
+        <div
+          id="userDisplay"
+          style="display: none"
+          class="user-box"
+          aria-live="polite"
+        >
+          <div class="row">
+            <div class="label">UID</div>
+            <div id="uid" class="value"></div>
+          </div>
+          <div class="row">
+            <div class="label">Username</div>
+            <div id="username" class="value"></div>
+          </div>
+          <div class="row">
+            <div class="label">Coins</div>
+            <div id="coins" class="value"></div>
+          </div>
+          <div class="row">
+            <div class="label">Favorit</div>
+            <div id="fav" class="value"></div>
+          </div>
+          <div class="row">
+            <div class="label">Letzte Aktionen</div>
+            <div id="extra" class="value"></div>
+          </div>
+        </div>
+
+        <div id="noAccess" style="display: none" class="notice error"></div>
+        <div id="noUsers" style="display: none" class="notice">
+          Keine Nutzer gefunden.
+        </div>
+
+        <div style="margin-top: 14px">
+          <button id="pickBtn" style="display: none">
+            Neuen zufälligen User auswählen
+          </button>
+          <button id="refreshBtn" class="ghost" style="display: none">
+            Neu laden
+          </button>
+        </div>
+
+        <div id="log" class="notice" style="display: none"></div>
       </div>
-
-      <div id="log" class="notice" style="display:none"></div>
     </div>
-  </div>
 
-<script type="module" src="../assets/js/pages/zufallsgenerator.js"></script>
-</body>
+    <script type="module" src="../assets/js/pages/zufallsgenerator.js"></script>
+  </body>
 </html>
