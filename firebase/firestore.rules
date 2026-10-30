@@ -1,0 +1,394 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function memberIdentity() {
+      return signedIn()
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
+        && request.auth.token.email != null;
+    }
+
+    function memberAccount() {
+      return memberIdentity()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && (!get(/databases/$(database)/documents/users/$(request.auth.uid)).data.keys().hasAny(['banned'])
+          || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.banned != true);
+    }
+
+    // Keep this list aligned with the trusted admin accounts in admin.html.
+    function isAdmin() {
+      return signedIn()
+        && request.auth.uid in [
+          'gaPuzG1ULdUSskKUsciL1g79nh72',
+          '5Oe5YOBOtfOGQsRJ3XUjr3kemnX2'
+        ];
+    }
+
+    function changedOnly(fields) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
+    }
+
+    match /users/{userId} {
+      allow get: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow list: if isAdmin();
+
+      allow create: if memberIdentity()
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasAll(['username', 'email', 'createdAt', 'emailVerified', 'allowEmails'])
+        && request.resource.data.keys().hasOnly(['username', 'email', 'createdAt', 'emailVerified', 'allowEmails'])
+        && request.resource.data.username is string
+        && request.resource.data.username.size() >= 1
+        && request.resource.data.username.size() <= 40
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.createdAt is string
+        && request.resource.data.emailVerified == false
+        && request.resource.data.allowEmails is bool;
+
+      // Coins, ownership flags and reward fields are intentionally immutable
+      // from browser clients. Profile fields remain editable by their owner.
+      allow update: if (signedIn() && request.auth.uid == userId
+          && changedOnly(['username', 'favTeam', 'avatarUrl', 'last_login', 'allowEmails'])
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['username'])
+              || (request.resource.data.username is string && request.resource.data.username.size() >= 1 && request.resource.data.username.size() <= 40))
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['favTeam'])
+              || (request.resource.data.favTeam is string && request.resource.data.favTeam.size() <= 80))
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['avatarUrl'])
+              || (request.resource.data.avatarUrl is string && request.resource.data.avatarUrl.size() <= 1000))
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['last_login'])
+              || request.resource.data.last_login == request.time)
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['allowEmails'])
+              || request.resource.data.allowEmails is bool))
+        || (isAdmin()
+          && changedOnly(['messages', 'message', 'username', 'email', 'banned'])
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['messages'])
+              || (request.resource.data.messages is list && request.resource.data.messages.size() <= 100))
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['message'])
+              || (request.resource.data.message is string && request.resource.data.message.size() <= 1000))
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['username'])
+              || (request.resource.data.username is string && request.resource.data.username.size() <= 40))
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['email'])
+              || (request.resource.data.email is string && request.resource.data.email.size() <= 254))
+          && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['banned'])
+              || request.resource.data.banned is bool));
+
+      allow delete: if isAdmin()
+        || (signedIn() && request.auth.uid == userId && resource.data.banned == true);
+    }
+
+    match /accountDeletionLogs/{userId} {
+      allow create: if memberIdentity()
+        && request.auth.uid == userId
+        && exists(/databases/$(database)/documents/users/$(userId))
+        && get(/databases/$(database)/documents/users/$(userId)).data.banned == true
+        && request.resource.data.keys().hasAll(['uid', 'email', 'username', 'createdAt', 'status'])
+        && request.resource.data.keys().hasOnly(['uid', 'email', 'username', 'createdAt', 'status'])
+        && request.resource.data.uid == userId
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.username is string
+        && request.resource.data.username.size() <= 40
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.status == 'self_delete_requested';
+      allow get: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow list: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /friendProfiles/{userId} {
+      function validProfile() {
+        return memberAccount()
+          && request.auth.uid == userId
+          && request.resource.data.keys().hasAll(['uid', 'username', 'usernameLower', 'updatedAt'])
+          && request.resource.data.keys().hasOnly(['uid', 'username', 'usernameLower', 'updatedAt', 'activeMatchId', 'activeMatchLabel', 'activeChoice', 'activityUpdatedAt'])
+          && request.resource.data.uid == userId
+          && request.resource.data.username is string
+          && request.resource.data.username.size() >= 1
+          && request.resource.data.username.size() <= 40
+          && request.resource.data.username == get(/databases/$(database)/documents/users/$(userId)).data.username
+          && request.resource.data.usernameLower is string
+          && request.resource.data.usernameLower.size() >= 1
+          && request.resource.data.usernameLower.size() <= 40
+          && request.resource.data.usernameLower == request.resource.data.username.lower();
+      }
+      allow get: if memberAccount();
+      allow list: if memberAccount() && request.query.limit <= 30;
+      allow create: if validProfile()
+        && request.resource.data.keys().hasOnly(['uid', 'username', 'usernameLower', 'updatedAt'])
+        && request.resource.data.updatedAt == request.time;
+      allow update: if validProfile() && (
+        (changedOnly(['username', 'usernameLower', 'updatedAt'])
+          && request.resource.data.updatedAt == request.time)
+        || (changedOnly(['activeMatchId', 'activeMatchLabel', 'activeChoice', 'activityUpdatedAt'])
+          && request.resource.data.keys().hasAll(['activeMatchId', 'activeMatchLabel', 'activeChoice', 'activityUpdatedAt'])
+          && request.resource.data.activeMatchId is string
+          && request.resource.data.activeMatchId.matches('^[0-9]{1,12}$')
+          && request.resource.data.activeMatchLabel is string
+          && request.resource.data.activeMatchLabel.size() >= 1
+          && request.resource.data.activeMatchLabel.size() <= 120
+          && request.resource.data.activeChoice in ['home', 'draw', 'away']
+          && request.resource.data.activityUpdatedAt == request.time
+          && (!resource.data.keys().hasAny(['activityUpdatedAt'])
+            || request.time > resource.data.activityUpdatedAt + duration.value(15, 's')))
+      );
+      allow delete: if false;
+    }
+
+    match /friendships/{requestId} {
+      allow get: if memberAccount() && request.auth.uid in resource.data.members;
+      allow list: if memberAccount() && request.auth.uid in resource.data.members && request.query.limit <= 60;
+      allow create: if memberAccount()
+        && request.resource.data.keys().hasAll(['members', 'fromUid', 'toUid', 'status', 'createdAt', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['members', 'fromUid', 'toUid', 'status', 'createdAt', 'updatedAt'])
+        && request.resource.data.fromUid == request.auth.uid
+        && request.resource.data.toUid is string
+        && request.resource.data.toUid != request.auth.uid
+        && requestId == request.auth.uid + '__' + request.resource.data.toUid
+        && request.resource.data.members is list
+        && request.resource.data.members.size() == 2
+        && request.resource.data.members.hasAll([request.auth.uid, request.resource.data.toUid])
+        && request.resource.data.status == 'pending'
+        && exists(/databases/$(database)/documents/friendProfiles/$(request.resource.data.toUid))
+        && !exists(/databases/$(database)/documents/friendships/$(request.resource.data.toUid + '__' + request.auth.uid))
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update: if memberAccount()
+        && request.auth.uid == resource.data.toUid
+        && resource.data.status == 'pending'
+        && changedOnly(['status', 'updatedAt'])
+        && request.resource.data.status in ['accepted', 'declined']
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if memberAccount() && request.auth.uid in resource.data.members;
+    }
+
+    match /developmentProjects/{projectId} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasAll(['title', 'description', 'status', 'link', 'createdAt', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['title', 'description', 'status', 'link', 'createdAt', 'updatedAt'])
+        && request.resource.data.title is string && request.resource.data.title.size() >= 1 && request.resource.data.title.size() <= 100
+        && request.resource.data.description is string && request.resource.data.description.size() >= 1 && request.resource.data.description.size() <= 1500
+        && request.resource.data.status in ['planned', 'in-progress', 'done']
+        && request.resource.data.link is string && request.resource.data.link.size() <= 300
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+      allow update: if isAdmin()
+        && request.resource.data.keys().hasAll(['title', 'description', 'status', 'link', 'createdAt', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['title', 'description', 'status', 'link', 'createdAt', 'updatedAt'])
+        && changedOnly(['title', 'description', 'status', 'link', 'updatedAt'])
+        && request.resource.data.title is string && request.resource.data.title.size() >= 1 && request.resource.data.title.size() <= 100
+        && request.resource.data.description is string && request.resource.data.description.size() >= 1 && request.resource.data.description.size() <= 1500
+        && request.resource.data.status in ['planned', 'in-progress', 'done']
+        && request.resource.data.link is string && request.resource.data.link.size() <= 300
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if isAdmin();
+    }
+
+    match /settings/{settingId} {
+      allow get: if settingId == 'main';
+      allow list: if false;
+      allow create, update: if isAdmin()
+        && settingId == 'main'
+        && request.resource.data.keys().hasOnly(['maintenance'])
+        && request.resource.data.maintenance is bool;
+      allow delete: if false;
+    }
+
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if memberAccount()
+        && request.resource.data.keys().hasAll(['userId', 'username', 'text', 'created', 'reactions'])
+        && request.resource.data.keys().hasOnly(['userId', 'username', 'text', 'created', 'reactions'])
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.username is string
+        && request.resource.data.username.size() <= 40
+        && request.resource.data.text is string
+        && request.resource.data.text.size() >= 1
+        && request.resource.data.text.size() <= 1500
+        && request.resource.data.created == request.time
+        && request.resource.data.reactions is map
+        && request.resource.data.reactions.keys().size() == 0;
+      // Reactions are paused because clients currently submit arbitrary totals.
+      allow update: if false;
+      allow delete: if isAdmin()
+        || (memberAccount() && resource.data.userId == request.auth.uid);
+    }
+
+    match /siteRatings/{userId} {
+      allow read: if true;
+      allow create, update: if memberAccount()
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasAll(['userId', 'authorName', 'rating', 'text', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['userId', 'authorName', 'rating', 'text', 'updatedAt'])
+        && request.resource.data.userId == userId
+        && request.resource.data.authorName is string
+        && request.resource.data.authorName.size() <= 50
+        && request.resource.data.rating is int
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5
+        && request.resource.data.text is string
+        && request.resource.data.text.size() <= 600
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+
+    match /matchPolls/{matchId}/votes/{voterId} {
+      allow read: if memberAccount();
+      allow create: if memberAccount()
+        && request.auth.uid == voterId
+        && request.resource.data.keys().hasAll(['choice', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['choice', 'createdAt'])
+        && request.resource.data.choice in ['home', 'draw', 'away']
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+
+    // Public submissions are size/type limited; only admins can inspect them.
+    match /reports/{entryId} {
+      allow create: if memberAccount()
+        && (
+          // Existing feedback and bug-report form.
+          (request.resource.data.keys().hasAll(['type', 'description', 'created'])
+            && request.resource.data.keys().hasOnly(['type', 'description', 'created'])
+            && request.resource.data.type is string && request.resource.data.type.size() <= 80
+            && request.resource.data.description is string && request.resource.data.description.size() >= 1 && request.resource.data.description.size() <= 3000
+            && request.resource.data.created == request.time)
+          ||
+          // Community reports: the reporter can create a report but cannot read or edit it.
+          (request.resource.data.keys().hasAll(['type', 'description', 'created', 'targetType', 'targetId', 'targetUserId', 'targetName', 'targetText', 'reason', 'reporterUid'])
+            && request.resource.data.keys().hasOnly(['type', 'description', 'created', 'targetType', 'targetId', 'targetUserId', 'targetName', 'targetText', 'reason', 'reporterUid'])
+            && request.resource.data.type in ['Kontomeldung', 'Kommentarmeldung']
+            && request.resource.data.targetType in ['account', 'comment']
+            && ((request.resource.data.targetType == 'account' && request.resource.data.type == 'Kontomeldung')
+              || (request.resource.data.targetType == 'comment' && request.resource.data.type == 'Kommentarmeldung'))
+            && request.resource.data.targetId is string && request.resource.data.targetId.matches('^[A-Za-z0-9_-]{1,100}$')
+            && request.resource.data.targetUserId is string && request.resource.data.targetUserId.size() >= 1 && request.resource.data.targetUserId.size() <= 128
+            && request.resource.data.targetUserId != request.auth.uid
+            && entryId == request.auth.uid + '_' + request.resource.data.targetType + '_' + request.resource.data.targetId
+            && ((request.resource.data.targetType == 'account' && request.resource.data.targetId == request.resource.data.targetUserId)
+              || (request.resource.data.targetType == 'comment'
+                && exists(/databases/$(database)/documents/comments/$(request.resource.data.targetId))
+                && get(/databases/$(database)/documents/comments/$(request.resource.data.targetId)).data.userId == request.resource.data.targetUserId))
+            && request.resource.data.targetName is string && request.resource.data.targetName.size() <= 40
+            && request.resource.data.targetText is string && request.resource.data.targetText.size() <= 1500
+            && request.resource.data.reason is string && request.resource.data.reason.size() >= 1 && request.resource.data.reason.size() <= 120
+            && request.resource.data.description is string && request.resource.data.description.size() <= 1000
+            && request.resource.data.reporterUid == request.auth.uid
+            && request.resource.data.created == request.time)
+        );
+      allow read: if isAdmin();
+    }
+    match /ideas/{entryId} {
+      allow create: if memberAccount()
+        && request.resource.data.keys().hasAll(['title', 'description', 'created'])
+        && request.resource.data.keys().hasOnly(['title', 'description', 'created'])
+        && request.resource.data.title is string && request.resource.data.title.size() >= 1 && request.resource.data.title.size() <= 120
+        && request.resource.data.description is string && request.resource.data.description.size() >= 1 && request.resource.data.description.size() <= 3000
+        && request.resource.data.created == request.time;
+      allow read: if isAdmin();
+    }
+    match /feedback/{entryId} {
+      allow create: if memberAccount()
+        && request.resource.data.keys().hasAll(['feedback', 'created'])
+        && request.resource.data.keys().hasOnly(['feedback', 'created'])
+        && request.resource.data.feedback is string && request.resource.data.feedback.size() >= 1 && request.resource.data.feedback.size() <= 3000
+        && request.resource.data.created == request.time;
+      allow read: if isAdmin();
+    }
+    match /features/{entryId} {
+      allow create: if memberAccount()
+        && request.resource.data.keys().hasAll(['title', 'description', 'created'])
+        && request.resource.data.keys().hasOnly(['title', 'description', 'created'])
+        && request.resource.data.title is string && request.resource.data.title.size() >= 1 && request.resource.data.title.size() <= 120
+        && request.resource.data.description is string && request.resource.data.description.size() >= 1 && request.resource.data.description.size() <= 3000
+        && request.resource.data.created == request.time;
+      allow read: if isAdmin();
+    }
+
+    match /logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin()
+        && request.resource.data.keys().hasAll(['action', 'time', 'admin'])
+        && request.resource.data.keys().hasOnly(['action', 'time', 'admin'])
+        && request.resource.data.action is string && request.resource.data.action.size() <= 500
+        && request.resource.data.time is timestamp
+        && request.resource.data.admin == request.auth.uid;
+    }
+
+    match /visits/{entryId} { allow read: if isAdmin(); }
+    match /tipps/{entryId} { allow read: if isAdmin(); }
+
+    // Read-only public data. Client-side poll totals and votes are not trusted.
+    match /liveGames/{entryId} { allow read: if true; }
+    match /FootballGames/{entryId} { allow read: if true; }
+    match /pollOptions/{optionId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /polls/{pollId} {
+      allow get: if isAdmin() || pollId == 'player_of_the_week';
+      allow list: if isAdmin();
+      allow write: if isAdmin();
+    }
+
+
+    // Ein optionales Update auf der öffentlichen Startseite.
+    match /siteUpdates/{updateId} {
+      allow get: if updateId == 'current';
+      allow list: if false;
+      allow create, update: if isAdmin()
+        && updateId == 'current'
+        && request.resource.data.keys().hasAll(['title', 'text', 'linkLabel', 'linkUrl', 'active', 'updateId', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['title', 'text', 'linkLabel', 'linkUrl', 'active', 'updateId', 'updatedAt'])
+        && request.resource.data.title is string
+        && request.resource.data.title.size() >= 1
+        && request.resource.data.title.size() <= 80
+        && request.resource.data.text is string
+        && request.resource.data.text.size() >= 1
+        && request.resource.data.text.size() <= 400
+        && request.resource.data.linkLabel is string
+        && request.resource.data.linkLabel.size() <= 80
+        && request.resource.data.linkUrl is string
+        && request.resource.data.linkUrl.size() <= 1000
+        && request.resource.data.active is bool
+        && request.resource.data.updateId is string
+        && request.resource.data.updateId.size() <= 80
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if isAdmin() && updateId == 'current';
+    }
+
+    // Contact messages: senders can only read their own messages;
+    // trusted admins can answer, with the public display name Server Admin.
+    match /adminContact/{messageId} {
+      allow create: if signedIn()
+        && request.resource.data.keys().hasAll(['ownerUid', 'name', 'message', 'createdAt', 'reply', 'replyBy', 'replyAt'])
+        && request.resource.data.keys().hasOnly(['ownerUid', 'name', 'message', 'createdAt', 'reply', 'replyBy', 'replyAt'])
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 1
+        && request.resource.data.name.size() <= 60
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 1
+        && request.resource.data.message.size() <= 3000
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.reply == ''
+        && request.resource.data.replyBy == ''
+        && request.resource.data.replyAt == null;
+
+      allow get, list: if isAdmin()
+        || (signedIn() && resource.data.ownerUid == request.auth.uid);
+
+      allow update: if isAdmin()
+        && changedOnly(['reply', 'replyBy', 'replyAt'])
+        && request.resource.data.reply is string
+        && request.resource.data.reply.size() >= 1
+        && request.resource.data.reply.size() <= 3000
+        && request.resource.data.replyBy == 'Server Admin'
+        && request.resource.data.replyAt == request.time;
+
+      allow delete: if false;
+    }
+  }
+}
