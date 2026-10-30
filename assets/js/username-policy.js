@@ -1,7 +1,7 @@
 const RESERVED_ROLE_MARKERS = ["admin", "administrator", "serveradmin", "moderator", "moderation"];
 
 /** Returns the first username rule the provided name violates, or an empty string. */
-export function usernamePolicyError(value) {
+export function usernamePolicyError(value, { allowReservedRoles = false } = {}) {
   const name = String(value ?? "").trim();
   if (!name) return "Bitte gib einen Nutzernamen ein.";
   if (name.length > 40) return "Nutzernamen dürfen höchstens 40 Zeichen lang sein.";
@@ -18,7 +18,7 @@ export function usernamePolicyError(value) {
     .replace(/5/g, "s")
     .replace(/7/g, "t");
 
-  if (RESERVED_ROLE_MARKERS.some((marker) => normalized.includes(marker))) {
+  if (!allowReservedRoles && RESERVED_ROLE_MARKERS.some((marker) => normalized.includes(marker))) {
     return "Admin- und Moderatoren-Namen sind dem Team vorbehalten. Eine Täuschung kann zur Kontosperre führen.";
   }
 

@@ -1,4 +1,5 @@
 import { fetchJsonCached, currentSeasonStart, formatUpdatedAt } from "../data-cache.js";
+import { teamsMatch } from "../team-utils.js";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
     import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
@@ -22,9 +23,6 @@ import { fetchJsonCached, currentSeasonStart, formatUpdatedAt } from "../data-ca
     const refreshButton = document.getElementById("refreshButton");
     let currentTeam = "";
 
-    function normalized(value) {
-      return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("de").replace(/[^a-z0-9]/g, "");
-    }
     function showEmpty(container, text) {
       container.replaceChildren();
       const p = document.createElement("p"); p.className = "empty"; p.textContent = text; container.append(p);
@@ -56,8 +54,7 @@ import { fetchJsonCached, currentSeasonStart, formatUpdatedAt } from "../data-ca
         const season = currentSeasonStart();
         const responses = await Promise.all(["bl1", "bl2"].map(league => fetchJsonCached(`https://api.openligadb.de/getmatchdata/${league}/${season}`, { ttlMs: 5 * 60 * 1000 })));
         const all = responses.flatMap(response => response.data);
-        const key = normalized(team);
-        const matches = all.filter(match => normalized(match.team1?.teamName).includes(key) || normalized(match.team2?.teamName).includes(key));
+        const matches = all.filter(match => teamsMatch(team, match.team1?.teamName) || teamsMatch(team, match.team2?.teamName));
         const now = Date.now();
         const upcoming = matches.filter(match => new Date(match.matchDateTime).getTime() >= now).sort((a,b) => new Date(a.matchDateTime)-new Date(b.matchDateTime)).slice(0, 6);
         const results = matches.filter(match => new Date(match.matchDateTime).getTime() < now && (match.matchIsFinished || match.matchResults?.length)).sort((a,b) => new Date(b.matchDateTime)-new Date(a.matchDateTime)).slice(0, 6);

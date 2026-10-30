@@ -1,5 +1,6 @@
 // ===== Firebase & Live Games Setup =====
 import { fetchJsonCached, currentSeasonStart } from './data-cache.js';
+import { teamsMatch } from './team-utils.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js';
 import {
   getFirestore,
@@ -93,14 +94,6 @@ document.getElementById('siteUpdateDismiss').addEventListener('click', () => {
 });
 loadSiteUpdate();
 
-function normalizeTeamName(value) {
-  return String(value || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLocaleLowerCase('de')
-    .replace(/[^a-z0-9]/g, '');
-}
-
 async function updateFavoriteGameNotice(team) {
   favoriteGameNotice.hidden = false;
   if (!team) {
@@ -124,11 +117,11 @@ async function updateFavoriteGameNotice(team) {
     const now = Date.now();
     const match = matches.find((item) => {
       const start = new Date(item.matchDateTime).getTime();
-      const teams = `${item.team1?.teamName || ''} ${item.team2?.teamName || ''}`;
       return (
         start > now &&
         start <= now + 24 * 60 * 60 * 1000 &&
-        normalizeTeamName(teams).includes(normalizeTeamName(team))
+        (teamsMatch(team, item.team1?.teamName) ||
+          teamsMatch(team, item.team2?.teamName))
       );
     });
     favoriteGameTitle.textContent = match
