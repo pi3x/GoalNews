@@ -1,0 +1,1 @@
+[![OctoCounts](https://api.octocounts.com/badge/pi3x/GoalNews/branch/main)](https://octocounts.com/github/pi3x/GoalNews/tree/main?analysis=%7B%22ignoredDirs%22%3A%5B%5D%2C%22ignoredLanguages%22%3A%5B%5D%2C%22profile%22%3A%22default%22%2C%22includeDocs%22%3Afalse%2C%22includeTests%22%3Afalse%2C%22includeGenerated%22%3Afalse%7D)
