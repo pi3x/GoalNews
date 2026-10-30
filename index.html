@@ -33,13 +33,10 @@
     <!-- Icons -->
     <link
       rel="icon"
-      href="https://imagepaste.org/v/fqs6zz8d.webp"
+      href="../assets/images/goalnews-logo.webp"
       type="image/webp"
     />
-    <link
-      rel="apple-touch-icon"
-      href="https://imagepaste.org/v/fqs6zz8d.webp"
-    />
+    <link rel="apple-touch-icon" href="../assets/images/goalnews-logo.webp" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/global.css" />
@@ -730,16 +727,63 @@
         border-radius: 12px;
         background: #111b2acc;
         color: #d8e3ef;
-        animation: update-appear .28s ease-out both;
+        animation: update-appear 0.28s ease-out both;
       }
-      .site-update-notice[hidden] { display: none; }
-      .site-update-notice strong { display: block; margin-bottom: 3px; color: #d8ff91; font-size: .92rem; }
-      .site-update-notice p { margin: 0; color: #aebcd0; font-size: .85rem; line-height: 1.5; }
-      .site-update-notice a { display: inline-block; margin-top: 5px; color: #d8ff91; font-size: .83rem; font-weight: 750; }
-      .site-update-dismiss { position: absolute; top: 8px; right: 9px; width: 30px; height: 30px; border: 0; border-radius: 8px; background: transparent; color: #aebcd0; font-size: 1.15rem; cursor: pointer; }
-      .site-update-dismiss:hover, .site-update-dismiss:focus-visible { background: #ffffff12; color: #fff; }
-      @keyframes update-appear { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-      @media (prefers-reduced-motion: reduce) { .site-update-notice { animation: none; } }
+      .site-update-notice[hidden] {
+        display: none;
+      }
+      .site-update-notice strong {
+        display: block;
+        margin-bottom: 3px;
+        color: #d8ff91;
+        font-size: 0.92rem;
+      }
+      .site-update-notice p {
+        margin: 0;
+        color: #aebcd0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+      .site-update-notice a {
+        display: inline-block;
+        margin-top: 5px;
+        color: #d8ff91;
+        font-size: 0.83rem;
+        font-weight: 750;
+      }
+      .site-update-dismiss {
+        position: absolute;
+        top: 8px;
+        right: 9px;
+        width: 30px;
+        height: 30px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: #aebcd0;
+        font-size: 1.15rem;
+        cursor: pointer;
+      }
+      .site-update-dismiss:hover,
+      .site-update-dismiss:focus-visible {
+        background: #ffffff12;
+        color: #fff;
+      }
+      @keyframes update-appear {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .site-update-notice {
+          animation: none;
+        }
+      }
     </style>
 
     <style>
@@ -951,11 +995,28 @@
       <a href="pages/feedback.html">Feedback senden&nbsp; ↗</a>
     </aside>
 
-    <aside id="siteUpdateNotice" class="site-update-notice" aria-live="polite" hidden>
-      <button id="siteUpdateDismiss" class="site-update-dismiss" type="button" aria-label="Update-Hinweis schließen">×</button>
+    <aside
+      id="siteUpdateNotice"
+      class="site-update-notice"
+      aria-live="polite"
+      hidden
+    >
+      <button
+        id="siteUpdateDismiss"
+        class="site-update-dismiss"
+        type="button"
+        aria-label="Update-Hinweis schließen"
+      >
+        ×
+      </button>
       <strong id="siteUpdateTitle"></strong>
       <p id="siteUpdateText"></p>
-      <a id="siteUpdateLink" hidden target="_blank" rel="noopener noreferrer"></a>
+      <a
+        id="siteUpdateLink"
+        hidden
+        target="_blank"
+        rel="noopener noreferrer"
+      ></a>
     </aside>
 
     <!-- Breaking News -->
@@ -1090,16 +1151,11 @@
       const auth = getAuth(app);
       setPersistence(auth, browserLocalPersistence);
 
-<<<<<<< HEAD
-      const favoriteGameNotice = document.getElementById("favoriteGameNotice");
-      const favoriteGameTitle = document.getElementById("favoriteGameTitle");
-      const favoriteGameText = document.getElementById("favoriteGameText");
-      const siteUpdateNotice = document.getElementById("siteUpdateNotice");
-=======
       const favoriteGameNotice = document.getElementById('favoriteGameNotice');
       const favoriteGameTitle = document.getElementById('favoriteGameTitle');
       const favoriteGameText = document.getElementById('favoriteGameText');
->>>>>>> 2452759 (commit)
+      const siteUpdateNotice = document.getElementById('siteUpdateNotice');
+
       let observedFavoriteTeam = null;
       let favoriteGameTimer = null;
       let stopFriendRequests = null;
@@ -1109,42 +1165,55 @@
 
       async function loadSiteUpdate() {
         try {
-          const updateSnap = await getDoc(doc(db, "siteUpdates", "current"));
+          const updateSnap = await getDoc(doc(db, 'siteUpdates', 'current'));
           if (!updateSnap.exists()) return;
           const update = updateSnap.data();
-          const updateId = String(update.updateId || "");
+          const updateId = String(update.updateId || '');
           if (!update.active || !updateId) return;
           try {
-            if (localStorage.getItem("goalnews.seenSiteUpdate") === updateId) return;
+            if (localStorage.getItem('goalnews.seenSiteUpdate') === updateId)
+              return;
             // Mark it as seen as soon as it is shown, so it won't return on reload.
-            localStorage.setItem("goalnews.seenSiteUpdate", updateId);
+            localStorage.setItem('goalnews.seenSiteUpdate', updateId);
           } catch (error) {
-            console.warn("Update-Status konnte nicht lokal gespeichert werden:", error);
+            console.warn(
+              'Update-Status konnte nicht lokal gespeichert werden:',
+              error,
+            );
           }
 
-          document.getElementById("siteUpdateTitle").textContent =
-            String(update.title || "Neu bei GoalNews").slice(0, 80);
-          document.getElementById("siteUpdateText").textContent =
-            String(update.text || "").slice(0, 400);
-          const link = document.getElementById("siteUpdateLink");
-          const linkUrl = String(update.linkUrl || "").trim();
-          const linkLabel = String(update.linkLabel || "").trim();
+          document.getElementById('siteUpdateTitle').textContent = String(
+            update.title || 'Neu bei GoalNews',
+          ).slice(0, 80);
+          document.getElementById('siteUpdateText').textContent = String(
+            update.text || '',
+          ).slice(0, 400);
+          const link = document.getElementById('siteUpdateLink');
+          const linkUrl = String(update.linkUrl || '').trim();
+          const linkLabel = String(update.linkLabel || '').trim();
           try {
             const safeUrl = new URL(linkUrl);
-            if (safeUrl.protocol === "https:" && linkLabel) {
+            if (safeUrl.protocol === 'https:' && linkLabel) {
               link.href = safeUrl.href;
               link.textContent = `${linkLabel} ↗`;
               link.hidden = false;
             }
-          } catch { /* Links are optional. */ }
+          } catch {
+            /* Links are optional. */
+          }
           siteUpdateNotice.hidden = false;
         } catch (error) {
-          console.warn("Neuigkeiten-Hinweis konnte nicht geladen werden:", error);
+          console.warn(
+            'Neuigkeiten-Hinweis konnte nicht geladen werden:',
+            error,
+          );
         }
       }
-      document.getElementById("siteUpdateDismiss").addEventListener("click", () => {
-        siteUpdateNotice.hidden = true;
-      });
+      document
+        .getElementById('siteUpdateDismiss')
+        .addEventListener('click', () => {
+          siteUpdateNotice.hidden = true;
+        });
       loadSiteUpdate();
 
       function normalizeTeamName(value) {
@@ -1655,7 +1724,6 @@
     </script>
 
     <script>
-     
       const burger = document.getElementById('burger');
       const sideMenu = document.getElementById('sideMenu');
       burger.addEventListener('click', () => {
