@@ -1,5 +1,6 @@
 import { fetchJsonCached, currentSeasonStart } from "../data-cache.js";
 import { appendAdminBadge } from "../admin-badge.js";
+import { usernamePolicyError } from "../username-policy.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, updateDoc, onSnapshot, collection, getDocs, arrayUnion } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
@@ -208,6 +209,8 @@ sendAdminMsgBtn.addEventListener("click", async ()=>{
 changeNameBtn.addEventListener("click", async ()=>{
   const newName = changeNameInput.value.trim();
   if(newName){
+    const nameError = usernamePolicyError(newName);
+    if(nameError){ alert(nameError); return; }
     await updateDoc(doc(db,"users",currentUserUID),{username:newName});
     currentUserData.username = newName;
     renderUser();

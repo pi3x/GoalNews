@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { usernamePolicyError } from "../username-policy.js";
       import {
         getAuth,
         createUserWithEmailAndPassword,
@@ -43,6 +44,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
 
         if (!email || !password || !username) {
           alert("Bitte fülle alles aus!");
+          return;
+        }
+
+        const nameError = usernamePolicyError(username);
+        if (nameError) {
+          alert(nameError);
           return;
         }
 
