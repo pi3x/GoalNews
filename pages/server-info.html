@@ -1,54 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Server Info</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Server Info</title>
+    <link
+      rel="icon"
+      href="../assets/images/goalnews-logo.webp"
+      type="image/webp"
+    />
+    <link rel="stylesheet" href="../assets/css/pages/server-info.css" />
+  </head>
+  <body>
+    <h1>Unsere Server</h1>
 
-<link rel="stylesheet" href="../assets/css/pages/server-info.css">
-</head>
-<body>
-
-<h1>Unsere Server</h1>
-
-<div class="server-grid">
-    <div class="server-card">
+    <div class="server-grid">
+      <div class="server-card">
         <div class="led"></div>
         <div class="server-info">
-            <h2>Github Server </h2>
-            <p>Verwendung: Webhosting</p>
-            <p>Standort: Deutschland</p>
-            <p>Status: <span class="status-safe">Sicher</span></p>
+          <h2>Github Server</h2>
+          <p>Verwendung: Webhosting</p>
+          <p>Standort: Deutschland</p>
+          <p>Status: <span class="status-safe">Sicher</span></p>
         </div>
-    </div>
+      </div>
 
-    <div class="server-card">
+      <div class="server-card">
         <div class="led"></div>
         <div class="server-info">
-            <h2>Firebase Server</h2>
-            <p>Verwendung: Datenbänke und Accounte</p>
-            <p>Standort: Google Serverräume</p>
-            <p>Status: <span class="status-warning">Überwacht</span></p>
+          <h2>Firebase Server</h2>
+          <p>Verwendung: Datenbänke und Accounte</p>
+          <p>Standort: Google Serverräume</p>
+          <p>Status: <span class="status-warning">Überwacht</span></p>
         </div>
-    </div>
+      </div>
 
-    <div class="server-card">
+      <div class="server-card">
         <div class="led"></div>
         <div class="server-info">
-            <h2>Entwicklungs Server</h2>
-            <p>Verwendung: Entwicklungsserver</p>
-            <p>Standort: Deutschland</p>
-            <p>Status: <span class="status-danger">Nicht öffentlich</span></p>
+          <h2>Entwicklungs Server</h2>
+          <p>Verwendung: Entwicklungsserver</p>
+          <p>Standort: Deutschland</p>
+          <p>Status: <span class="status-danger">Nicht öffentlich</span></p>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="info-box">
-  <p>Für weitere Fragen melden Sie sich bitte an, um Zugriff auf unsere Support-Informationen zu erhalten.</p>
-  <button onclick="window.location.href='sicherheitsinformationen.html'">Dashboard anzeigen</button>
-</div>
-
-
-  <script src="../assets/js/beta-banner.js"></script>
-</body>
+    <div class="info-box">
+      <p>
+        Für weitere Fragen melden Sie sich bitte an, um Zugriff auf unsere
+        Support-Informationen zu erhalten.
+      </p>
+      <button onclick="window.location.href = 'sicherheitsinformationen.html'">
+        Dashboard anzeigen
+      </button>
+    </div>
+  </body>
 </html>

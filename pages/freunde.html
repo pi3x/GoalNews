@@ -1,24 +1,114 @@
 <!doctype html>
 <html lang="de">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08111c">
-<meta name="description" content="Finde GoalNews-Freunde, verwalte Anfragen und tippe gemeinsam auf aktuelle Spiele.">
-<title>Freunde &amp; Spieltipps | GoalNews</title>
+  <head>
+    <link
+      rel="icon"
+      href="../assets/images/goalnews-logo.webp"
+      type="image/webp"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#08111c" />
+    <meta
+      name="description"
+      content="Finde GoalNews-Freunde, verwalte Anfragen und tippe gemeinsam auf aktuelle Spiele."
+    />
+    <title>Freunde &amp; Spieltipps | GoalNews</title>
 
-<link rel="stylesheet" href="../assets/css/pages/freunde.css">
-</head>
-<body>
-<main class="wrap">
-  <div class="top"><div class="brand">Goal<span>News</span> · Freunde</div><a href="../index.html">← Startseite</a></div>
-  <section class="hero"><p class="eyebrow">Gemeinsam mitfiebern</p><h1>Freunde &amp; Spieltipps</h1><p>Suche GoalNews-Konten, sende Anfragen und tippe bei laufenden oder bald startenden Spielen auf den Ausgang.</p><p class="privacy">Gesucht wird nur nach Benutzernamen. E-Mail-Adressen bleiben privat. Der aktuelle Spieltipp ist für angemeldete GoalNews-Konten sichtbar; auf dieser Seite werden nur deine Freunde angezeigt.</p></section>
-  <section id="loginBox" class="panel auth-box" hidden><h2>Bitte anmelden</h2><p class="muted">Für Freundschaftsanfragen und Tipps brauchst du ein angemeldetes GoalNews-Konto.</p><a class="button primary" href="anmelden.html">Einloggen / Registrieren</a></section>
-  <div id="app" hidden>
-    <section class="panel"><h2>Konten suchen</h2><form id="searchForm" class="row"><input id="searchInput" class="field" maxlength="40" autocomplete="off" placeholder="Benutzername eingeben …" required><button class="primary" type="submit">Suchen</button></form><p id="searchStatus" class="status" aria-live="polite"></p><div id="searchResults"></div></section>
-    <section class="panel"><div class="row" style="align-items:center;justify-content:space-between"><h2 style="margin:0">Deine Freundschaften</h2><button id="refreshFriends" type="button">Aktualisieren</button></div><p id="relationStatus" class="status" aria-live="polite">Lade Freundschaften …</p><div class="columns"><section class="subpanel"><h3>Eingehende Anfragen</h3><div id="incoming"></div></section><section class="subpanel"><h3>Gesendet</h3><div id="outgoing"></div></section></div><section class="subpanel" style="margin-top:13px"><h3>Freunde</h3><div id="friends"></div></section></section>
-    <section class="panel"><div class="row" style="align-items:center;justify-content:space-between"><div><h2 style="margin:0">Gemeinsame Spieltipps</h2><p class="muted" style="margin:5px 0 0;font-size:.84rem">Ein Tipp pro Konto zur Zeit; ein neuer Tipp ersetzt den vorherigen.</p></div><button id="loadMatches" type="button">Spiele laden</button></div><p id="matchStatus" class="status" aria-live="polite">Spiele werden nur auf Knopfdruck abgefragt.</p><div id="matchList" class="match-grid"></div></section>
-  </div>
-</main>
-<script type="module" src="../assets/js/pages/freunde.js"></script>
-<script src="../assets/js/beta-banner.js"></script>
-</body>
+    <link rel="stylesheet" href="../assets/css/pages/freunde.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="top">
+        <div class="brand">Goal<span>News</span> · Freunde</div>
+        <a href="../index.html">← Startseite</a>
+      </div>
+      <section class="hero">
+        <p class="eyebrow">Gemeinsam mitfiebern</p>
+        <h1>Freunde &amp; Spieltipps</h1>
+        <p>
+          Suche GoalNews-Konten, sende Anfragen und tippe bei laufenden oder
+          bald startenden Spielen auf den Ausgang.
+        </p>
+        <p class="privacy">
+          Gesucht wird nur nach Benutzernamen. E-Mail-Adressen bleiben privat.
+          Der aktuelle Spieltipp ist für angemeldete GoalNews-Konten sichtbar;
+          auf dieser Seite werden nur deine Freunde angezeigt.
+        </p>
+      </section>
+      <section id="loginBox" class="panel auth-box" hidden>
+        <h2>Bitte anmelden</h2>
+        <p class="muted">
+          Für Freundschaftsanfragen und Tipps brauchst du ein angemeldetes
+          GoalNews-Konto.
+        </p>
+        <a class="button primary" href="anmelden.html"
+          >Einloggen / Registrieren</a
+        >
+      </section>
+      <div id="app" hidden>
+        <section class="panel">
+          <h2>Konten suchen</h2>
+          <form id="searchForm" class="row">
+            <input
+              id="searchInput"
+              class="field"
+              maxlength="40"
+              autocomplete="off"
+              placeholder="Benutzername eingeben …"
+              required
+            /><button class="primary" type="submit">Suchen</button>
+          </form>
+          <p id="searchStatus" class="status" aria-live="polite"></p>
+          <div id="searchResults"></div>
+        </section>
+        <section class="panel">
+          <div
+            class="row"
+            style="align-items: center; justify-content: space-between"
+          >
+            <h2 style="margin: 0">Deine Freundschaften</h2>
+            <button id="refreshFriends" type="button">Aktualisieren</button>
+          </div>
+          <p id="relationStatus" class="status" aria-live="polite">
+            Lade Freundschaften …
+          </p>
+          <div class="columns">
+            <section class="subpanel">
+              <h3>Eingehende Anfragen</h3>
+              <div id="incoming"></div>
+            </section>
+            <section class="subpanel">
+              <h3>Gesendet</h3>
+              <div id="outgoing"></div>
+            </section>
+          </div>
+          <section class="subpanel" style="margin-top: 13px">
+            <h3>Freunde</h3>
+            <div id="friends"></div>
+          </section>
+        </section>
+        <section class="panel">
+          <div
+            class="row"
+            style="align-items: center; justify-content: space-between"
+          >
+            <div>
+              <h2 style="margin: 0">Gemeinsame Spieltipps</h2>
+              <p class="muted" style="margin: 5px 0 0; font-size: 0.84rem">
+                Ein Tipp pro Konto zur Zeit; ein neuer Tipp ersetzt den
+                vorherigen.
+              </p>
+            </div>
+            <button id="loadMatches" type="button">Spiele laden</button>
+          </div>
+          <p id="matchStatus" class="status" aria-live="polite">
+            Spiele werden nur auf Knopfdruck abgefragt.
+          </p>
+          <div id="matchList" class="match-grid"></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="../assets/js/pages/freunde.js"></script>
+  </body>
 </html>

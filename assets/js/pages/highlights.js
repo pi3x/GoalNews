@@ -1,4 +1,4 @@
-import { currentSeasonStart, fetchJsonCached, formatUpdatedAt } from "./data-cache.js";
+import { currentSeasonStart, fetchJsonCached, formatUpdatedAt } from "../data-cache.js";
 
     const grid = document.getElementById("matchGrid");
     const status = document.getElementById("status");

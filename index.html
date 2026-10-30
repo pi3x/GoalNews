@@ -1,152 +1,269 @@
 <!doctype html>
 <html lang="de">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b1421" />
+    <!-- Basics -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoalNews – Foot- & Fußballnews</title>
+
+    <meta
+      name="google-site-verification"
+      content="fUwDCWNs-nxI892RlIyd1HCuDOLuu3r3xEgV_0z2liE"
+    />
+
+    <!-- SEO -->
     <meta
       name="description"
-      content="Willkommen bei der GoalNews Beta. Teste neue Funktionen und hilf uns mit deinem Feedback."
+      content="GoalNews liefert dir die heißesten Fußball-News, Ergebnisse, Transfers und Highlights rund um die Welt!"
     />
-    <title>GoalNews Beta – Willkommen</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://goalnews.website/" />
 
-    <link rel="stylesheet" href="assets/css/pages/index.css" />
+    <!-- Autor & Publisher -->
+    <meta name="author" content="GoalNews Redaktion" />
+    <meta name="publisher" content="GoalNews" />
+
+    <!-- Theme & Mobile -->
+    <meta name="theme-color" content="#1db954" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="GoalNews" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- Icons -->
+    <link
+      rel="icon"
+      href="../assets/images/goalnews-logo.webp"
+      type="image/webp"
+    />
+    <link rel="apple-touch-icon" href="../assets/images/goalnews-logo.webp" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="assets/css/league-table.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Open Graph (Social Media) -->
+    <meta property="og:title" content="GoalNews – Foot- & Fußballnews" />
+    <meta
+      property="og:description"
+      content="Liveticker, Ergebnisse und Highlights aus der Fußballwelt – alles bei GoalNews."
+    />
+    <meta property="og:image" content="https://i.ibb.co/21R6p75W/Logo-1.jpg" />
+    <meta property="og:url" content="https://goalnews.website/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
   </head>
+
   <body>
-    <div class="wrap">
-      <div class="topline">
-        <div class="brand">Goal<span>News</span></div>
-        <div class="label">
-          <i class="pulse" aria-hidden="true"></i> BETA-PHASE
-        </div>
+    <!-- Header -->
+    <header>
+      <div class="brand-greeting">
+        <div class="logo">GoalNews</div>
+        <span
+          id="userGreeting"
+          class="user-greeting"
+          hidden
+          aria-live="polite"
+        ></span>
       </div>
 
-      <main>
-        <section class="hero">
-          <p class="eyebrow">Früher dabei. Gemeinsam besser.</p>
-          <h1>Willkommen bei der<br /><span>GoalNews Beta.</span></h1>
-          <p class="intro">
-            Schön, dass du beim Testen dabei bist! Hier probierst du neue und
-            überarbeitete Funktionen aus, bevor sie für alle bereitstehen. Dein
-            Feedback hilft unserem Entwicklerteam, GoalNews weiter zu
-            verbessern.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="#beta-lesen"
-              >Hinweise lesen und starten <span aria-hidden="true">↓</span></a
+      <!-- Hamburger -->
+      <button id="burger" class="menu" aria-label="Menü anzeigen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Side Menu -->
+      <nav id="sideMenu" class="side-menu">
+        <ul>
+          <li><a href="pages/highlights.html">Bundesliga Highlights</a></li>
+          <li>
+            <a href="pages/entwicklungs-infos.html">🛠️ Entwicklungsinfos</a>
+          </li>
+          <li><a href="pages/ueber-uns.html">About Us</a></li>
+          <li><a href="pages/experten-tipps.html">Experten-Tipp</a></li>
+          <li><a href="pages/anmelden.html">Login/Registrieren</a></li>
+          <li><a href="pages/bundesliga-tabelle.html">Bundesliga</a></li>
+          <li><a href="pages/zweite-bundesliga.html">2. Bundesliga</a></li>
+          <li><a href="pages/american-football.html">American Football</a></li>
+          <li><a href="pages/naechste-spieltage.html">Nächste Spieltage</a></li>
+          <li><a href="pages/freunde.html">Freunde & Spieltipps</a></li>
+          <li><a href="pages/vereins-news.html">Mein Verein · Updates</a></li>
+          <li>
+            <a href="pages/lieblingsspieler.html"
+              >Lieblingsspieler · Bundesliga</a
             >
-            <a class="button secondary" href="pages/feedback.html"
-              >Einen Bug melden</a
+          </li>
+          <li><a href="pages/kommentare.html">Kommentar Forum</a></li>
+          <li><a href="pages/melde-hub.html">🚩 Konto oder Beitrag melden</a></li>
+          <li><a href="pages/bewertungen.html">Bewertungen</a></li>
+          <li><a href="pages/feedback.html">Helfen Sie uns!</a></li>
+          <li><a href="pages/admin-kontakt.html">Kontakt zum Admin-Team</a></li>
+          <li><a href="pages/richtlinien.html">Community-Richtlinien</a></li>
+          <li>
+            <a
+              class="support-link"
+              href="https://whatsapp.com/channel/0029Vb9lrGIGE56nIKOS8U3V"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Du willst uns unterstützen? · WhatsApp-Kanal ↗</a
             >
-          </div>
-        </section>
+          </li>
+          <li><a href="pages/coins.html">Was sind COINS</a></li>
+        </ul>
+      </nav>
+    </header>
 
-        <section class="grid" aria-label="Informationen zur Beta">
-          <article class="card">
-            <div class="icon" aria-hidden="true">⚙</div>
-            <h2>Was ist die Beta?</h2>
-            <p>
-              Eine Testversion von GoalNews. Einzelne Bereiche können noch
-              unfertig sein, sich ändern oder Fehler enthalten. Das ist während
-              der Testphase normal.
-            </p>
-          </article>
-          <article class="card">
-            <div class="icon" aria-hidden="true">🐞</div>
-            <h2>Fehler gefunden?</h2>
-            <p>
-              Bitte melde Bugs mit einer kurzen Beschreibung: Was hast du
-              gemacht, was ist passiert und was hättest du erwartet? So können
-              wir den Fehler leichter nachstellen.
-            </p>
-          </article>
-          <article class="card">
-            <div class="icon" aria-hidden="true">💬</div>
-            <h2>Dein Feedback zählt</h2>
-            <p>
-              Auch Ideen und Hinweise zu Bedienung, Darstellung oder neuen
-              Funktionen sind willkommen. Danke, dass du dir Zeit fürs Testen
-              nimmst.
-            </p>
-          </article>
-        </section>
+    <aside
+      id="friendRequestNotice"
+      class="friend-request-pop"
+      hidden
+      aria-live="polite"
+    >
+      <button
+        id="friendRequestClose"
+        class="friend-request-close"
+        type="button"
+        aria-label="Hinweis schließen"
+      >
+        ×
+      </button>
+      <strong>Neue Freundschaftsanfrage</strong>
+      <p id="friendRequestText"></p>
+      <a href="pages/freunde.html">Anfragen ansehen</a>
+    </aside>
 
-        <aside class="notice" aria-label="Wichtiger Datenbankhinweis">
-          <div class="notice-icon" aria-hidden="true">⚠️</div>
-          <div>
-            <h2>Bitte vor dem Testen beachten</h2>
-            <p>
-              Der Beta-Server verwendet die
-              <strong>echte GoalNews-Datenbank</strong>. Bitte keine privaten
-              oder sensiblen Informationen und keine absichtlichen Test-, Spam-
-              oder unsinnigen Einträge hinterlassen. Änderungen und Einsendungen
-              können für andere Nutzer sichtbar sein.
-            </p>
-          </div>
-        </aside>
+    <aside class="beta-feedback-quick" aria-label="Feedback">
+      <div>
+        <strong>💡 Fehler oder Idee?</strong
+        ><span>Hilf uns, Probleme zu finden und die Seite zu verbessern.</span>
+      </div>
+      <a href="pages/feedback.html">Feedback senden&nbsp; ↗</a>
+      <a href="pages/melde-hub.html">🚩 Melde-Hub öffnen&nbsp; ↗</a>
+    </aside>
 
-        <section
-          class="read-gate"
-          id="beta-lesen"
-          aria-labelledby="read-heading"
+    <aside
+      id="siteUpdateNotice"
+      class="site-update-notice"
+      aria-live="polite"
+      hidden
+    >
+      <button
+        id="siteUpdateDismiss"
+        class="site-update-dismiss"
+        type="button"
+        aria-label="Update-Hinweis schließen"
+      >
+        ×
+      </button>
+      <strong id="siteUpdateTitle"></strong>
+      <p id="siteUpdateText"></p>
+      <a
+        id="siteUpdateLink"
+        hidden
+        target="_blank"
+        rel="noopener noreferrer"
+      ></a>
+    </aside>
+
+    <!-- Breaking News -->
+    <div id="breakingNews" class="locked">
+      <div class="news-wrapper">
+        <span class="news-item"
+          >Breaking News · Aktuelle Fußballmeldungen werden geladen …</span
         >
-          <h2 id="read-heading">Vor dem Start kurz lesen</h2>
-          <p>
-            Scrolle im Hinweisfeld bis ganz nach unten. Danach kannst du
-            bestätigen und den Beta-Server öffnen.
-          </p>
-          <div
-            class="reading-box"
-            id="readingBox"
-            tabindex="0"
-            aria-label="Beta-Hinweise zum Durchlesen"
-          >
-            <h3>Wichtige Beta-Regeln</h3>
-            <p>
-              Du nutzt eine unfertige Testversion. Funktionen und Inhalte können
-              sich ändern oder Fehler enthalten. Bitte melde Fehler über „Einen
-              Bug melden“ und beschreibe möglichst genau, wie sie aufgetreten
-              sind.
-            </p>
-            <p>
-              Der Beta-Server verbindet sich mit der echten GoalNews-Datenbank.
-              Deine Einträge können daher für andere Nutzer sichtbar sein.
-              Erstelle keine absichtlichen Test-, Spam- oder unsinnigen Inhalte
-              und gib keine privaten oder sensiblen Informationen ein.
-            </p>
-            <p>
-              Mit dem Öffnen des Servers bestätigst du, dass du diese Hinweise
-              gelesen hast und beim Testen sorgfältig mit den echten Daten
-              umgehst. Viel Spaß — das GoalNews-Entwicklerteam freut sich auf
-              dein Feedback!
-            </p>
-          </div>
-          <label class="confirm-row"
-            ><input id="readConfirm" type="checkbox" disabled /><span
-              >Ich habe die Hinweise bis zum Ende gelesen und verstanden.</span
-            ></label
-          >
-          <p class="gate-status" id="gateStatus" aria-live="polite">
-            Bitte scrolle im Hinweisfeld bis zum Ende.
-          </p>
-          <button
-            class="button primary launch-button"
-            id="launchBeta"
-            type="button"
-            disabled
-          >
-            Bestätigen und Beta-Server öffnen <span aria-hidden="true">↗</span>
-          </button>
-        </section>
-      </main>
-
-      <footer>
-        <strong>Viel Spaß beim Testen!</strong><br />Das GoalNews-Entwicklerteam
-        freut sich auf eure Rückmeldungen.<br />Danke, dass ihr helft, GoalNews
-        besser zu machen. ⚽
-      </footer>
+      </div>
     </div>
-    <script src="assets/js/pages/index.js"></script>
-    <script src="assets/js/beta-banner.js"></script>
+
+    <aside
+      id="favoriteGameNotice"
+      class="favorite-game-notice"
+      hidden
+      aria-live="polite"
+    >
+      <strong id="favoriteGameTitle">⚽ Spielhinweis</strong>
+      <p id="favoriteGameText">Der Spielplan wird geladen …</p>
+      <a href="pages/user-dashboard.html"
+        >Lieblingsverein im Dashboard ändern</a
+      >
+    </aside>
+
+    <aside class="bewertung-quick" aria-label="Bewertung">
+      <div>
+        <strong>Dir Gefällt GoalNews?</strong><span>Lass es uns wissen!</span>
+      </div>
+      <a href="pages/bewertungen.html">Bewertung hinterlassen&nbsp; ↗</a>
+    </aside>
+
+    <section
+      class="football-overview table-preview-grid"
+      aria-label="Vorschau der ersten fünf Teams beider Tabellen"
+    >
+      <article class="football-panel">
+        <div class="preview-heading">
+          <h2>Bundesliga</h2>
+          <a href="pages/bundesliga-tabelle.html">Ganze Tabelle ↗</a>
+        </div>
+        <div class="table-preview" id="tablePreview-bl1">
+          <p class="ticker-empty">Tabelle wird geladen …</p>
+        </div>
+      </article>
+      <article class="football-panel">
+        <div class="preview-heading">
+          <h2>2. Bundesliga</h2>
+          <a href="pages/zweite-bundesliga.html">Ganze Tabelle ↗</a>
+        </div>
+        <div class="table-preview" id="tablePreview-bl2">
+          <p class="ticker-empty">Tabelle wird geladen …</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Live Spiele -->
+    <section id="liveGamesSection" class="schedule-section">
+      <h2>1. und 2. Bundesliga: Liveticker</h2>
+
+      <a class="schedule-page-link" href="pages/naechste-spieltage.html"
+        >Alle nächsten Spieltage ansehen&nbsp; ↗</a
+      >
+      <table class="matches-table">
+        <thead>
+          <tr>
+            <th>Heimteam</th>
+            <th>Gastteam</th>
+            <th>Ergebnis / Zeit</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td colspan="3" class="ticker-empty">Lade Spiele …</td>
+          </tr>
+        </tbody>
+      </table>
+      <a class="poll-link" href="pages/tipp-abstimmung.html"
+        >🎉 Bei den Spieltipps mit abstimmen</a
+      >
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span class="footer-copy"
+        >© 2026 GoalNews | Built by piex_ and EliXTech</span
+      >
+      <nav class="footer-links">
+        <a href="pages/richtlinien.html">Richtlinien</a> |
+        <a href="pages/impressum.html">Impressum</a> |
+        <a href="pages/agb.html">AGB</a> |
+        <a href="pages/datenschutz.html">Datenschutz</a>
+      </nav>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="module" src="assets/js/home.js"></script>
   </body>
 </html>

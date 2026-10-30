@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080f1b" />
+    <meta
+      name="description"
+      content="Schreib dem GoalNews-Admin-Team eine Nachricht und lies Antworten hier nach."
+    />
+    <title>Kontakt zum Admin-Team – GoalNews</title>
+    <link
+      rel="icon"
+      href="../assets/images/goalnews-logo.webp"
+      type="image/webp"
+    />
+    <link rel="stylesheet" href="../assets/css/league-table.css" />
+    <link rel="stylesheet" href="../assets/css/pages/admin-kontakt.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../index.html">Goal<span>News</span></a>
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <a href="../index.html">Startseite</a>
+        <a href="feedback.html">Helft uns</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Wir sind für dich da</p>
+          <h1>Kontakt zum Admin-Team</h1>
+          <p class="intro">
+            Schreib uns dein Anliegen. Unsere Antwort erscheint hier im
+            Nachrichtenverlauf.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="contact-layout"
+        aria-label="Nachrichten an das Admin-Team"
+      >
+        <form class="panel contact-form" id="contactForm">
+          <div class="panel-head"><h2>Nachricht schreiben</h2></div>
+          <div class="form-content">
+            <label for="senderName">Dein Name</label>
+            <input
+              id="senderName"
+              name="senderName"
+              maxlength="60"
+              autocomplete="name"
+              required
+              placeholder="Wie dürfen wir dich nennen?"
+            />
+            <label for="messageText">Deine Nachricht</label>
+            <textarea
+              id="messageText"
+              name="messageText"
+              maxlength="3000"
+              required
+              placeholder="Wobei können wir dir helfen?"
+            ></textarea>
+            <button class="send-button" id="sendMessage" type="submit">
+              Nachricht senden
+            </button>
+            <p
+              class="status"
+              id="sendStatus"
+              role="status"
+              aria-live="polite"
+            ></p>
+            <p class="privacy-note">
+              Dein Name wird dem Admin-Team angezeigt. Antworten erscheinen als
+              „Server Admin“. Deine E-Mail-Adresse wird nicht mit der Nachricht
+              angezeigt.
+            </p>
+          </div>
+        </form>
+
+        <section
+          class="panel conversation-panel"
+          aria-labelledby="conversationHeading"
+        >
+          <div class="panel-head">
+            <h2 id="conversationHeading">Deine Nachrichten</h2>
+            <span
+              id="conversationStatus"
+              class="updated"
+              role="status"
+              aria-live="polite"
+              >Wird geladen …</span
+            >
+          </div>
+          <div class="messages" id="messages">
+            <p class="state">Deine Nachrichten werden geladen …</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">GoalNews · Kontakt zum Admin-Team</footer>
+    <script type="module" src="../assets/js/pages/admin-kontakt.js"></script>
+  </body>
+</html>

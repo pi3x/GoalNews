@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
     import { getFirestore, collection, doc, getDoc, setDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+import { appendAdminBadge } from "../admin-badge.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
@@ -68,6 +69,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
         const author = document.createElement("div");
         author.className = "review-author";
         author.textContent = item.authorName || "GoalNews-Mitglied";
+        appendAdminBadge(author, item.userId || item.id);
         const date = document.createElement("time");
         date.className = "review-date";
         date.textContent = formatDate(item.updatedAt);

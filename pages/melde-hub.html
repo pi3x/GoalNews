@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111d" />
+    <meta name="description" content="Melde GoalNews-Konten oder Beiträge direkt an das Admin-Team." />
+    <title>Melde-Hub | GoalNews</title>
+    <link rel="icon" href="../assets/images/goalnews-logo.webp" type="image/webp" />
+    <link rel="stylesheet" href="../assets/css/pages/melde-hub.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="topbar" aria-label="Navigation">
+        <a class="brand" href="../index.html">Goal<span>News</span></a>
+        <a class="back-link" href="feedback.html">← Helft uns</a>
+      </nav>
+
+      <section class="hero">
+        <p class="eyebrow">Sicher miteinander</p>
+        <h1>Melde-Hub</h1>
+        <p>Suche ein Konto oder einen Community-Beitrag und sende eine Meldung direkt an unser Admin-Team.</p>
+      </section>
+
+      <section id="loginBox" class="panel login-box" hidden>
+        <h2>Bitte anmelden</h2>
+        <p>Zum Melden von Konten und Beiträgen brauchst du ein GoalNews-Konto.</p>
+        <a class="button" href="anmelden.html">Anmelden</a>
+      </section>
+
+      <div id="app" hidden>
+        <div class="tabs" role="tablist" aria-label="Was möchtest du melden?">
+          <button class="tab active" id="accountTab" type="button" role="tab" aria-selected="true">Konto suchen</button>
+          <button class="tab" id="postTab" type="button" role="tab" aria-selected="false">Beitrag suchen</button>
+        </div>
+
+        <section class="panel search-panel" id="accountPanel" role="tabpanel" aria-labelledby="accountTab">
+          <div class="section-heading"><span class="icon">👤</span><div><h2>Konto melden</h2><p>Suche nach dem GoalNews-Benutzernamen.</p></div></div>
+          <form id="accountSearch" class="search-form">
+            <input id="accountQuery" type="search" maxlength="40" placeholder="Benutzername eingeben …" autocomplete="off" required />
+            <button class="button" type="submit">Suchen</button>
+          </form>
+          <p id="accountStatus" class="status" aria-live="polite">Gib mindestens zwei Zeichen ein.</p>
+          <div id="accountResults" class="results"></div>
+        </section>
+
+        <section class="panel search-panel" id="postPanel" role="tabpanel" aria-labelledby="postTab" hidden>
+          <div class="section-heading"><span class="icon">📝</span><div><h2>Beitrag melden</h2><p>Suche in den neuesten Community-Kommentaren.</p></div></div>
+          <form id="postSearch" class="search-form">
+            <input id="postQuery" type="search" maxlength="100" placeholder="Wort aus dem Beitrag eingeben …" autocomplete="off" required />
+            <button class="button" type="submit">Suchen</button>
+          </form>
+          <p id="postStatus" class="status" aria-live="polite">Es werden die neuesten Kommentare durchsucht.</p>
+          <div id="postResults" class="results"></div>
+        </section>
+
+        <p class="privacy-note">Meldungen sind nur für das GoalNews-Admin-Team bestimmt. Bitte melde Inhalte nur, wenn es einen konkreten Grund gibt.</p>
+      </div>
+
+      <footer><a href="richtlinien.html">Richtlinien</a><span>·</span><a href="datenschutz.html">Datenschutz</a></footer>
+    </main>
+
+    <dialog id="reportDialog" class="report-dialog">
+      <form id="reportForm" method="dialog">
+        <button class="dialog-close" type="button" id="closeDialog" aria-label="Schließen">×</button>
+        <p class="eyebrow">Meldung an das Admin-Team</p>
+        <h2 id="dialogTitle">Inhalt melden</h2>
+        <p id="targetSummary" class="target-summary"></p>
+        <label for="reportReason">Grund der Meldung</label>
+        <select id="reportReason" required>
+          <option value="Beleidigung oder Belästigung">Beleidigung oder Belästigung</option>
+          <option value="Spam oder Werbung">Spam oder Werbung</option>
+          <option value="Unangemessener Inhalt">Unangemessener Inhalt</option>
+          <option value="Täuschung oder Identitätsmissbrauch">Täuschung oder Identitätsmissbrauch</option>
+          <option value="Anderer Grund">Anderer Grund</option>
+        </select>
+        <label for="reportDetails">Zusätzliche Informationen <span>(optional)</span></label>
+        <textarea id="reportDetails" maxlength="500" rows="4" placeholder="Was sollte das Team wissen?"></textarea>
+        <p id="dialogStatus" class="status" aria-live="polite"></p>
+        <button id="submitReport" class="button submit-button" type="submit">Meldung senden</button>
+      </form>
+    </dialog>
+
+    <script type="module" src="../assets/js/pages/melde-hub.js"></script>
+  </body>
+</html>

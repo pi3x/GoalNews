@@ -1,33 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registrierung</title>
 
-    
-  <link rel="stylesheet" href="../assets/css/pages/registrieren.css">
-</head>
+    <link
+      rel="icon"
+      href="../assets/images/goalnews-logo.webp"
+      type="image/webp"
+    />
+    <link rel="stylesheet" href="../assets/css/pages/registrieren.css" />
+  </head>
   <body>
     <div class="container">
       <h2>Registrieren</h2>
-      <p class="success-note" id="deletedAccountNotice" role="status">Dein altes Konto wurde gelöscht. Du kannst jetzt ein neues GoalNews-Konto erstellen.</p>
+      <p class="success-note" id="deletedAccountNotice" role="status">
+        Dein altes Konto wurde gelöscht. Du kannst jetzt ein neues
+        GoalNews-Konto erstellen.
+      </p>
 
       <input id="email" type="email" placeholder="E-Mail" />
       <div class="input-wrapper">
         <input id="password" type="password" placeholder="Passwort" />
         <span class="togglePwd" id="togglePwd">👁️</span>
       </div>
-      <input id="username" type="text" placeholder="Username" maxlength="40" />
+      <input id="username" type="text" placeholder="Username" maxlength="40" aria-describedby="usernameGuidance" />
+      <p class="username-guidance" id="usernameGuidance">Admin- und Moderatoren-Namen sind dem GoalNews-Team vorbehalten.</p>
 
       <div class="email-optin">
         <input type="checkbox" id="allowEmails" />
-        <label for="allowEmails">Ich möchte E-Mail-Benachrichtigungen erhalten</label>
+        <label for="allowEmails"
+          >Ich möchte E-Mail-Benachrichtigungen erhalten</label
+        >
       </div>
 
       <button id="registerBtn">Registrieren</button>
 
-      <p class="auth-switch">Sie haben schon ein Konto? <a href="anmelden.html" class="link">Loggen Sie sich jetzt ein</a></p>
+      <p class="auth-switch">
+        Sie haben schon ein Konto?
+        <a href="anmelden.html" class="link">Loggen Sie sich jetzt ein</a>
+      </p>
       <a href="../index.html" class="home-link">← Zur Startseite</a>
     </div>
 

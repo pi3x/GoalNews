@@ -1,17 +1,95 @@
 <!doctype html>
 <html lang="de">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08111c">
-<meta name="description" content="Wähle deinen Lieblingsspieler aus der Bundesliga und sieh seine Torschützenstatistik.">
-<title>Lieblingsspieler | GoalNews</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#08111c" />
+    <meta
+      name="description"
+      content="Wähle deinen Lieblingsspieler aus der Bundesliga und sieh seine Torschützenstatistik."
+    />
+    <link
+      rel="icon"
+      href="../assets/images/goalnews-logo.webp"
+      type="image/webp"
+    />
+    <title>Lieblingsspieler | GoalNews</title>
 
-<link rel="stylesheet" href="../assets/css/pages/lieblingsspieler.css">
-</head>
-<body><main class="wrap">
-<header class="top"><a class="brand" href="../index.html">Goal<span>News</span> · Spieler</a><a href="../index.html">← Startseite</a></header>
-<section class="hero"><p class="eyebrow">Dein Spieler. Seine Saison.</p><h1>Lieblingsspieler</h1><p>Wähle einen Spieler aus der Bundesliga-Torschützenliste und sieh seine erfassten Tore und die dazugehörigen Spielergebnisse.</p></section>
-<section class="panel"><h2>Spieler auswählen</h2><div class="selector"><select id="playerSelect" aria-label="Lieblingsspieler auswählen" disabled><option>Daten werden geladen …</option></select><button id="refreshButton" type="button">Aktualisieren</button></div><p class="status" id="status" role="status" aria-live="polite">Bundesliga-Daten werden geladen …</p></section>
-<section id="profile" class="panel" hidden><h2 id="playerHeading">Spielerstatistik</h2><div class="cards"><div class="stat"><span>Tore laut Torschützenliste</span><strong id="goalsTotal">–</strong></div><div class="stat"><span>Spiele mit erfasstem Tor</span><strong id="scoringMatches">–</strong></div><div class="stat"><span>Elfmeter-Tore erfasst</span><strong id="penalties">–</strong></div></div></section>
-<section class="panel"><h2>Ergebnisse mit Toren deines Spielers</h2><div id="goalMatches" class="goal-list"><div class="empty">Wähle einen Spieler aus, um seine erfassten Tore und Spiele zu sehen.</div></div></section>
-<p class="source">Daten: <a href="https://www.openligadb.de/" target="_blank" rel="noopener noreferrer">OpenLigaDB</a> · veröffentlicht unter <a href="https://www.openligadb.de/lizenz" target="_blank" rel="noopener noreferrer">ODbL 1.0</a>. Es werden Torschützen- und Spielergebnisdaten angezeigt. Einsätze, Assists und weitere Leistungswerte sind in dieser Datenquelle nicht enthalten. Die Daten werden im Browser zehn Minuten zwischengespeichert.</p>
-</main><script type="module" src="../assets/js/pages/lieblingsspieler.js"></script><script src="../assets/js/beta-banner.js"></script></body></html>
+    <link rel="stylesheet" href="../assets/css/pages/lieblingsspieler.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="top">
+        <a class="brand" href="../index.html">Goal<span>News</span> · Spieler</a
+        ><a href="../index.html">← Startseite</a>
+      </header>
+      <section class="hero">
+        <p class="eyebrow">Dein Spieler. Seine Saison.</p>
+        <h1>Lieblingsspieler</h1>
+        <p>
+          Wähle einen Spieler aus der Bundesliga-Torschützenliste und sieh seine
+          erfassten Tore und die dazugehörigen Spielergebnisse.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>Spieler auswählen</h2>
+        <div class="selector">
+          <select
+            id="playerSelect"
+            aria-label="Lieblingsspieler auswählen"
+            disabled
+          >
+            <option>Daten werden geladen …</option></select
+          ><button id="refreshButton" type="button">Aktualisieren</button>
+        </div>
+        <p class="status" id="status" role="status" aria-live="polite">
+          Bundesliga-Daten werden geladen …
+        </p>
+      </section>
+      <section id="profile" class="panel" hidden>
+        <h2 id="playerHeading">Spielerstatistik</h2>
+        <div class="cards">
+          <div class="stat">
+            <span>Tore laut Torschützenliste</span
+            ><strong id="goalsTotal">–</strong>
+          </div>
+          <div class="stat">
+            <span>Spiele mit erfasstem Tor</span
+            ><strong id="scoringMatches">–</strong>
+          </div>
+          <div class="stat">
+            <span>Elfmeter-Tore erfasst</span><strong id="penalties">–</strong>
+          </div>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>Ergebnisse mit Toren deines Spielers</h2>
+        <div id="goalMatches" class="goal-list">
+          <div class="empty">
+            Wähle einen Spieler aus, um seine erfassten Tore und Spiele zu
+            sehen.
+          </div>
+        </div>
+      </section>
+      <p class="source">
+        Daten:
+        <a
+          href="https://www.openligadb.de/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >OpenLigaDB</a
+        >
+        · veröffentlicht unter
+        <a
+          href="https://www.openligadb.de/lizenz"
+          target="_blank"
+          rel="noopener noreferrer"
+          >ODbL 1.0</a
+        >. Es werden Torschützen- und Spielergebnisdaten angezeigt. Einsätze,
+        Assists und weitere Leistungswerte sind in dieser Datenquelle nicht
+        enthalten. Die Daten werden im Browser zehn Minuten zwischengespeichert.
+      </p>
+    </main>
+    <script type="module" src="../assets/js/pages/lieblingsspieler.js"></script>
+  </body>
+</html>

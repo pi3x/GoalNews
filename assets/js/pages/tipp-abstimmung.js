@@ -1,4 +1,4 @@
-import { currentSeasonStart, fetchJsonCached } from "./data-cache.js";
+import { currentSeasonStart, fetchJsonCached } from "../data-cache.js";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
     import { getFirestore, collection, doc, onSnapshot, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";

@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
     import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+import { appendAdminBadge } from "../admin-badge.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
@@ -43,6 +44,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
       // User anzeigen
       if (userDoc.exists()) {
         usernameField.textContent = userDoc.data().username || "User";
+        appendAdminBadge(usernameField, user.uid);
 
         if (userDoc.data().favTeam) {
           favTeamInput.value = userDoc.data().favTeam;

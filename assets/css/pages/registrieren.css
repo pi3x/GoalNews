@@ -91,6 +91,13 @@ input:not([type="checkbox"]):focus {
   background: #0b1725;
   box-shadow: 0 0 0 4px #b9e8751c;
 }
+.username-guidance {
+  margin: -4px 2px 12px;
+  color: #aeb9c8;
+  font-size: .78rem;
+  line-height: 1.45;
+  text-align: left;
+}
 .togglePwd {
   position: absolute;
   top: 50%;

@@ -1,4 +1,7 @@
-import { fetchJsonCached, currentSeasonStart } from "./data-cache.js";
+import { fetchJsonCached, currentSeasonStart } from "../data-cache.js";
+import { appendAdminBadge } from "../admin-badge.js";
+import { usernamePolicyError } from "../username-policy.js";
+import { teamsMatch } from "../team-utils.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, updateDoc, onSnapshot, collection, getDocs, arrayUnion } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
@@ -139,7 +142,6 @@ openBreakingBtn.addEventListener("click", () => { window.location.href = "../ind
 buyBreakingBtn.addEventListener("click", () => { document.querySelector('[data-item="breakingNews"]').scrollIntoView({behavior:"smooth",block:"center"}); });
 
 // In-App-Spielhinweis aus dem vorhandenen Bundesliga-Spielplan.
-function normalizedTeam(name) { return String(name || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("de").replace(/[^a-z0-9]/g, ""); }
 function formatMatchDate(value) { return new Date(value).toLocaleString("de-DE", { weekday:"short", day:"2-digit", month:"2-digit", hour:"2-digit", minute:"2-digit" }); }
 async function checkFavoriteTeamFixtures() {
   const team = currentUserData?.favTeam?.trim();
@@ -157,8 +159,8 @@ async function checkFavoriteTeamFixtures() {
     const now = Date.now();
     const upcoming = matches.filter(match => {
       const start = new Date(match.matchDateTime).getTime();
-      const names = `${match.team1?.teamName || ""} ${match.team2?.teamName || ""}`;
-      return start > now && start <= now + 24 * 60 * 60 * 1000 && normalizedTeam(names).includes(normalizedTeam(team));
+      return start > now && start <= now + 24 * 60 * 60 * 1000 &&
+        (teamsMatch(team, match.team1?.teamName) || teamsMatch(team, match.team2?.teamName));
     });
     if (!upcoming.length) {
       reminderStatus.textContent = `Für ${team} steht in den nächsten 24 Stunden kein Bundesliga-Spiel an.`;
@@ -185,6 +187,7 @@ async function loadUsers(){
     const div = document.createElement("div");
     div.className="user-card";
     div.textContent = data.username || "User";
+    appendAdminBadge(div, docSnap.id);
     div.dataset.uid = docSnap.id;
     div.addEventListener("click",()=>{ div.classList.toggle("selected"); });
     usersList.appendChild(div);
@@ -206,6 +209,10 @@ sendAdminMsgBtn.addEventListener("click", async ()=>{
 changeNameBtn.addEventListener("click", async ()=>{
   const newName = changeNameInput.value.trim();
   if(newName){
+    const nameError = usernamePolicyError(newName, {
+      allowReservedRoles: ADMIN_UIDS.includes(currentUserUID),
+    });
+    if(nameError){ alert(nameError); return; }
     await updateDoc(doc(db,"users",currentUserUID),{username:newName});
     currentUserData.username = newName;
     renderUser();

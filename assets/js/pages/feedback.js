@@ -15,6 +15,16 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+async function saveHelpIdea(type, title, description) {
+    await addDoc(collection(db, "ideas"), {
+        type,
+        title,
+        description,
+        source: "Helft uns",
+        created: serverTimestamp()
+    });
+}
+
 function requireMember() {
     if (auth.currentUser && !auth.currentUser.isAnonymous) return true;
     alert("Bitte melde dich an, bevor du etwas einsendest.");
@@ -37,7 +47,10 @@ document.getElementById('sendBug').addEventListener('click', async()=>{
     const type = document.getElementById('errorType').value;
     const desc = document.getElementById('errorDescription').value.trim();
     if(!desc){alert("Bitte eine Beschreibung eingeben!"); return;}
-    await addDoc(collection(db,"reports"),{type,description:desc,created:serverTimestamp()});
+    await Promise.all([
+        addDoc(collection(db,"reports"),{type,description:desc,created:serverTimestamp()}),
+        saveHelpIdea("Fehlerbericht", type, desc)
+    ]);
     alert("✅ Vielen Dank! Dein Bericht wurde anonym gesendet.");
     document.getElementById('errorDescription').value='';
     document.getElementById('bugForm').style.display='none';
@@ -48,7 +61,7 @@ document.getElementById('sendIdea').addEventListener('click', async()=>{
     const title = document.getElementById('ideaTitle').value.trim();
     const desc = document.getElementById('ideaDescription').value.trim();
     if(!title || !desc){alert("Bitte Titel und Beschreibung eingeben!"); return;}
-    await addDoc(collection(db,"ideas"),{title,description:desc,created:serverTimestamp()});
+    await saveHelpIdea("Idee", title, desc);
     alert("✅ Deine Idee wurde anonym gesendet!");
     document.getElementById('ideaTitle').value='';
     document.getElementById('ideaDescription').value='';
@@ -59,7 +72,10 @@ document.getElementById('sendFeedback').addEventListener('click', async()=>{
     if(!requireMember()) return;
     const feedback = document.getElementById('feedbackText').value.trim();
     if(!feedback){alert("Bitte Feedback eingeben!"); return;}
-    await addDoc(collection(db,"feedback"),{feedback,created:serverTimestamp()});
+    await Promise.all([
+        addDoc(collection(db,"feedback"),{feedback,created:serverTimestamp()}),
+        saveHelpIdea("Feedback", "Allgemeines Feedback", feedback)
+    ]);
     alert("✅ Danke für dein Feedback!");
     document.getElementById('feedbackText').value='';
     document.getElementById('feedbackForm').style.display='none';
@@ -70,7 +86,10 @@ document.getElementById('sendFeature').addEventListener('click', async()=>{
     const title = document.getElementById('featureTitle').value.trim();
     const desc = document.getElementById('featureDescription').value.trim();
     if(!title||!desc){alert("Bitte Titel und Beschreibung eingeben!"); return;}
-    await addDoc(collection(db,"features"),{title,description:desc,created:serverTimestamp()});
+    await Promise.all([
+        addDoc(collection(db,"features"),{title,description:desc,created:serverTimestamp()}),
+        saveHelpIdea("Feature-Wunsch", title, desc)
+    ]);
     alert("✅ Dein Feature Wunsch wurde anonym gesendet!");
     document.getElementById('featureTitle').value='';
     document.getElementById('featureDescription').value='';
