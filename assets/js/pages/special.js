@@ -1,4 +1,5 @@
 import { fetchJsonCached, currentSeasonStart } from "../data-cache.js";
+import { appendAdminBadge } from "../admin-badge.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, updateDoc, onSnapshot, collection, getDocs, arrayUnion } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
@@ -185,6 +186,7 @@ async function loadUsers(){
     const div = document.createElement("div");
     div.className="user-card";
     div.textContent = data.username || "User";
+    appendAdminBadge(div, docSnap.id);
     div.dataset.uid = docSnap.id;
     div.addEventListener("click",()=>{ div.classList.toggle("selected"); });
     usersList.appendChild(div);

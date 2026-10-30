@@ -1,4 +1,5 @@
 import {fetchJsonCached,currentSeasonStart} from "../data-cache.js";
+import {appendAdminBadge} from "../admin-badge.js";
 import {initializeApp} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 import {getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,collection,getDocs,query,where,orderBy,startAt,endAt,limit,documentId,serverTimestamp} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
@@ -41,7 +42,7 @@ async function loadRelationships(){
 function renderEntry(target,relation,kind){
   const row=document.createElement("div");row.className="entry";
   const text=document.createElement("div"),name=document.createElement("strong"),meta=document.createElement("small");
-  const peer=otherUid(relation);name.textContent=profileName(peer);meta.textContent=`${relationLabel[relation.status]||relation.status} · ${byDate(relation.updatedAt||relation.createdAt)}`;text.append(name,meta);
+  const peer=otherUid(relation);name.textContent=profileName(peer);appendAdminBadge(name,peer);meta.textContent=`${relationLabel[relation.status]||relation.status} · ${byDate(relation.updatedAt||relation.createdAt)}`;text.append(name,meta);
   const actions=document.createElement("div");actions.className="entry-actions";
   if(kind==="incoming"){
     const accept=document.createElement("button");accept.textContent="Annehmen";accept.addEventListener("click",()=>changeRelation(relation,"accepted"));
@@ -70,7 +71,7 @@ $("searchForm").addEventListener("submit",async event=>{
     const found=snap.docs.map(d=>({id:d.id,...d.data()})).filter(p=>p.uid!==uid);
     if(!found.length){msg("searchStatus","Keine passenden Konten gefunden. Bestehende Nutzer werden beim Besuch der Startseite automatisch für die Suche freigeschaltet.");return}
     const existingByPeer=new Map(relations.map(r=>[otherUid(r),r]));
-    for(const profile of found){const row=document.createElement("div");row.className="entry";const name=document.createElement("strong");name.textContent=profile.username||"GoalNews Nutzer";const action=document.createElement("div");action.className="entry-actions";const rel=existingByPeer.get(profile.uid);const button=document.createElement("button");
+    for(const profile of found){const row=document.createElement("div");row.className="entry";const name=document.createElement("strong");name.textContent=profile.username||"GoalNews Nutzer";appendAdminBadge(name,profile.uid);const action=document.createElement("div");action.className="entry-actions";const rel=existingByPeer.get(profile.uid);const button=document.createElement("button");
       if(rel?.status==="accepted"){button.textContent="Bereits befreundet";button.disabled=true}
       else if(rel?.status==="pending"){button.textContent=rel.toUid===uid?"Anfrage annehmen":"Anfrage gesendet";button.disabled=true}
       else if(rel?.status==="declined"){button.textContent="Alte Anfrage entfernen";button.className="danger";button.addEventListener("click",async()=>{await removeRelation(rel);$("searchForm").requestSubmit()})}

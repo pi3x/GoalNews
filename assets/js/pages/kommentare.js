@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
     import { getFirestore, collection, addDoc, deleteDoc, doc, serverTimestamp, query, orderBy, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+import { appendAdminBadge } from "../admin-badge.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBmIcdFtxv4jBJKdiAkEiwnkQ8yRwiG_0w",
@@ -72,6 +73,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
         const author = document.createElement("span");
         author.className = "comment-author";
         author.textContent = username;
+        appendAdminBadge(author, data.userId);
         const date = document.createElement("time");
         date.className = "comment-date";
         date.textContent = formatDate(data.created);
