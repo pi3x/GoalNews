@@ -12,7 +12,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
       if(!auth.currentUser||auth.currentUser.isAnonymous){status.textContent="Bitte melde dich zuerst an.";status.className="status error";return;}
       button.disabled=true;status.textContent="Wird gesendet …";status.className="status";
       try{await addDoc(collection(db,collectionName),{...data,created:serverTimestamp()});reset();status.textContent="Danke! Deine Meldung wurde an das GoalNews-Team gesendet.";status.className="status success";}
-      catch(error){console.error("Beta-Feedback konnte nicht gespeichert werden",error);status.textContent="Senden fehlgeschlagen. Bitte prüfe deine Anmeldung oder versuche es später erneut.";status.className="status error";}
+      catch(error){console.error("Feedback konnte nicht gespeichert werden",error);status.textContent="Senden fehlgeschlagen. Bitte prüfe deine Anmeldung oder versuche es später erneut.";status.className="status error";}
       finally{button.disabled=false;}
     }
     document.getElementById("sendBug").addEventListener("click",()=>{const description=document.getElementById("bugDescription").value.trim();if(!description){document.getElementById("bugStatus").textContent="Bitte beschreibe den Fehler.";document.getElementById("bugStatus").className="status error";return;}submit(document.getElementById("sendBug"),document.getElementById("bugStatus"),"reports",{type:document.getElementById("bugType").value,description},()=>document.getElementById("bugDescription").value="");});

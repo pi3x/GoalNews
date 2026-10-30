@@ -1,4 +1,4 @@
-import {fetchJsonCached,currentSeasonStart,formatUpdatedAt} from "./data-cache.js";
+import {fetchJsonCached,currentSeasonStart,formatUpdatedAt} from "../data-cache.js";
 const select=document.getElementById("playerSelect"),status=document.getElementById("status"),profile=document.getElementById("profile"),matchList=document.getElementById("goalMatches");
 const season=currentSeasonStart(),storageKey=`goalnews-favorite-player-bl1-${season}`;let scorers=[],matches=[];
 function showEmpty(text){const box=document.createElement("div");box.className="empty";box.textContent=text;matchList.replaceChildren(box)}

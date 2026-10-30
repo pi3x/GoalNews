@@ -1,4 +1,4 @@
-import {fetchJsonCached,currentSeasonStart,formatUpdatedAt} from "./data-cache.js";
+import {fetchJsonCached,currentSeasonStart,formatUpdatedAt} from "../data-cache.js";
 const season=currentSeasonStart();
 function renderMessage(container,text,error=false){const p=document.createElement("p");p.className=error?"state error":"state";p.textContent=text;container.replaceChildren(p)}
 function renderLeague(league,data,updated){const container=document.getElementById(`fixtures-${league}`),status=document.getElementById(`status-${league}`),now=Date.now();const future=(Array.isArray(data)?data:[]).filter(match=>new Date(match.matchDateTime).getTime()>=now).sort((a,b)=>new Date(a.matchDateTime)-new Date(b.matchDateTime));if(!future.length){renderMessage(container,"Für diese Liga sind derzeit keine kommenden Spiele eingetragen.");status.textContent=`Saison ${season}/${season+1} · Stand ${formatUpdatedAt(updated.updatedAt)}`;return}

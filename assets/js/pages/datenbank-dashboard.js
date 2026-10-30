@@ -21,7 +21,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
     const dashboard = document.getElementById("dashboard");
 
     // 🔹 Collections, die angezeigt werden sollen
-    const collectionsToShow = ["comments", "visits", "users", "polls", "reports", "tipps"];
+    const collectionsToShow = ["comments", "visits", "users", "polls", "reports", "ideas", "feedback", "features", "tipps"];
 
     async function loadDashboard() {
       dashboard.innerHTML = "";

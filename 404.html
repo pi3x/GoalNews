@@ -2,35 +2,43 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seite nicht gefunden – GoalNews</title>
-    <link
-      rel="icon"
-      href="assets/images/goalnews-logo.webp"
-      type="image/webp"
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080f1b" />
+    <meta
+      name="description"
+      content="Diese GoalNews-Seite wurde nicht gefunden. Zurück zu Fußball-News und Tabellen."
     />
-
+    <title>Seite nicht gefunden – GoalNews</title>
+    <link rel="icon" href="assets/images/goalnews-logo.webp" type="image/webp" />
     <link rel="stylesheet" href="assets/css/pages/404.css" />
   </head>
   <body>
-    <img
-      src="assets/images/goalnews-logo.webp"
-      alt="GoalNews Wasserzeichen"
-      class="bg-logo"
-    />
-    <img
-      src="assets/images/goalnews-logo.webp"
-      alt="GoalNews Logo"
-      class="logo"
-    />
-    <h1>404</h1>
-    <h2>Seite nicht gefunden</h2>
-    <p>
-      Die Seite, die du suchst, wurde möglicherweise verschoben oder existiert
-      nicht mehr.
-    </p>
-    <a class="button" href="index.html">Zur Startseite</a>
-    <footer>© 2025 GoalNews – Alle Rechte vorbehalten</footer>
-    <script src="assets/js/beta-banner.js"></script>
+    <main class="error-page">
+      <a class="brand" href="index.html" aria-label="GoalNews Startseite">
+        <img src="assets/images/goalnews-logo.webp" alt="" />
+        <span>Goal<span class="brand-accent">News</span></span>
+      </a>
+
+      <section class="error-card" aria-labelledby="error-title">
+        <div class="error-mark" aria-hidden="true">
+          <span>404</span>
+          <span class="football">⚽</span>
+        </div>
+        <p class="eyebrow">Abseits geraten?</p>
+        <h1 id="error-title">Diese Seite ist nicht im Spiel.</h1>
+        <p class="message">
+          Der Link ist vielleicht veraltet oder die Seite wurde verschoben.
+          Von hier findest du schnell zurück zu GoalNews.
+        </p>
+        <nav class="actions" aria-label="Weiter zu GoalNews">
+          <a class="button primary" href="index.html">Zur Startseite</a>
+          <a class="button secondary" href="pages/bundesliga-tabelle.html">
+            Zur Bundesliga-Tabelle
+          </a>
+        </nav>
+      </section>
+
+      <footer>© 2026 GoalNews · Fußball und Community</footer>
+    </main>
   </body>
 </html>

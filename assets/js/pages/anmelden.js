@@ -77,7 +77,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
           last_login: serverTimestamp(),
         });
 
-        window.location.href = "special.html";
+        window.location.href = "user-dashboard.html";
 
       } catch (err) {
         console.error(err);

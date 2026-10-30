@@ -1,4 +1,4 @@
-import { fetchJsonCached, currentSeasonStart, formatUpdatedAt } from "./data-cache.js";
+import { fetchJsonCached, currentSeasonStart, formatUpdatedAt } from "../data-cache.js";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
     import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
@@ -93,7 +93,7 @@ import { fetchJsonCached, currentSeasonStart, formatUpdatedAt } from "./data-cac
         currentTeam = String(snapshot.data()?.favTeam || "").trim();
         if (!currentTeam) {
           statusEl.textContent = "In deinem Profil ist noch kein Lieblingsverein gespeichert. Lege ihn im Dashboard fest.";
-          const link = document.createElement("a"); link.href = "special.html"; link.textContent = "Zum Dashboard"; statusEl.append(" ", link);
+          const link = document.createElement("a"); link.href = "user-dashboard.html"; link.textContent = "Zum Dashboard"; statusEl.append(" ", link);
           showEmpty(upcomingEl, "Wähle zuerst deinen Lieblingsverein aus."); showEmpty(resultsEl, "Wähle zuerst deinen Lieblingsverein aus.");
           return;
         }
