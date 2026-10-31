@@ -245,7 +245,7 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
-    // Public submissions are size/type limited; only admins can inspect them.
+    // Public submissions are size/type limited; reporters can inspect only their own reports.
     match /reports/{entryId} {
       allow create: if memberAccount()
         && (
@@ -256,9 +256,9 @@ service cloud.firestore {
             && request.resource.data.description is string && request.resource.data.description.size() >= 1 && request.resource.data.description.size() <= 3000
             && request.resource.data.created == request.time)
           ||
-          // Community reports: the reporter can create a report but cannot read or edit it.
-          (request.resource.data.keys().hasAll(['type', 'description', 'created', 'targetType', 'targetId', 'targetUserId', 'targetName', 'targetText', 'reason', 'reporterUid'])
-            && request.resource.data.keys().hasOnly(['type', 'description', 'created', 'targetType', 'targetId', 'targetUserId', 'targetName', 'targetText', 'reason', 'reporterUid'])
+          // Community reports: reporters may check their own status; only admins can update it.
+          (request.resource.data.keys().hasAll(['type', 'description', 'created', 'targetType', 'targetId', 'targetUserId', 'targetName', 'targetText', 'reason', 'reporterUid', 'status', 'statusNote', 'updatedAt'])
+            && request.resource.data.keys().hasOnly(['type', 'description', 'created', 'targetType', 'targetId', 'targetUserId', 'targetName', 'targetText', 'reason', 'reporterUid', 'status', 'statusNote', 'updatedAt'])
             && request.resource.data.type in ['Kontomeldung', 'Kommentarmeldung']
             && request.resource.data.targetType in ['account', 'comment']
             && ((request.resource.data.targetType == 'account' && request.resource.data.type == 'Kontomeldung')
@@ -276,9 +276,26 @@ service cloud.firestore {
             && request.resource.data.reason is string && request.resource.data.reason.size() >= 1 && request.resource.data.reason.size() <= 120
             && request.resource.data.description is string && request.resource.data.description.size() <= 1000
             && request.resource.data.reporterUid == request.auth.uid
-            && request.resource.data.created == request.time)
+            && request.resource.data.status == 'Neu'
+            && request.resource.data.statusNote == ''
+            && request.resource.data.created == request.time
+            && request.resource.data.updatedAt == request.time)
         );
-      allow read: if isAdmin();
+      allow get: if isAdmin()
+        || (memberAccount() && resource.data.keys().hasAny(['reporterUid']) && resource.data.reporterUid == request.auth.uid);
+      allow list: if isAdmin()
+        || (memberAccount()
+          && resource.data.keys().hasAny(['reporterUid'])
+          && resource.data.reporterUid == request.auth.uid
+          && request.query.limit <= 100);
+      allow update: if isAdmin()
+        && resource.data.keys().hasAny(['targetType'])
+        && changedOnly(['status', 'statusNote', 'updatedAt'])
+        && request.resource.data.status in ['Neu', 'Wird geprüft', 'Erledigt', 'Abgelehnt']
+        && request.resource.data.statusNote is string
+        && request.resource.data.statusNote.size() <= 1000
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
     }
     match /ideas/{entryId} {
       allow create: if memberAccount()

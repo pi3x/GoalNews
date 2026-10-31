@@ -153,6 +153,9 @@ $("postSearch").addEventListener("submit", async (event) => {
 
 function openReport(target) {
   selectedTarget = target;
+  $("statusPageLink").hidden = true;
+  $("submitReport").disabled = false;
+  $("submitReport").textContent = "Meldung senden";
   $("dialogTitle").textContent = `${target.kind} melden`;
   $("targetSummary").textContent = target.summary;
   $("reportReason").value = "Beleidigung oder Belästigung";
@@ -203,15 +206,15 @@ $("reportForm").addEventListener("submit", async (event) => {
       targetText: selectedTarget.content || "",
       reason,
       reporterUid: currentUser.uid,
+      status: "Neu",
+      statusNote: "",
       created: serverTimestamp(),
+      updatedAt: serverTimestamp(),
     });
-    setStatus("dialogStatus", "Danke. Deine Meldung wurde an das Admin-Team gesendet.");
+    setStatus("dialogStatus", `Danke! Deine Meldungs-ID lautet ${reportId}. Du kannst den Bearbeitungsstand damit auf der Status-Seite prüfen.`);
+    $("statusPageLink").hidden = false;
     button.textContent = "Gesendet ✓";
-    window.setTimeout(() => {
-      closeDialog();
-      button.disabled = false;
-      button.textContent = "Meldung senden";
-    }, 900);
+    button.disabled = true;
   } catch (error) {
     console.error("Meldung konnte nicht gespeichert werden", error);
     const message = error.code === "permission-denied"

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08111d" />
+    <meta name="description" content="Prüfe den Bearbeitungsstand deiner GoalNews-Meldung." />
+    <title>Meldungsstatus prüfen | GoalNews</title>
+    <link rel="icon" href="../assets/images/goalnews-logo.webp" type="image/webp" />
+    <link rel="stylesheet" href="../assets/css/pages/melde-hub.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="topbar" aria-label="Navigation">
+        <a class="brand" href="../index.html">Goal<span>News</span></a>
+        <a class="back-link" href="melde-hub.html">← Melde-Hub</a>
+      </nav>
+
+      <section class="hero">
+        <p class="eyebrow">Wir kümmern uns darum</p>
+        <h1>Meldungsstatus prüfen</h1>
+        <p>Gib die Meldungs-ID ein, die du nach dem Absenden erhalten hast. Meldenummern sind an dein GoalNews-Konto gebunden.</p>
+      </section>
+
+      <section id="loginBox" class="panel login-box" hidden>
+        <h2>Bitte anmelden</h2>
+        <p>Zum Schutz der Meldungen musst du mit dem Konto angemeldet sein, von dem die Meldung abgeschickt wurde.</p>
+        <a class="button" href="anmelden.html">Anmelden</a>
+      </section>
+
+      <div id="app" hidden>
+        <section class="panel my-reports-panel">
+          <div class="section-heading"><span class="icon">📋</span><div><h2>Meine Meldungen</h2><p>Hier findest du deine Meldungs-IDs und den aktuellen Stand.</p></div></div>
+          <p id="myReportsMessage" class="status" aria-live="polite">Deine Meldungen werden geladen …</p>
+          <div id="myReportsList" class="my-reports-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading"><span class="icon">🔎</span><div><h2>Deine Meldung finden</h2><p>Die ID steht in der Bestätigung nach dem Absenden.</p></div></div>
+          <form id="statusSearch" class="search-form">
+            <input id="reportId" type="text" maxlength="260" autocomplete="off" placeholder="Meldungs-ID eingeben …" required />
+            <button id="searchButton" class="button" type="submit">Status prüfen</button>
+          </form>
+          <p id="statusMessage" class="status" aria-live="polite"></p>
+          <article id="statusResult" class="status-result" hidden>
+            <div class="status-result-top"><div><p class="eyebrow">Bearbeitungsstand</p><h2 id="resultType">Meldung</h2></div><span id="resultBadge" class="status-badge">Neu</span></div>
+            <p class="result-meta">Meldungs-ID: <strong id="resultId"></strong></p>
+            <p id="resultTarget" class="result-target"></p>
+            <div id="resultNoteWrap" class="result-note" hidden><strong>Info vom GoalNews-Team</strong><p id="resultNote"></p></div>
+            <p id="resultUpdated" class="result-meta"></p>
+          </article>
+        </section>
+        <p class="privacy-note">Nur dein angemeldetes Konto und das GoalNews-Admin-Team können den Status dieser Meldung sehen.</p>
+      </div>
+
+      <footer><a href="richtlinien.html">Richtlinien</a><span>·</span><a href="datenschutz.html">Datenschutz</a></footer>
+    </main>
+    <script type="module" src="../assets/js/pages/meldungsstatus.js"></script>
+  </body>
+</html>

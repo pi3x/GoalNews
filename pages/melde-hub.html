@@ -55,7 +55,7 @@
           <div id="postResults" class="results"></div>
         </section>
 
-        <p class="privacy-note">Meldungen sind nur für das GoalNews-Admin-Team bestimmt. Bitte melde Inhalte nur, wenn es einen konkreten Grund gibt.</p>
+        <p class="privacy-note">Meldungen sind nur für das GoalNews-Admin-Team bestimmt. Bitte melde Inhalte nur, wenn es einen konkreten Grund gibt. Bereits gesendet? <a href="meldungsstatus.html">Meldungsstatus prüfen</a>.</p>
       </div>
 
 
@@ -78,6 +78,7 @@
         <label for="reportDetails">Zusätzliche Informationen <span>(optional)</span></label>
         <textarea id="reportDetails" maxlength="500" rows="4" placeholder="Was sollte das Team wissen?"></textarea>
         <p id="dialogStatus" class="status" aria-live="polite"></p>
+        <a id="statusPageLink" class="status-page-link" href="meldungsstatus.html" hidden>Meldungsstatus prüfen&nbsp; ↗</a>
         <button id="submitReport" class="button submit-button" type="submit">Meldung senden</button>
       </form>
     </dialog>

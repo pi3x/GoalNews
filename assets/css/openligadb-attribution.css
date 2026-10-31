@@ -1,0 +1,23 @@
+.openligadb-credit {
+  width: min(1180px, calc(100% - 32px));
+  margin: 18px auto 22px;
+  color: #95a3b7;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  text-align: center;
+}
+.openligadb-credit a {
+  color: #c8f279;
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.openligadb-credit a:hover {
+  color: #e2ffad;
+}
+.openligadb-credit.compact {
+  width: auto;
+  margin: 12px 0 0;
+  text-align: left;
+  font-size: 0.72rem;
+}
